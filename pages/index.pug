@@ -1,0 +1,54 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0")
+    title ·d҉e҉m҉o҉.҉l҉a҉n҉d҉
+    script(src="https://aframe.io/releases/1.0.4/aframe.min.js")
+    script(src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js")
+    script(src="https://unpkg.com/aframe-proxy-event-component/dist/aframe-proxy-event-component.min.js")
+    // bundle
+    link(rel="stylesheet" type="text/css" href="index.css")
+  body
+    a-scene(
+      background="color: #ccc"
+      fog="type: 'exponential'; near: 0; far: 0; color: #ccc"
+      animation__near="property: fog.near; from: 0; to: 15; dur: 5500; delay: 1500; startEvents: loaded"
+      animation__far="property: fog.far; from: 0; to: 18; dur: 4000; delay: 1000; startEvents: loaded"
+      vr-mode-ui="enabled: false"
+      renderer="alpha: false; colorManagement: true; antialias: false; logarithmicDepthBuffer: false; physicallyCorrectLights: true: precision: low")
+
+      a-assets(proxy-event="event: loaded; to: a-scene")
+        img#eq(src="images/eq1.gif")
+
+      a-camera(
+        look-controls-enabled="false"
+        wasd-controls-enabled="false")
+      a-entity(
+        material="shader: gif; src:url(https://raw.githubuserconnpmtent.com/SubZtep/SubZtep/master/assets/eq1.gif);"
+        geometry="primitive: box; width: 10; height: 10; depth: 10;"
+        position="5 2 -15"
+        rotation="-10 20 0")
+
+      //- a-entity(geometry="primitive: box; width: 10; height: 10; depth: 10;" position="-5 5 -15" material="shader:grid-glitch; color: blue;")
+
+      //- a-sphere(material="shader:grid-glitch; color: blue;" radius="0.5" position="0 1.5 -2")
+      //- a-sphere(material="shader: rorschach-test;" radius="0.5" position="0 1.5 -2")
+      //- a-entity(material="shader:rorschach-test;" geometry="primitive: box; width: 10; height: 10; depth: 10;" position="0 1.5 -2")
+
+      //- a-box(position='-1 0.5 -3' rotation='0 45 0' color='#4CC3D9')
+      //- a-sphere(position='0 1.25 -5' radius='1.25' color='#EF2D5E')
+      //- a-cylinder(position='1 0.75 -3' radius='0.5' height='1.5' color='#FFC65D')
+      //-a-entity(basic-cube="")
+      //- a-plane(position='0 0 -4' rotation='-90 0 0' width='4' height='4' color='#7BC8A4')
+      //- a-sky(color='#ECECEC')
+
+  .content
+    h1 demo.land
+    p 🚧
+    p
+      | 🔗
+      a(href="https://demo.land/blog/") Blog
+    p
+      | 🐦
+      a(href="https://twitter.com/SubZtep") @SubZtep

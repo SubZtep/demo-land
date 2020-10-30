@@ -1,50 +1,49 @@
-import babel from "@rollup/plugin-babel"
-import { terser } from "rollup-plugin-terser"
-import resolve from "@rollup/plugin-node-resolve"
-import commonjs from "@rollup/plugin-commonjs"
-import replace from "@rollup/plugin-replace"
-import strip from "@rollup/plugin-strip"
-import html from "@open-wc/rollup-plugin-html"
 import pug from "pug"
+import { join } from "path"
+import babel from "@rollup/plugin-babel"
+import strip from "@rollup/plugin-strip"
+import replace from "@rollup/plugin-replace"
+import { terser } from "rollup-plugin-terser"
+import commonjs from "@rollup/plugin-commonjs"
+import html from "@open-wc/rollup-plugin-html"
+import { nodeResolve } from "@rollup/plugin-node-resolve"
 
 const isProd = process.env.NODE_ENV === "production"
-const extensions = [".js", ".ts"]
+const extensions = [`.js`, `.ts`]
 
-const plugins = [
-  resolve({ extensions }),
-  babel({
-    babelHelpers: "bundled",
-    extensions,
-    include: ["src/**/*"],
-  }),
-  commonjs(),
-  html({
-    inject: false,
-    template: ({ bundle }) =>
-      pug
-        .compileFile("pug/template.pug", { pretty: !isProd })()
-        .replace(
-          "<!-- bundle-->",
-          bundle.entrypoints.map(({ importPath }) => `<script type="module" src="${importPath}"></script>`)
-        ),
-    minify: isProd,
-  }),
-]
+const pluginList = chunk => {
+  const plugins = [
+    nodeResolve({ extensions, preferBuiltins: true }),
+    babel({ extensions, babelHelpers: `bundled` }),
+    commonjs(),
+  ]
 
-const output = {
-  dir: "dist",
-  // format: "esm",
+  const pugs = [chunk, `404`]
+  pugs.forEach(file => void plugins.push(
+    html({
+      name: `${file}.html`,
+      inject: false,
+      template: ({ bundle }) =>
+        pug
+          .compileFile(`pages/${file}.pug`, { pretty: !isProd })()
+          .replace(
+            "<!-- bundle-->",
+            bundle.entrypoints.map(({ importPath }) => `<script src="${importPath}"></script>`)
+          ),
+      minify: isProd,
+    }),
+  ))
+
+  if (isProd) {
+    plugins.unshift(replace({ "//prod:": ``, delimiters: [``, ``] }))
+    plugins.push(strip({ include: [`src/**/*.(t|j)s`], sourceMap: false }), terser())
+  }
+
+  return plugins
 }
 
-if (isProd) {
-  plugins.unshift(replace({ "//prod:": "", delimiters: ["", ""] }))
-  plugins.push(strip({ include: ["**/*.(t|j)s"] }), terser())
-}
-
-const main = {
-  input: "src/main.ts",
-  output,
-  plugins,
-}
-
-export default [main]
+export default [`index`].map(chunk => ({
+  input: join(__dirname, `./dist/${chunk}.ts`),
+  output: { dir: `dist` },
+  plugins: pluginList(chunk)
+}))

@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  background-color: #111;
+}
+
+canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+.label {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  color: #111;
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.25rem;
+  animation: skw 3s infinite linear alternate-reverse;
+}
+
+@keyframes skw {
+  0% {
+    transform: skew(5deg);
+  }
+  50% {
+    transform: skew(-5deg);
+  }
+}
