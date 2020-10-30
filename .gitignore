@@ -1,2 +1,4 @@
 node_modules/
-dist/*.{html,ts,js}
+dist/*.html
+dist/*.ts
+dist/*.js
