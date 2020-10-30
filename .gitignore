@@ -2,3 +2,4 @@ node_modules/
 dist/*.html
 dist/*.ts
 dist/*.js
+!dist/ecosystem.config.js
