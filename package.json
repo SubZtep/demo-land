@@ -14,7 +14,7 @@
     "postinstall": "npm run generate-imports && bash ./scripts/init.sh"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.7",
+    "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.7",
     "@babel/preset-typescript": "^7.12.7",
     "@open-wc/rollup-plugin-html": "^1.2.5",
