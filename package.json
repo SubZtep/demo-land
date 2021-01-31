@@ -2,6 +2,7 @@
   "name": "demo-land",
   "version": "1.0.0",
   "private": true,
+  "main": "dist/index.ts",
   "scripts": {
     "dev": "nollup --environment NODE_ENV:development -c -w",
     "dev-build": "npm run generate-imports && rollup --environment NODE_ENV:development -c",
@@ -20,7 +21,7 @@
     "@open-wc/rollup-plugin-html": "^1.2.5",
     "@prettier/plugin-pug": "^1.10.1",
     "@rollup/plugin-babel": "^5.2.1",
-    "@rollup/plugin-commonjs": "^16.0.0",
+    "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^10.0.0",
     "@rollup/plugin-replace": "^2.3.4",
     "@rollup/plugin-strip": "^2.0.0",
