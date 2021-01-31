@@ -2,6 +2,7 @@
   "name": "demo-land",
   "version": "1.0.0",
   "private": true,
+  "main": "dist/index.ts",
   "scripts": {
     "dev": "nollup --environment NODE_ENV:development -c -w",
     "dev-build": "npm run generate-imports && rollup --environment NODE_ENV:development -c",
