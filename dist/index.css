@@ -124,7 +124,7 @@ body:not(.p2) a:hover {
 
 .content:hover .linkico {
   opacity: .6;
-  transition: opacity .2s ease-in-out .8s;
+  transition: opacity .2s ease-in-out 1s;
 }
 
 @keyframes narrower {
