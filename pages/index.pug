@@ -9,7 +9,32 @@ html(lang="en")
     script(src="https://unpkg.com/aframe-proxy-event-component/dist/aframe-proxy-event-component.min.js")
     // bundle
     link(rel="stylesheet" type="text/css" href="index.css")
+    script.
+      let unity = null
+      const fullscreen = () => {
+        const body = document.querySelector("body")
+        if (body.className === "p2") {
+          body.className = null;
+          document.exitFullscreen()
+        } else {
+          body.requestFullscreen()
+          body.className = "p2"
+          if (unity === null) {
+            unity = document.querySelector("#unity-canvas")
+            createUnityInstance(unity, {
+              dataUrl: "Build/web-tunnel-unity.data",
+              frameworkUrl: "Build/web-tunnel-unity.framework.js",
+              codeUrl: "Build/web-tunnel-unity.wasm",
+              streamingAssetsUrl: "StreamingAssets",
+              companyName: "DemoLand",
+              productName: "Web Tunnel",
+              productVersion: "0.1",
+            })
+          }
+        }
+      }
   body
+    canvas#unity-canvas
     a-scene(
       background="color: #ccc"
       fog="type: 'exponential'; near: 0; far: 0; color: #ccc"
@@ -30,28 +55,30 @@ html(lang="en")
         position="5 2 -15"
         rotation="-10 20 0")
 
-      //- a-entity(geometry="primitive: box; width: 10; height: 10; depth: 10;" position="-5 5 -15" material="shader:grid-glitch; color: blue;")
+    .content
+      h1(onclick="fullscreen()") demo.land
+      p 🚧
+      p
+        .linkico 🔗
+        | 📓
+        a(href="https://demo.land/blog/") Blog
+      p
+        .linkico 🔗
+        | 🐦
+        a(href="https://twitter.com/SubZtep") @SubZtep
+      p 🍭
 
-      //- a-sphere(material="shader:grid-glitch; color: blue;" radius="0.5" position="0 1.5 -2")
-      //- a-sphere(material="shader: rorschach-test;" radius="0.5" position="0 1.5 -2")
-      //- a-entity(material="shader:rorschach-test;" geometry="primitive: box; width: 10; height: 10; depth: 10;" position="0 1.5 -2")
+    .full.middle
+      h1(onclick="fullscreen()") demo.land
+      .content2
+        p
+          .linkico 🔗
+          | 📓
+          a(href="https://demo.land/blog/") Blog
+        p
+          .linkico 🔗
+          | 🐦
+          a(href="https://twitter.com/SubZtep") @SubZtep
+        p 🍭 :p
 
-      //- a-box(position='-1 0.5 -3' rotation='0 45 0' color='#4CC3D9')
-      //- a-sphere(position='0 1.25 -5' radius='1.25' color='#EF2D5E')
-      //- a-cylinder(position='1 0.75 -3' radius='0.5' height='1.5' color='#FFC65D')
-      //-a-entity(basic-cube="")
-      //- a-plane(position='0 0 -4' rotation='-90 0 0' width='4' height='4' color='#7BC8A4')
-      //- a-sky(color='#ECECEC')
-
-  .content
-    h1 demo.land
-    p 🚧
-    p
-      .linkico 🔗
-      | 📓
-      a(href="https://demo.land/blog/") Blog
-    p
-      .linkico 🔗
-      | 🐦
-      a(href="https://twitter.com/SubZtep") @SubZtep
-    p 🍭
+    script(src="Build/web-tunnel-unity.loader.js")

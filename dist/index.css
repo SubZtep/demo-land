@@ -1,6 +1,29 @@
 :root {
   --blue: #0000a0;
   --grey: #ccc;
+  --red: #8a0303;
+}
+
+.full {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.p2 a-scene, .p2 .content {
+  display: none !important;
+}
+
+body:not(.p2) #unity-canvas, body:not(.p2) .full {
+  display: none !important;
+}
+
+.middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 html, body {
@@ -11,6 +34,11 @@ html, body {
    background-color: var(--grey);
 }
 
+.p2 {
+  background-color: #000;
+  overflow: hidden;
+}
+
 .content {
   position: absolute;
   top: 1rem;
@@ -19,18 +47,49 @@ html, body {
   font-size: 1rem;
 }
 
-h1 {
+.content h1 {
   font-size: 4rem;
   letter-spacing: -0.75rem;
   margin: 0;
   position: absolute;
+  cursor: zoom-in;
+}
+
+h1:hover {
+  background: var(--red);
+}
+
+#unity-canvas {
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.3;
+  transform: rotate(15deg);
+}
+
+.content2 {
+  overflow: auto;
+  opacity: 0.9;
+  border-radius: 50%;
+  background-color: maroon;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 1rem;
+}
+
+.p2 h1 {
+  cursor: zoom-out;
+  font-size: 8rem;
+  letter-spacing: -0.6rem;
+  font-family: 'Kufam', cursive;
+  text-shadow: 0 0 8px var(--red);
+  animation: narrower 4s ease-out infinite;
+  animation-direction: normal;
 }
 
 p {
   margin: 2px 21px;
 }
 
-p:first-of-type {
+.content p:first-of-type {
   margin-top: 69px;
 }
 
@@ -55,4 +114,18 @@ a:hover {
 .content:hover .linkico {
   opacity: .6;
   transition: opacity .2s ease-in-out .8s;
+}
+
+@keyframes narrower {
+  0% {
+    opacity: 0.2;
+    transform: rotateY(-88deg);
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.2;
+    transform: rotateY(88deg);
+  }
 }
