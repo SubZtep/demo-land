@@ -1,6 +1,7 @@
 :root {
   --blue: #0000a0;
   --grey: #ccc;
+  --darkgrey: #161616;
   --red: #8a0303;
 }
 
@@ -68,7 +69,7 @@ h1:hover {
 
 .content2 {
   overflow: auto;
-  opacity: 0.9;
+  opacity: 0.2;
   border-radius: 50%;
   background-color: maroon;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -93,12 +94,22 @@ p {
   margin-top: 69px;
 }
 
-a {
+body:not(.p2) a {
+  color: var(--darkgrey);
+  margin-left: 4px;
+}
+
+body:not(.p2) a:hover {
+  background-color: var(--blue);
+  color: var(--grey);
+}
+
+.p2 a {
   color: var(--blue);
   margin-left: 4px;
 }
 
-a:hover {
+.p2 a:hover {
   background-color: var(--blue);
   color: var(--grey);
 }

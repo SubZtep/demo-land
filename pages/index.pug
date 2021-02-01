@@ -9,6 +9,7 @@ html(lang="en")
     script(src="https://unpkg.com/aframe-proxy-event-component/dist/aframe-proxy-event-component.min.js")
     // bundle
     link(rel="stylesheet" type="text/css" href="index.css")
+    script(src="https://kit.fontawesome.com/b5a1c1fc70.js" crossorigin="anonymous")
     script.
       let unity = null
       const fullscreen = () => {
@@ -64,8 +65,24 @@ html(lang="en")
         a(href="https://demo.land/blog/") Blog
       p
         .linkico 🔗
-        | 🐦
-        a(href="https://twitter.com/SubZtep") @SubZtep
+        a(href="https://twitter.com/SubZtep" target="_blank")
+          i.fa-4x.fab.fa-twitter
+      p
+        .linkico 🔗
+        a(href="https://github.com/SubZtep" target="_blank")
+          i.fa-4x.fab.fa-github
+      p
+        .linkico 🔗
+        a(href="https://pinterest.com/subztep" target="_blank")
+          i.fa-3x.fab.fa-pinterest
+      p
+        .linkico 🔗
+        a(href="https://www.youtube.com/channel/UCy1JFooPXHose1GKoPZVxMg" target="_blank")
+          i.fa-2x.fab.fa-youtube
+      p
+        .linkico 🔗
+        a(href="https://www.instagram.com/subztep" target="_blank")
+          i.fa-2x.fab.fa-instagram
       p 🍭
 
     .full.middle
