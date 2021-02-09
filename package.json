@@ -27,7 +27,7 @@
     "@rollup/plugin-strip": "^2.0.0",
     "@types/aframe": "^1.0.3",
     "@types/jest": "^26.0.20",
-    "@types/node": "^14.14.22",
+    "@types/node": "^14.14.25",
     "@typescript-eslint/eslint-plugin": "^4.14.1",
     "@typescript-eslint/parser": "^4.14.1",
     "eslint": "^7.19.0",
