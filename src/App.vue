@@ -1,5 +1,6 @@
 <template lang="pug">
-CubeGrid
+//- CubeGrid
+MandelbrotSet
   //- <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
   //- <!-- <HelloWorld msg="Hello Vue 3 + Vite" /> -->
 </template>
@@ -7,12 +8,14 @@ CubeGrid
 <script lang="ts">
 import { defineComponent } from 'vue'
 import CubeGrid from './components/CubeGrid.vue'
+import MandelbrotSet from './components/MandelbrotSet.vue'
 import HelloWorld from './components/HelloWorld.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
     CubeGrid,
+    MandelbrotSet,
     HelloWorld
   }
 })

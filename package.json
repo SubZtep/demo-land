@@ -11,12 +11,12 @@
   },
   "devDependencies": {
     "@types/node": "^14.14.31",
-    "@vitejs/plugin-vue": "^1.1.2",
-    "@vue/compiler-sfc": "^3.0.5",
-    "@vuedx/typecheck": "^0.6.0",
-    "@vuedx/typescript-plugin-vue": "^0.6.0",
-    "pug": "^3.0.0",
-    "typescript": "^4.1.3",
-    "vite": "^2.0.0-beta.48"
+    "@vitejs/plugin-vue": "^1.1.5",
+    "@vue/compiler-sfc": "^3.0.7",
+    "@vuedx/typecheck": "^0.6.3",
+    "@vuedx/typescript-plugin-vue": "^0.6.3",
+    "pug": "^3.0.2",
+    "typescript": "^4.2.2",
+    "vite": "^2.0.4"
   }
 }
