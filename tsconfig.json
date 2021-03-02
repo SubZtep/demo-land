@@ -6,8 +6,12 @@
     "strict": true,
     "jsx": "preserve",
     "sourceMap": true,
-    "lib": ["esnext", "dom"],
+    "lib": ["esnext", "dom", "webworker"],
     "types": ["vite/client"],
+    "typeRoots": [
+      "./src/types",
+      "node_modules/@types"
+    ],
     "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]

@@ -7,32 +7,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue"
-
-type ComplexNumber = {
-  x: number // real
-  y: number // imaginary
-}
-
-const mandelbrot = (c: ComplexNumber, maxIteration: number): [number, boolean] => {
-  let z = { x: 0, y: 0 }
-  let n = 0
-  let p: ComplexNumber
-  let d: number
-  do {
-    p = {
-      x: Math.pow(z.x, 2) - Math.pow(z.y, 2),
-      y: 2 * z.x * z.y,
-    }
-    z = {
-      x: p.x + c.x,
-      y: p.y + c.y,
-    }
-    d = Math.sqrt(Math.pow(z.x, 2) + Math.pow(z.y, 2))
-    n += 1
-  } while (d <= 2 && n < maxIteration)
-  return [n, d <= 2]
-}
+import { defineComponent, ref } from "vue"
+import MandelbrotWorker from "../workers/mandelbrot?worker"
 
 export default defineComponent({
   name: "MandelbrotSet",
@@ -51,27 +27,18 @@ export default defineComponent({
     },
   },
   setup: ({ width, height, maxIteration }) => {
+    const map = ref<MandelbrotSetMap>(new Map<string, string>())
+
     const realSet = { start: -2, end: 1 }
     const imaginarySet = { start: -1, end: 1 }
-    let complex: ComplexNumber
-
     const colors = new Array(16)
       .fill(0)
       .map((_, i) => (i === 0 ? "#000" : `#${(((1 << 24) * Math.random()) | 0).toString(16)}`))
 
-    const map = new Map<string, string>()
-
-    for (let i = 0; i < width; i++) {
-      for (let j = 0; j < height; j++) {
-        complex = {
-          x: realSet.start + (i / width) * (realSet.end - realSet.start),
-          y: imaginarySet.start + (j / height) * (imaginarySet.end - imaginarySet.start),
-        }
-
-        const [m, isMandelbrotSet] = mandelbrot(complex, maxIteration)
-        let c = colors[isMandelbrotSet ? 0 : (m % colors.length - 1) + 1]
-        map.set(`${i}-${j}`, c)
-      }
+    const worker = new MandelbrotWorker()
+    worker.postMessage({ width, height, maxIteration, realSet, imaginarySet, colors })
+    worker.onmessage = ({ data }: MessageEvent<MandelbrotSetMap>) => {
+      map.value = data
     }
 
     return {
