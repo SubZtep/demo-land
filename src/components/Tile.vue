@@ -1,9 +1,11 @@
 <template lang="pug">
 .tile(
+  :src="icon"
   :style="{ '--r': rgb[0], '--g': rgb[1], '--b': rgb[2] }"
   :class="{ animUp, animDown }"
   @mouseover="handleOver"
   @mouseout="handleOut")
+  slot
 </template>
 
 <script lang="ts">

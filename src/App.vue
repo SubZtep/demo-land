@@ -1,5 +1,6 @@
 <template lang="pug">
 Settings(
+  v-show="showSettings"
   v-model:width="width"
   v-model:height="height"
   v-model:maxIteration="maxIteration"
@@ -10,7 +11,8 @@ MandelbrotSet(
   :height="height"
   :maxIteration="maxIteration"
   :paletteSize="paletteSize"
-  :key="`${width}-${height}-${maxIteration}`")
+  :key="`${width}-${height}-${maxIteration}`"
+  @toggleSettings="showSettings = !showSettings")
 </template>
 
 <script lang="ts">
@@ -27,6 +29,7 @@ export default defineComponent({
   },
   data() {
     return {
+      showSettings: false,
       width: 15,
       height: 10,
       maxIteration: 30,

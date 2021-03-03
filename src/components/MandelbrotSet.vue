@@ -1,21 +1,19 @@
 <template lang="pug">
 .grid(:style="cssVars")
-  template(v-for="(m, idx) in map")
-    Tile(
-      v-if="m"
-      :key="`${idx}-${m}`"
-      :rgb="palette[m % (palette.length - 1)]"
-      @click="zoom(idx % width, ~~(idx / width))")
-    Cube(v-else :key="`${idx}-nope`")
+  template(v-for="(m, index) in map")
+    Tile(v-if="m" :key="`${index}-${m}`" :rgb="palette[m % (palette.length - 1)]" @click="action(index)")
+      img(v-if="isSettings(index)" :src="sliders")
+    Cube(v-else :key="`${index}-nope`")
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onUnmounted, toRefs } from "vue"
+import { defineComponent, ref, onUnmounted, toRefs, SetupContext } from "vue"
 import { throttledWatch } from "@vueuse/core"
 import MandelbrotWorker from "../workers/mandelbrot?worker"
 import usePalette from "../use/palette"
 import Cube from "./Cube.vue"
 import Tile from "./Tile.vue"
+import sliders from "../assets/icons/regular/sliders.svg"
 
 export default defineComponent({
   name: "MandelbrotSet",
@@ -45,9 +43,9 @@ export default defineComponent({
       default: 250,
     },
   },
-  setup: props => {
-    const { width, height, maxIteration, zoomFactor } = props
+  setup: (props, { emit }) => {
     const { generatePalette } = usePalette()
+    const { width, height, maxIteration, zoomFactor } = props
     const paletteSize = toRefs(props).paletteSize
     const palette = ref<RGB[]>([])
     const map = ref<MandelbrotSetMap>([])
@@ -73,32 +71,44 @@ export default defineComponent({
 
     onUnmounted(() => worker.terminate())
 
+    const zoom = (index: number) => {
+      const x = index % width
+      const y = ~~(index / width)
+      const zfw = width * zoomFactor
+      const zfh = height * zoomFactor
+
+      const getRelativePoint = (pos: number, length: number, set: NumberSet) =>
+        set.start + (pos / length) * (set.end - set.start)
+
+      realSet = {
+        start: getRelativePoint(x - zfw, width, realSet),
+        end: getRelativePoint(x + zfw, width, realSet),
+      }
+      imaginarySet = {
+        start: getRelativePoint(y - zfh, height, imaginarySet),
+        end: getRelativePoint(y + zfh, height, imaginarySet),
+      }
+
+      worker.postMessage({ width, height, maxIteration, realSet, imaginarySet })
+    }
+
+    const isSettings = (index: number) => index === map.value.length - 1
+
     return {
       map,
-      width,
-      height,
+      sliders,
       palette,
       cssVars: {
         "--width": width,
         "--height": height,
       },
-      zoom: (x: number, y: number) => {
-        const zfw = width * zoomFactor
-        const zfh = height * zoomFactor
-
-        const getRelativePoint = (pos: number, length: number, set: NumberSet) =>
-          set.start + (pos / length) * (set.end - set.start)
-
-        realSet = {
-          start: getRelativePoint(x - zfw, width, realSet),
-          end: getRelativePoint(x + zfw, width, realSet),
+      isSettings,
+      action: (index: number) => {
+        if (isSettings(index)) {
+          emit("toggleSettings")
+        } else {
+          zoom(index)
         }
-        imaginarySet = {
-          start: getRelativePoint(y - zfh, height, imaginarySet),
-          end: getRelativePoint(y + zfh, height, imaginarySet),
-        }
-
-        worker.postMessage({ width, height, maxIteration, realSet, imaginarySet })
       },
     }
   },
@@ -124,5 +134,18 @@ export default defineComponent({
   --r: 0;
   --g: 0;
   --b: 0;
+}
+
+.grid img {
+  opacity: 0.6;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  padding: 15%;
+  transition-duration: 200ms;
+}
+.grid img:hover {
+  opacity: 1;
+  transition-duration: 250ms;
 }
 </style>
