@@ -2,8 +2,13 @@
 //- .cube(
 //-   :style="cssVars"
 //-   :class="x === 1 && y === 0 && 'mov3d'")
-.cube.rot3d(:style="cssVars")
-  each val in ["front", "back", "right", "left", "top", "bottom"]
+//- .cube.rot3d(:style="cssVars")
+//-   each val in ["front", "back", "right", "left", "top", "bottom"]
+//-     div(class=val)
+//- .cube.rot3d(:style="cssVars")
+.cube(:style="cssVars")
+  //- each val in ["front", "back", "right", "left", "top", "bottom"]
+  each val in ["front"]
     div(class=val)
 </template>
 
@@ -13,16 +18,29 @@ import { defineComponent } from "vue"
 export default defineComponent({
   name: "Cube",
   props: {
-    x: Number,
-    y: Number,
+    edge: {
+      type: Number,
+      default: 100,
+    },
+    x: {
+      type: Number,
+      default: 0,
+    },
+    y: {
+      type: Number,
+      default: 0,
+    },
+    // x: Number,
+    // y: Number,
   },
-  setup: ({ x, y }) => {
-    console.log({ x, y })
+  setup: ({ x, y, edge }) => {
+    // console.log({ x, y })
     return {
       cssVars: {
-        "--x": x,
-        "--y": y,
-      }
+        // "--x": x,
+        // "--y": y,
+        "--edge": `${edge}px`,
+      },
     }
   },
 })
@@ -39,18 +57,11 @@ export default defineComponent({
 } */
 
 .cube {
-  /* background-color: blue; */
-  /* backface-visibility: hidden; */
-  width: var(--edge);
-  height: var(--edge);
+  --sp: 5s;
+  width: 100%;
+  height: 100%;
   transform-style: preserve-3d;
-  /* transform-origin: center center 50px; */
-
-  /* animation-name: rot;
-  animation-timing-function: linear;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-  animation-delay: 1s; */
+  transform-origin: center center;
 }
 
 .cube > * {
@@ -60,15 +71,18 @@ export default defineComponent({
   /* opacity: 0.5; */
   /* border-radius: 50%; */
   /* background-image: url(header.png); */
-  background-color: #6666;
-  /* border: 1px solid #000; */
-  background-position: calc(var(--x) * var(--edge) * -1) calc(var(--y) * var(--edge) * -1);
+  /* background-color: #000; */
+  /* border: 1px solid #fff; */
+  /* background-position: calc(var(--x) * var(--edge) * -1) calc(var(--y) * var(--edge) * -1); */
 }
 
 .front {
-  background-image: url(header.png);
   transform: translateZ(var(--edge));
+  background-color: #000;
 }
+
+/* .back {
+} */
 
 .right {
   right: 0;

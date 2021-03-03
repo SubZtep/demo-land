@@ -1,17 +1,15 @@
 <template lang="pug">
 .grid(:style="cssVars")
-  div(
-    v-for="(item, idx) in map"
-    :key="`${idx}-${item ?? 'nope'}`"
-    :style="itemCssVars(item)"
-    @click="zoom(idx % width, ~~(idx / width))"
-  )
+  template(v-for="(item, idx) in map")
+    .inSet(v-if="item" :key="`${idx}-${item}`" :style="itemCssVars(item)" @click="zoom(idx % width, ~~(idx / width))")
+    Cube(v-else :key="`${idx}-nope`" :edge="50")
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, onUnmounted, toRefs, watch } from "vue"
 import MandelbrotWorker from "../workers/mandelbrot?worker"
 import usePalette from "../use/palette"
+import Cube from "./Cube.vue"
 
 interface Props {
   width: number
@@ -23,6 +21,9 @@ interface Props {
 
 export default defineComponent({
   name: "MandelbrotSet",
+  components: {
+    Cube,
+  },
   props: {
     width: {
       type: Number,
@@ -104,21 +105,27 @@ export default defineComponent({
 
 <style scoped>
 .grid {
-  background-color: #6666;
+  width: 100vw;
+  height: 100vh;
+  background-color: green;
   display: grid;
-  gap: 1px;
   grid-template-columns: repeat(var(--width), 1fr);
   grid-template-rows: repeat(var(--height), 1fr);
+  /* gap: 1px; */
+
+  transform-origin: center center;
+  transform: rotateY(calc((var(--px) - 50) * 0.3deg)) rotateX(calc((var(--py) - 50) * -0.3deg));
+  transform-style: preserve-3d;
+  transition-duration: 300ms;
+  transition-timing-function: ease-out;
 
   --r: 0;
   --g: 0;
   --b: 0;
 }
 
-.grid > div {
-  cursor: pointer;
-  width: 8px;
-  height: 8px;
+.grid .inSet {
+  cursor: zoom-in;
   background-color: rgb(var(--r), var(--g), var(--b));
 }
 </style>

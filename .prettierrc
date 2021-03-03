@@ -2,5 +2,6 @@
   "semi": false,
   "arrowParens": "avoid",
   "printWidth": 120,
-  "pugAttributeSeparator": "none"
+  "pugAttributeSeparator": "none",
+  "pugClosingBracketPosition": "last-line"
 }
