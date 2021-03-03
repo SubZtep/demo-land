@@ -1,7 +1,11 @@
 <template lang="pug">
 .grid(:style="cssVars")
   template(v-for="(item, idx) in map")
-    .inSet(v-if="item" :key="`${idx}-${item}`" :style="itemCssVars(item)" @click="zoom(idx % width, ~~(idx / width))")
+    Tile(
+      v-if="item"
+      :key="`${idx}-${item}`"
+      :rgb="itemRgb(item)"
+      @click="zoom(idx % width, ~~(idx / width))")
     Cube(v-else :key="`${idx}-nope`" :edge="50")
 </template>
 
@@ -10,19 +14,13 @@ import { defineComponent, ref, onUnmounted, toRefs, watch } from "vue"
 import MandelbrotWorker from "../workers/mandelbrot?worker"
 import usePalette from "../use/palette"
 import Cube from "./Cube.vue"
-
-interface Props {
-  width: number
-  height: number
-  maxIteration: number
-  zoomFactor: number
-  paletteSize: number
-}
+import Tile from "./Tile.vue"
 
 export default defineComponent({
   name: "MandelbrotSet",
   components: {
     Cube,
+    Tile,
   },
   props: {
     width: {
@@ -46,7 +44,7 @@ export default defineComponent({
       default: 250,
     },
   },
-  setup: (props: Props) => {
+  setup: (props) => {
     const { width, height, maxIteration, zoomFactor } = props
     const paletteSize = toRefs(props).paletteSize
     let realSet: NumberSet = { start: -2, end: 1 }
@@ -71,14 +69,9 @@ export default defineComponent({
         "--width": width,
         "--height": height,
       },
-      itemCssVars: (m: number | null) => {
-        if (m === null) return {}
-        const c = palette[m % (palette.length - 1)]
-        return {
-          "--r": c[0],
-          "--g": c[1],
-          "--b": c[2],
-        }
+      itemRgb: (m: number | null) => {
+        if (m === null) return [0,0,0]
+        return palette[m % (palette.length - 1)] ?? [0,0,0]
       },
       zoom: (x: number, y: number) => {
         const zfw = width * zoomFactor
@@ -107,11 +100,11 @@ export default defineComponent({
 .grid {
   width: 100vw;
   height: 100vh;
-  background-color: green;
   display: grid;
   grid-template-columns: repeat(var(--width), 1fr);
   grid-template-rows: repeat(var(--height), 1fr);
-  /* gap: 1px; */
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 
   transform-origin: center center;
   transform: rotateY(calc((var(--px) - 50) * 0.3deg)) rotateX(calc((var(--py) - 50) * -0.3deg));
@@ -122,10 +115,5 @@ export default defineComponent({
   --r: 0;
   --g: 0;
   --b: 0;
-}
-
-.grid .inSet {
-  cursor: zoom-in;
-  background-color: rgb(var(--r), var(--g), var(--b));
 }
 </style>
