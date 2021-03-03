@@ -3,7 +3,8 @@
   "version": "2.0.0",
   "scripts": {
     "dev": "vite --port 3333",
-    "build": "vuedx-typecheck . && vite build",
+    "build:dx": "vuedx-typecheck . && vite build",
+    "build": "vite build",
     "serve": "vite preview"
   },
   "dependencies": {
@@ -18,6 +19,6 @@
     "@vuedx/typescript-plugin-vue": "^0.6.3",
     "pug": "^3.0.2",
     "typescript": "^4.2.2",
-    "vite": "^2.0.4"
+    "vite": "^2.0.5"
   }
 }

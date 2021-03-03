@@ -12,7 +12,7 @@ const makeRGB = (r: number | Pair[], g: number | Pair[], b: number | Pair[], k: 
   ]
 }
 
-const palette = (size: number) => {
+const generatePalette = (size: number) => {
   const range = ~~(size / 6)
   const colors: RGB[] = []
   let c: RGB
@@ -89,6 +89,6 @@ const palette = (size: number) => {
   return colors
 }
 
-export default function usePalette(size = 250) {
-  return palette(size)
-}
+export default () => ({
+  generatePalette
+})

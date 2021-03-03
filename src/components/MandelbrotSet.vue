@@ -1,16 +1,17 @@
 <template lang="pug">
 .grid(:style="cssVars")
-  template(v-for="(item, idx) in map")
+  template(v-for="(m, idx) in map")
     Tile(
-      v-if="item"
-      :key="`${idx}-${item}`"
-      :rgb="itemRgb(item)"
+      v-if="m"
+      :key="`${idx}-${m}`"
+      :rgb="palette[m % (palette.length - 1)]"
       @click="zoom(idx % width, ~~(idx / width))")
-    Cube(v-else :key="`${idx}-nope`" :edge="50")
+    Cube(v-else :key="`${idx}-nope`")
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onUnmounted, toRefs, watch } from "vue"
+import { defineComponent, ref, onUnmounted, toRefs } from "vue"
+import { throttledWatch } from "@vueuse/core"
 import MandelbrotWorker from "../workers/mandelbrot?worker"
 import usePalette from "../use/palette"
 import Cube from "./Cube.vue"
@@ -44,13 +45,14 @@ export default defineComponent({
       default: 250,
     },
   },
-  setup: (props) => {
+  setup: props => {
     const { width, height, maxIteration, zoomFactor } = props
+    const { generatePalette } = usePalette()
     const paletteSize = toRefs(props).paletteSize
+    const palette = ref<RGB[]>([])
+    const map = ref<MandelbrotSetMap>([])
     let realSet: NumberSet = { start: -2, end: 1 }
     let imaginarySet: NumberSet = { start: -1, end: 1 }
-    const map = ref<MandelbrotSetMap>([])
-    let palette: RGB[]
 
     const worker = new MandelbrotWorker()
     worker.postMessage({ width, height, maxIteration, realSet, imaginarySet })
@@ -58,20 +60,27 @@ export default defineComponent({
       map.value = data
     }
 
-    watch(paletteSize, value => (palette = usePalette(value)), { immediate: true })
+    throttledWatch(
+      paletteSize,
+      value => {
+        palette.value = generatePalette(value)
+      },
+      {
+        immediate: true,
+        throttle: 16,
+      }
+    )
+
     onUnmounted(() => worker.terminate())
 
     return {
       map,
       width,
       height,
+      palette,
       cssVars: {
         "--width": width,
         "--height": height,
-      },
-      itemRgb: (m: number | null) => {
-        if (m === null) return [0,0,0]
-        return palette[m % (palette.length - 1)] ?? [0,0,0]
       },
       zoom: (x: number, y: number) => {
         const zfw = width * zoomFactor

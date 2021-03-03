@@ -1,5 +1,9 @@
 <template lang="pug">
-.tile(:style="cssVars" :class="{ animUp, animDown }" @mouseover="handleOver" @mouseout="handleOut")
+.tile(
+  :style="{ '--r': rgb[0], '--g': rgb[1], '--b': rgb[2] }"
+  :class="{ animUp, animDown }"
+  @mouseover="handleOver"
+  @mouseout="handleOut")
 </template>
 
 <script lang="ts">
@@ -19,13 +23,9 @@ export default defineComponent({
     const animDown = ref(false)
 
     return {
+      rgb,
       animUp,
       animDown,
-      cssVars: {
-        "--r": rgb.value[0],
-        "--g": rgb.value[1],
-        "--b": rgb.value[2],
-      },
       handleOver: () => {
         animUp.value = true
         animDown.value = false
@@ -47,7 +47,7 @@ export default defineComponent({
 }
 .animUp {
   /* transform: translateZ(150px) scale(0.1); */
-  transform: scale(0.6);
+  transform: scale(0.8);
   transform-style: preserve-3d;
   transition-duration: 250ms;
   transition-timing-function: ease-out;
