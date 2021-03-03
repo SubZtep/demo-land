@@ -1,37 +1,25 @@
 onmessage = ({ data }: MessageEvent<MandelbrotProps>) => {
-  const map = calculate(data)
-  postMessage(map)
+  postMessage(calculate(data))
 }
 
-const calculate = ({
-  width,
-  height,
-  maxIteration,
-  realSet,
-  imaginarySet,
-  colors,
-}: MandelbrotProps): MandelbrotSetMap => {
-  const map: MandelbrotSetMap = new Map<string, string>()
+const calculate = ({ width, height, maxIteration, realSet, imaginarySet }: MandelbrotProps): MandelbrotSetMap => {
+  const map: MandelbrotSetMap = []
   let complex: ComplexNumber
-  let color: string
 
-  for (let i = 0; i < width; i++) {
-    for (let j = 0; j < height; j++) {
+  for (let j = 0; j < height; j++) {
+    for (let i = 0; i < width; i++) {
       complex = {
         x: realSet.start + (i / width) * (realSet.end - realSet.start),
         y: imaginarySet.start + (j / height) * (imaginarySet.end - imaginarySet.start),
       }
-
-      const [m, isMandelbrotSet] = mandelbrot(complex, maxIteration)
-      color = colors[isMandelbrotSet ? 0 : (m % colors.length) - 1 + 1]
-      map.set(`${i}-${j}`, color)
+      map.push(mandelbrot(complex, maxIteration))
     }
   }
 
   return map
 }
 
-const mandelbrot = (c: ComplexNumber, maxIteration: number): [number, boolean] => {
+const mandelbrot = (c: ComplexNumber, maxIteration: number): number | null => {
   let z = { x: 0, y: 0 }
   let n = 0
   let p: ComplexNumber
@@ -48,5 +36,5 @@ const mandelbrot = (c: ComplexNumber, maxIteration: number): [number, boolean] =
     d = Math.sqrt(Math.pow(z.x, 2) + Math.pow(z.y, 2))
     n += 1
   } while (d <= 2 && n < maxIteration)
-  return [n, d <= 2]
+  return d <= 2 ? null : n
 }

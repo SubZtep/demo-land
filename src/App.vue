@@ -1,6 +1,25 @@
 <template lang="pug">
 //- CubeGrid
-MandelbrotSet
+.nav
+  label
+    div Width:
+    input(type="range" min="1" max="200" v-model="width")
+    | {{width}}
+  label
+    div Height:
+    input(type="range" min="1" max="200" v-model="height")
+    | {{height}}
+  label
+    div Max Iteration:
+    input(type="range" min="1" max="200" v-model="maxIteration")
+    | {{maxIteration}}
+
+MandelbrotSet(
+  :width="Number(width)"
+  :height="Number(height)"
+  :maxIteration="Number(maxIteration)"
+  :key="`${width}-${height}-${maxIteration}`")
+
   //- <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
   //- <!-- <HelloWorld msg="Hello Vue 3 + Vite" /> -->
 </template>
@@ -17,6 +36,13 @@ export default defineComponent({
     CubeGrid,
     MandelbrotSet,
     HelloWorld
+  },
+  data() {
+    return {
+      width: 100,
+      height: 50,
+      maxIteration: 80
+    }
   }
 })
 </script>
@@ -34,5 +60,14 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.nav label {
+  display: block;
 }
 </style>

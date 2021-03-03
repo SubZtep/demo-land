@@ -8,7 +8,7 @@ type NumberSet = {
   end: number
 }
 
-type MandelbrotSetMap = Map<string, string>
+type MandelbrotSetMap = (number | null)[]
 
 interface MandelbrotProps {
   width: number
@@ -16,5 +16,4 @@ interface MandelbrotProps {
   maxIteration: number
   realSet: NumberSet
   imaginarySet: NumberSet
-  colors: string[]
 }
