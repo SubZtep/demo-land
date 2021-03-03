@@ -10,6 +10,7 @@
   //- each val in ["front", "back", "right", "left", "top", "bottom"]
   each val in ["front"]
     div(class=val)
+      slot
 </template>
 
 <script lang="ts">
@@ -20,21 +21,20 @@ export default defineComponent({
   props: {
     edge: {
       type: Number,
-      default: 100,
+      default: -100,
+      // default: 100,
     },
-    x: {
-      type: Number,
-      default: 0,
-    },
-    y: {
-      type: Number,
-      default: 0,
-    },
-    // x: Number,
-    // y: Number,
+    // x: {
+    //   type: Number,
+    //   default: 0,
+    // },
+    // y: {
+    //   type: Number,
+    //   default: 0,
+    // },
   },
-  setup: ({ x, y, edge }) => {
-    // console.log({ x, y })
+  // setup: ({ x, y, edge }) => {
+  setup: ({ edge }) => {
     return {
       cssVars: {
         // "--x": x,
@@ -57,7 +57,7 @@ export default defineComponent({
 } */
 
 .cube {
-  --sp: 5s;
+  /* --sp: 5s; */
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
@@ -69,6 +69,7 @@ export default defineComponent({
   height: inherit;
   position: absolute;
   /* opacity: 0.5; */
+  /* border-radius: 10%; */
   /* border-radius: 50%; */
   /* background-image: url(header.png); */
   /* background-color: #000; */
@@ -78,13 +79,13 @@ export default defineComponent({
 
 .front {
   transform: translateZ(var(--edge));
-  background-color: #000;
+  /* background-color: #000a; */
 }
 
 /* .back {
 } */
 
-.right {
+/* .right {
   right: 0;
   transform-origin: right;
   transform: rotateY(90deg);
@@ -106,5 +107,5 @@ export default defineComponent({
   bottom: 0;
   transform-origin: bottom;
   transform: rotateX(-90deg);
-}
+} */
 </style>

@@ -2,17 +2,20 @@
 .grid(:style="cssVars")
   template(v-for="(m, index) in map")
     Tile(v-if="m" :key="`${index}-${m}`" :rgb="palette[m % (palette.length - 1)]" @click="action(index)")
-      img(v-if="isSettings(index)" :src="sliders")
+      img(v-if="isSettings(index)" :src="sliders" alt="Settings")
     Cube(v-else :key="`${index}-nope`")
+      TileLink(:link="socialLink.next().value")
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onUnmounted, toRefs, SetupContext } from "vue"
+import { defineComponent, ref, onUnmounted, toRefs } from "vue"
 import { throttledWatch } from "@vueuse/core"
 import MandelbrotWorker from "../workers/mandelbrot?worker"
 import usePalette from "../use/palette"
+import useSocialLinks from "../use/socialLinks"
 import Cube from "./Cube.vue"
 import Tile from "./Tile.vue"
+import TileLink from "./TileLink.vue"
 import sliders from "../assets/icons/regular/sliders.svg"
 
 export default defineComponent({
@@ -20,6 +23,7 @@ export default defineComponent({
   components: {
     Cube,
     Tile,
+    TileLink,
   },
   props: {
     width: {
@@ -34,18 +38,20 @@ export default defineComponent({
       type: Number,
       default: 80,
     },
-    zoomFactor: {
-      type: Number,
-      default: 0.1,
-    },
     paletteSize: {
       type: Number,
       default: 250,
     },
+    zoomFactor: {
+      type: Number,
+      default: 0.1,
+    },
   },
   setup: (props, { emit }) => {
     const { generatePalette } = usePalette()
-    const { width, height, maxIteration, zoomFactor } = props
+    const { socialLink } = useSocialLinks()
+    const { width, height, maxIteration } = props
+    const zoomFactor = toRefs(props).zoomFactor
     const paletteSize = toRefs(props).paletteSize
     const palette = ref<RGB[]>([])
     const map = ref<MandelbrotSetMap>([])
@@ -74,8 +80,8 @@ export default defineComponent({
     const zoom = (index: number) => {
       const x = index % width
       const y = ~~(index / width)
-      const zfw = width * zoomFactor
-      const zfh = height * zoomFactor
+      const zfw = width * zoomFactor.value
+      const zfh = height * zoomFactor.value
 
       const getRelativePoint = (pos: number, length: number, set: NumberSet) =>
         set.start + (pos / length) * (set.end - set.start)
@@ -96,7 +102,6 @@ export default defineComponent({
 
     return {
       map,
-      sliders,
       palette,
       cssVars: {
         "--width": width,
@@ -110,6 +115,8 @@ export default defineComponent({
           zoom(index)
         }
       },
+      sliders,
+      socialLink,
     }
   },
 })
@@ -146,6 +153,6 @@ export default defineComponent({
 }
 .grid img:hover {
   opacity: 1;
-  transition-duration: 250ms;
+  /* transition-duration: 250ms; */
 }
 </style>

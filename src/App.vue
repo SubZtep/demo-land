@@ -1,16 +1,19 @@
 <template lang="pug">
-Settings(
-  v-show="showSettings"
-  v-model:width="width"
-  v-model:height="height"
-  v-model:maxIteration="maxIteration"
-  v-model:paletteSize="paletteSize")
+transition(name="bounce")
+  Settings(
+    v-if="showSettings"
+    v-model:width="width"
+    v-model:height="height"
+    v-model:maxIteration="maxIteration"
+    v-model:paletteSize="paletteSize"
+    v-model:zoomFactor="zoomFactor")
 
 MandelbrotSet(
   :width="width"
   :height="height"
   :maxIteration="maxIteration"
   :paletteSize="paletteSize"
+  :zoomFactor="zoomFactor"
   :key="`${width}-${height}-${maxIteration}`"
   @toggleSettings="showSettings = !showSettings")
 </template>
@@ -34,6 +37,7 @@ export default defineComponent({
       height: 10,
       maxIteration: 30,
       paletteSize: 100,
+      zoomFactor: 0.1,
     }
   },
   setup() {
@@ -42,21 +46,26 @@ export default defineComponent({
     const px = useCssVar("--px")
     const py = useCssVar("--py")
 
-    throttledWatch([w, h, x, y], () => {
-      px.value = String(~~((x.value / w.value) * 100))
-      py.value = String(~~((y.value / h.value) * 100))
-    }, {
-      throttle: 16
-    })
+    throttledWatch(
+      [w, h, x, y],
+      () => {
+        px.value = String(~~((x.value / w.value) * 100))
+        py.value = String(~~((y.value / h.value) * 100))
+      },
+      {
+        throttle: 16,
+      }
+    )
   },
 })
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Trebuchet MS", Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 1px;
   text-align: center;
   color: #2c3e50;
   min-height: 100vh;
