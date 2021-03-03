@@ -1,17 +1,25 @@
 <template lang="pug">
 .grid(:style="cssVars")
   div(
-    v-for="(item, idx) in map",
-    :key="`${idx}-${item ?? 'nope'}`",
-    :style="itemCssVars(item)",
+    v-for="(item, idx) in map"
+    :key="`${idx}-${item ?? 'nope'}`"
+    :style="itemCssVars(item)"
     @click="zoom(idx % width, ~~(idx / width))"
   )
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onUnmounted } from "vue"
+import { defineComponent, ref, onUnmounted, toRefs, watch } from "vue"
 import MandelbrotWorker from "../workers/mandelbrot?worker"
 import usePalette from "../use/palette"
+
+interface Props {
+  width: number
+  height: number
+  maxIteration: number
+  zoomFactor: number
+  paletteSize: number
+}
 
 export default defineComponent({
   name: "MandelbrotSet",
@@ -32,15 +40,18 @@ export default defineComponent({
       type: Number,
       default: 0.1,
     },
+    paletteSize: {
+      type: Number,
+      default: 250,
+    },
   },
-  setup: ({ width, height, maxIteration, zoomFactor }) => {
-    const palette = usePalette()
-    const map = ref<MandelbrotSetMap>([])
-
-    console.log({ width })
-
+  setup: (props: Props) => {
+    const { width, height, maxIteration, zoomFactor } = props
+    const paletteSize = toRefs(props).paletteSize
     let realSet: NumberSet = { start: -2, end: 1 }
     let imaginarySet: NumberSet = { start: -1, end: 1 }
+    const map = ref<MandelbrotSetMap>([])
+    let palette: RGB[]
 
     const worker = new MandelbrotWorker()
     worker.postMessage({ width, height, maxIteration, realSet, imaginarySet })
@@ -48,6 +59,7 @@ export default defineComponent({
       map.value = data
     }
 
+    watch(paletteSize, value => (palette = usePalette(value)), { immediate: true })
     onUnmounted(() => worker.terminate())
 
     return {

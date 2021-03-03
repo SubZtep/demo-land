@@ -3,13 +3,8 @@ type Pair = [number, number]
 const lagrange = ([X1, Y1]: Pair, [X2, Y2]: Pair, x: number) =>
   (Y1 * (x - X2)) / (X1 - X2) + (Y2 * (x - X1)) / (X2 - X1)
 
-const makeRGB = (r: number | Pair[], g: number | Pair[], b: number | Pair[], k: number): [number, number, number] => {
-  // const calculate = (pair: Pair) => parseInt(lagrange(pair[0], pair[1], k))
+const makeRGB = (r: number | Pair[], g: number | Pair[], b: number | Pair[], k: number): RGB => {
   const calculate = (pair: Pair[]) => ~~lagrange(pair[0], pair[1], k)
-  // if (isNaN(r)) r = calculate(r)
-  // if (isNaN(g)) g = calculate(g)
-  // if (isNaN(b)) b = calculate(b)
-  // return [r, g, b]
   return [
     typeof r === "number" ? r : calculate(r),
     typeof g === "number" ? g : calculate(g),
@@ -17,10 +12,10 @@ const makeRGB = (r: number | Pair[], g: number | Pair[], b: number | Pair[], k: 
   ]
 }
 
-const palette = (size = 250) => {
+const palette = (size: number) => {
   const range = ~~(size / 6)
-  const colors: [number, number, number][] = []
-  let c: [number, number, number]
+  const colors: RGB[] = []
+  let c: RGB
   for (let k = 0; k < size; k++) {
     if (k <= range)
       //red to yellow
@@ -94,6 +89,6 @@ const palette = (size = 250) => {
   return colors
 }
 
-export default function usePalette() {
-  return palette()
+export default function usePalette(size = 250) {
+  return palette(size)
 }

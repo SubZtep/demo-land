@@ -1,49 +1,43 @@
 <template lang="pug">
 //- CubeGrid
 .nav
-  label
-    div Width:
-    input(type="range" min="1" max="200" v-model="width")
-    | {{width}}
-  label
-    div Height:
-    input(type="range" min="1" max="200" v-model="height")
-    | {{height}}
-  label
-    div Max Iteration:
-    input(type="range" min="1" max="200" v-model="maxIteration")
-    | {{maxIteration}}
+  label Width ({{ width }})
+  input(type="range" min="1" max="200" v-model.number.lazy="width")
+  label Height ({{ height }})
+  input(type="range" min="1" max="200" v-model.number.lazy="height")
+  label Max Iteration ({{ maxIteration }})
+  input(type="range" min="1" max="200" v-model.number.lazy="maxIteration")
+  label Palette Size ({{ paletteSize }})
+  input(type="range" min="2" max="255" v-model.number="paletteSize")
 
 MandelbrotSet(
-  :width="Number(width)"
-  :height="Number(height)"
-  :maxIteration="Number(maxIteration)"
-  :key="`${width}-${height}-${maxIteration}`")
-
-  //- <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
-  //- <!-- <HelloWorld msg="Hello Vue 3 + Vite" /> -->
+  :width="width"
+  :height="height"
+  :maxIteration="maxIteration"
+  :paletteSize="paletteSize"
+  :key="`${width}-${height}-${maxIteration}`"
+)
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import CubeGrid from './components/CubeGrid.vue'
-import MandelbrotSet from './components/MandelbrotSet.vue'
-import HelloWorld from './components/HelloWorld.vue'
+import { defineComponent } from "vue"
+import CubeGrid from "./components/CubeGrid.vue"
+import MandelbrotSet from "./components/MandelbrotSet.vue"
 
 export default defineComponent({
-  name: 'App',
+  name: "App",
   components: {
     CubeGrid,
     MandelbrotSet,
-    HelloWorld
   },
   data() {
     return {
       width: 100,
       height: 50,
-      maxIteration: 80
+      maxIteration: 80,
+      paletteSize: 250,
     }
-  }
+  },
 })
 </script>
 
@@ -54,8 +48,6 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  /* margin-top: 60px; */
-  /* background-color: #000; */
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -66,8 +58,11 @@ export default defineComponent({
   position: absolute;
   top: 0;
   left: 0;
-}
-.nav label {
-  display: block;
+  right: 0;
+  background-color: #6666;
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 15px;
+  padding: 15px;
 }
 </style>

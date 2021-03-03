@@ -8,6 +8,8 @@ type NumberSet = {
   end: number
 }
 
+type RGB = [number, number, number]
+
 type MandelbrotSetMap = (number | null)[]
 
 interface MandelbrotProps {
