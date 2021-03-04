@@ -134,10 +134,6 @@ export default defineComponent({
   transform-style: preserve-3d;
   transition-duration: 300ms;
   transition-timing-function: ease-out;
-
-  --r: 0;
-  --g: 0;
-  --b: 0;
 }
 
 .grid img {
@@ -150,6 +146,5 @@ export default defineComponent({
 }
 .grid img:hover {
   opacity: 1;
-  /* transition-duration: 250ms; */
 }
 </style>

@@ -22,7 +22,7 @@ const links: SocialLink[] = [
   {
     icon: instagram,
     alt: "Instagram",
-    link: "https://www.instagram/com/subztep/",
+    link: "https://www.instagram.com/subztep/",
   },
   {
     icon: lastfm,
