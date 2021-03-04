@@ -19,19 +19,15 @@ export default defineComponent({
 
 <style scoped>
 a {
-  width: 100%;
-  height: 100%;
-  padding: 20%;
-  display: block;
   transform: translateZ(-100px);
   -moz-transform: translateZ(100px);
 }
 
 img {
+  width: 100%;
+  height: 100%;
+  padding: 15%;
   opacity: 0.3;
-  cursor: pointer;
-  width: inherit;
-  height: inherit;
   transition-duration: 200ms;
   filter: invert(0.5) sepia(1);
 }

@@ -125,7 +125,7 @@ export default defineComponent({
   height: 100vh;
   display: grid;
   grid-template-columns: repeat(var(--width), 1fr);
-  grid-template-rows: repeat(var(--height), 1fr);
+  grid-template-rows: repeat(var(--height), calc(100vh / var(--height)));
   transform-style: preserve-3d;
   backface-visibility: hidden;
 
