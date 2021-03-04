@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "target": "ES2020",
+    "module": "ES2020",
+    "moduleResolution": "Node",
     "strict": true,
     "jsx": "preserve",
     "sourceMap": true,
-    "lib": ["esnext", "dom", "webworker"],
+    "lib": ["ES2020", "DOM", "WebWorker"],
     "types": ["vite/client"],
     "typeRoots": [
       "./src/types",
@@ -14,5 +14,5 @@
     ],
     "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"]
 }

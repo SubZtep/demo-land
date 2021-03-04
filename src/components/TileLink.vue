@@ -23,6 +23,8 @@ a {
   height: 100%;
   padding: 20%;
   display: block;
+  transform: translateZ(-100px);
+  -moz-transform: translateZ(100px);
 }
 
 img {

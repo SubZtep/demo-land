@@ -3,8 +3,7 @@
   template(v-for="(m, index) in map")
     Tile(v-if="m" :key="`${index}-${m}`" :rgb="palette[m % (palette.length - 1)]" @click="action(index)")
       img(v-if="isSettings(index)" :src="sliders" alt="Settings")
-    Cube(v-else :key="`${index}-nope`")
-      TileLink(:link="socialLink.next().value")
+    TileLink(v-else :link="socialLink.next().value" :key="`${index}-link`")
 </template>
 
 <script lang="ts">
@@ -13,7 +12,6 @@ import { throttledWatch } from "@vueuse/core"
 import MandelbrotWorker from "../workers/mandelbrot?worker"
 import usePalette from "../use/palette"
 import useSocialLinks from "../use/socialLinks"
-import Cube from "./Cube.vue"
 import Tile from "./Tile.vue"
 import TileLink from "./TileLink.vue"
 import sliders from "../assets/icons/regular/sliders.svg"
@@ -21,7 +19,6 @@ import sliders from "../assets/icons/regular/sliders.svg"
 export default defineComponent({
   name: "MandelbrotSet",
   components: {
-    Cube,
     Tile,
     TileLink,
   },
