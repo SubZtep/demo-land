@@ -30,16 +30,6 @@ export default defineComponent({
     MandelbrotSet,
     Settings,
   },
-  data() {
-    return {
-      showSettings: false,
-      width: 15,
-      height: 10,
-      maxIteration: 30,
-      paletteSize: 100,
-      zoomFactor: 0.1,
-    }
-  },
   setup() {
     const { width: w, height: h } = useWindowSize()
     const { x, y } = useMouse()
@@ -57,18 +47,15 @@ export default defineComponent({
       }
     )
   },
+  data() {
+    return {
+      showSettings: false,
+      width: 15,
+      height: 10,
+      maxIteration: 30,
+      paletteSize: 100,
+      zoomFactor: 0.1,
+    }
+  },
 })
 </script>
-
-<style>
-#app {
-  font-family: "Trebuchet MS", Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  letter-spacing: 1px;
-  text-align: center;
-  color: #2c3e50;
-  height: 100vh;
-  overflow: hidden;
-}
-</style>
