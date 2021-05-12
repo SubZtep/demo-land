@@ -1,1 +1,3 @@
-node_modules
+.vite-ssg-temp/
+node_modules/
+dist/

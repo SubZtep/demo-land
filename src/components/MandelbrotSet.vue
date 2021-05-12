@@ -12,16 +12,16 @@ import { throttledWatch } from "@vueuse/core"
 import MandelbrotWorker from "../workers/mandelbrot?worker"
 import usePalette from "../use/palette"
 import useSocialLinks from "../use/socialLinks"
-import Tile from "./Tile.vue"
-import TileLink from "./TileLink.vue"
+// import Tile from "./Tile.vue"
+// import TileLink from "./TileLink.vue"
 import sliders from "../assets/icons/regular/sliders.svg"
 
 export default defineComponent({
   name: "MandelbrotSet",
-  components: {
-    Tile,
-    TileLink,
-  },
+  // components: {
+  //   Tile,
+  //   TileLink,
+  // },
   props: {
     width: {
       type: Number,
