@@ -1,6 +1,6 @@
 <template lang="pug">
 .tile(
-  :style="{ '--r': rgb[0], '--g': rgb[1], '--b': rgb[2] }"
+  ref="el"
   :class="{ animUp, animDown }"
   @mouseover="handleOver"
   @mouseout="handleOut")
@@ -8,7 +8,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, toRefs, PropType } from "vue"
+import { defineComponent, ref, PropType, onMounted } from "vue"
+import { useCssVar } from "@vueuse/core"
 
 export default defineComponent({
   name: "Tile",
@@ -19,12 +20,19 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const rgb = toRefs(props).rgb
+    const el = ref(null)
     const animUp = ref(false)
     const animDown = ref(false)
 
+    onMounted(() => {
+      const rgb = useCssVar("--rgb", el)
+      requestAnimationFrame(() => {
+        rgb.value = `rgb(${props.rgb.join(",")})`
+      })
+    })
+
     return {
-      rgb,
+      el,
       animUp,
       animDown,
       handleOver: () => {
@@ -42,19 +50,18 @@ export default defineComponent({
 
 <style scoped>
 .tile {
-  background-color: rgb(var(--r), var(--g), var(--b));
+  background-color: var(--rgb);
   transform-origin: center center;
 }
 .animUp {
-  transform: scale(0.8);
+  transform: scale(0.85) translateZ(-2px);
   transform-style: preserve-3d;
   transition-duration: 250ms;
   transition-timing-function: ease-out;
 }
 .animDown {
-  transform: scale(1);
   transform-style: preserve-3d;
-  transition-duration: 100ms;
+  transition-duration: 150ms;
   transition-timing-function: ease-in;
   transition-delay: 100ms;
 }

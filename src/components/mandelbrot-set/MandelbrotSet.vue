@@ -1,12 +1,12 @@
 <template lang="pug">
-.grid
+.grid(ref="el")
   template(v-for="(m, index) in map")
     Tile(v-if="m" :key="`${index}-${m}`" :rgb="palette[m % (palette.length - 1)]")
     div.empty(v-else)
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onUnmounted, toRefs } from "vue"
+import { defineComponent, ref, onUnmounted, toRefs, onMounted } from "vue"
 import { throttledWatch, useWindowSize, useCssVar } from "@vueuse/core"
 import MandelbrotWorker from "~/workers/mandelbrot?worker"
 import usePalette from "~/use/palette"
@@ -17,41 +17,22 @@ export default defineComponent({
       type: Number,
       default: 100,
     },
-    width: {
-      type: Number,
-      default: 15,
-    },
-    height: {
-      type: Number,
-      default: 10,
-    },
     maxIteration: {
       type: Number,
-      default: 30,
+      default: 20,
     },
     paletteSize: {
       type: Number,
-      default: 100,
+      default: 15,
     },
   },
 
   setup: (props, { emit }) => {
+    const el = ref(null)
     const { width: w, height: h } = useWindowSize()
 
     const width = ~~(w.value / props.edge)
     const height = ~~(h.value / props.edge)
-
-    const edge = useCssVar("--edge")
-    edge.value = `${props.edge}px`
-
-    const angle = useCssVar("--angle")
-    angle.value = `1.3deg`
-
-    const cols = useCssVar("--cols")
-    cols.value = String(width)
-
-    const rows = useCssVar("--rows")
-    rows.value = String(height)
 
     const { generatePalette } = usePalette()
     const { maxIteration } = props
@@ -67,6 +48,21 @@ export default defineComponent({
       map.value = data
     }
 
+    onMounted(() => {
+      const edge = useCssVar("--edge", el)
+      const angle = useCssVar("--angle", el)
+      const cols = useCssVar("--cols", el)
+      const rows = useCssVar("--rows", el)
+      requestAnimationFrame(() => {
+        edge.value = `${props.edge}px`
+        angle.value = `1.2deg`
+        cols.value = String(width)
+        rows.value = String(height)
+      })
+    })
+
+    onUnmounted(() => worker.terminate())
+
     throttledWatch(
       paletteSize,
       value => {
@@ -78,9 +74,8 @@ export default defineComponent({
       }
     )
 
-    onUnmounted(() => worker.terminate())
-
     return {
+      el,
       map,
       palette,
     }
@@ -101,7 +96,7 @@ export default defineComponent({
   transform-origin: center center;
   transform: rotateY(calc((var(--pcx) - 50) * var(--angle))) rotateX(calc((var(--pcy) - 50) * (-1 * var(--angle))));
   transform-style: preserve-3d;
-  transition-duration: 300ms;
+  transition-duration: 128ms;
   transition-timing-function: ease-out;
 }
 
@@ -114,7 +109,7 @@ export default defineComponent({
   box-shadow: 1px 1px 2px #000;
 }
 
-.grid img {
+/* .grid img {
   opacity: 0.6;
   cursor: pointer;
   width: 100%;
@@ -124,5 +119,5 @@ export default defineComponent({
 }
 .grid img:hover {
   opacity: 1;
-}
+} */
 </style>
