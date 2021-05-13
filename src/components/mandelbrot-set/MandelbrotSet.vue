@@ -1,13 +1,14 @@
 <template lang="pug">
-.grid(ref="el")
+.grid(ref="el" :style="rotateCss")
   template(v-for="(m, index) in map")
     Tile(v-if="m" :key="`${index}-${m}`" :rgb="palette[m % (palette.length - 1)]")
     div.empty(v-else)
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onUnmounted, toRefs, onMounted } from "vue"
-import { throttledWatch, useWindowSize, useCssVar } from "@vueuse/core"
+import { defineComponent, ref, onUnmounted, toRefs, onMounted, reactive, computed } from "vue"
+import { throttledWatch, useWindowSize, useCssVar, useParallax, useDeviceOrientation } from "@vueuse/core"
+import Quaternion from "quaternion"
 import MandelbrotWorker from "~/workers/mandelbrot?worker"
 import usePalette from "~/use/palette"
 
@@ -48,11 +49,27 @@ export default defineComponent({
       map.value = data
     }
 
+    var rad = Math.PI / 180
+    const orientation = reactive(useDeviceOrientation())
+    const rotateCss = computed(() => {
+      const { alpha, beta, gamma } = orientation
+      const q = Quaternion.fromEuler(alpha! * rad, beta! * rad, gamma! * rad, "ZXY")
+      return {
+        transform: "matrix3d(" + q.conjugate().toMatrix4() + ")",
+      }
+    })
+    // const parallax = reactive(useParallax(el))
+    // const rotateCss = computed(() => ({
+    //   // transform: `rotateX(${parallax.roll * 20}deg) rotateY(${parallax.tilt * 20}deg)`,
+    //   transform: `rotateX(${parallax.roll * 45}deg) rotateY(${parallax.tilt * 45}deg)`,
+    // }))
+
     onMounted(() => {
       const edge = useCssVar("--edge", el)
       const angle = useCssVar("--angle", el)
       const cols = useCssVar("--cols", el)
       const rows = useCssVar("--rows", el)
+
       requestAnimationFrame(() => {
         edge.value = `${props.edge}px`
         angle.value = `1.2deg`
@@ -75,6 +92,7 @@ export default defineComponent({
     )
 
     return {
+      rotateCss,
       el,
       map,
       palette,
@@ -91,13 +109,13 @@ export default defineComponent({
 
   grid-template-columns: repeat(var(--cols), 1fr);
   grid-template-rows: repeat(var(--rows), 1fr);
-  backface-visibility: hidden;
+  /* backface-visibility: hidden; */
 
-  transform-origin: center center;
-  transform: rotateY(calc((var(--pcx) - 50) * var(--angle))) rotateX(calc((var(--pcy) - 50) * (-1 * var(--angle))));
-  transform-style: preserve-3d;
-  transition-duration: 128ms;
-  transition-timing-function: ease-out;
+  /* transform-origin: center center; */
+  /* transform: rotateY(calc((var(--pcx) - 50) * var(--angle))) rotateX(calc((var(--pcy) - 50) * (-1 * var(--angle)))); */
+  /* transform-style: preserve-3d; */
+  /* transition-duration: 128ms; */
+  /* transition-timing-function: ease-out; */
 }
 
 .grid > * {

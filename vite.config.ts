@@ -88,4 +88,9 @@ export default defineConfig({
     include: ["vue", "vue-router", "@vueuse/core"],
     exclude: ["vue-demi"],
   },
+
+  server: {
+    https: true,
+    host: "192.168.0.10"
+  }
 })
