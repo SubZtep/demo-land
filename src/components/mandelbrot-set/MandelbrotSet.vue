@@ -1,9 +1,8 @@
 <template lang="pug">
-.grid(:style="cssVars")
+.grid
   template(v-for="(m, index) in map")
-    Tile(v-if="m" :key="`${index}-${m}`" :rgb="palette[m % (palette.length - 1)]" @click="action(index)")
-    div(v-else)
-    //- TileLink(v-else :link="socialLink.next().value" :key="`${index}-link`")
+    Tile(v-if="m" :key="`${index}-${m}`" :rgb="palette[m % (palette.length - 1)]")
+    div.empty(v-else)
 </template>
 
 <script lang="ts">
@@ -11,14 +10,12 @@ import { defineComponent, ref, onUnmounted, toRefs } from "vue"
 import { throttledWatch, useWindowSize, useCssVar } from "@vueuse/core"
 import MandelbrotWorker from "~/workers/mandelbrot?worker"
 import usePalette from "~/use/palette"
-import useSocialLinks from "~/use/socialLinks"
-import sliders from "~/assets/icons/regular/sliders.svg"
 
 export default defineComponent({
   props: {
     edge: {
       type: Number,
-      default: 100
+      default: 100,
     },
     width: {
       type: Number,
@@ -36,16 +33,11 @@ export default defineComponent({
       type: Number,
       default: 100,
     },
-    zoomFactor: {
-      type: Number,
-      default: 0.1,
-    },
   },
 
   setup: (props, { emit }) => {
     const { width: w, height: h } = useWindowSize()
 
-    // console.log("XXX", [w.value / props.edge, h.value / props.edge])
     const width = ~~(w.value / props.edge)
     const height = ~~(h.value / props.edge)
 
@@ -53,13 +45,16 @@ export default defineComponent({
     edge.value = `${props.edge}px`
 
     const angle = useCssVar("--angle")
-    angle.value = `0.3deg`
+    angle.value = `1.3deg`
+
+    const cols = useCssVar("--cols")
+    cols.value = String(width)
+
+    const rows = useCssVar("--rows")
+    rows.value = String(height)
 
     const { generatePalette } = usePalette()
-    const { socialLink } = useSocialLinks()
-    // const { width, height, maxIteration } = props
     const { maxIteration } = props
-    const zoomFactor = toRefs(props).zoomFactor
     const paletteSize = toRefs(props).paletteSize
     const palette = ref<RGB[]>([])
     const map = ref<MandelbrotSetMap>([])
@@ -85,39 +80,9 @@ export default defineComponent({
 
     onUnmounted(() => worker.terminate())
 
-    const zoom = (index: number) => {
-      const x = index % width
-      const y = ~~(index / width)
-      const zfw = width * zoomFactor.value
-      const zfh = height * zoomFactor.value
-
-      const getRelativePoint = (pos: number, length: number, set: NumberSet) =>
-        set.start + (pos / length) * (set.end - set.start)
-
-      realSet = {
-        start: getRelativePoint(x - zfw, width, realSet),
-        end: getRelativePoint(x + zfw, width, realSet),
-      }
-      imaginarySet = {
-        start: getRelativePoint(y - zfh, height, imaginarySet),
-        end: getRelativePoint(y + zfh, height, imaginarySet),
-      }
-
-      worker.postMessage({ width, height, maxIteration, realSet, imaginarySet })
-    }
-
     return {
       map,
       palette,
-      cssVars: {
-        "--width": width,
-        "--height": height,
-      },
-      action: (index: number) => {
-        zoom(index)
-      },
-      sliders,
-      socialLink,
     }
   },
 })
@@ -126,16 +91,14 @@ export default defineComponent({
 <style scoped>
 .grid {
   display: grid;
-  width: calc(var(--width) * var(--edge));
-  height: calc(var(--height) * var(--edge));
+  width: calc(var(--cols) * var(--edge));
+  height: calc(var(--rows) * var(--edge));
 
-  grid-template-columns: repeat(var(--width), 1fr);
-  grid-template-rows: repeat(var(--height), 1fr);
-  /* transform-style: preserve-3d; */
+  grid-template-columns: repeat(var(--cols), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
   backface-visibility: hidden;
 
   transform-origin: center center;
-  /* transform: rotateY(calc((var(--pcx) - 50) * 0.3deg)) rotateX(calc((var(--pcy) - 50) * -0.3deg)); */
   transform: rotateY(calc((var(--pcx) - 50) * var(--angle))) rotateX(calc((var(--pcy) - 50) * (-1 * var(--angle))));
   transform-style: preserve-3d;
   transition-duration: 300ms;
@@ -145,6 +108,10 @@ export default defineComponent({
 .grid > * {
   width: var(--edge);
   height: var(--edge);
+}
+
+.grid > *:not(.empty) {
+  box-shadow: 1px 1px 2px #000;
 }
 
 .grid img {
