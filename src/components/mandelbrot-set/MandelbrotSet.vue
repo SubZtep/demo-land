@@ -9,8 +9,9 @@ div(:style="cssVars")
 </template>
 
 <script setup lang="ts">
-import { ref, onUnmounted, reactive, computed, defineProps } from "vue"
-import { useWindowSize, useParallax, useDevicePixelRatio } from "@vueuse/core"
+import type { CSSProperties } from "vue"
+import { ref, onUnmounted, reactive, defineProps } from "vue"
+import { useWindowSize, useParallax, useDevicePixelRatio, throttledWatch } from "@vueuse/core"
 import MandelbrotWorker from "~/workers/mandelbrot?worker&inline"
 import usePalette from "~/use/palette"
 
@@ -58,9 +59,20 @@ worker.postMessage({
 worker.onmessage = ({ data }: MessageEvent<MandelbrotSetMap>) => (map.value = data)
 
 const parallax = reactive(useParallax(el))
-const rotateCss = computed(() => ({
-  transform: `rotateX(${parallax.roll * 10}deg) rotateY(${parallax.tilt * 10}deg)`,
-}))
+let rotateCss = ref<CSSProperties>({})
+
+throttledWatch(
+  parallax,
+  () => {
+    const multi = parallax.source === "deviceOrientation" ? -30 : 10
+    rotateCss.value = {
+      transform: `rotateX(${parallax.roll * multi}deg) rotateY(${parallax.tilt * multi}deg) scale(0.8)`,
+    }
+  },
+  {
+    throttle: 16,
+  }
+)
 
 onUnmounted(() => worker.terminate())
 </script>
@@ -74,6 +86,6 @@ onUnmounted(() => worker.terminate())
   grid-template-columns: repeat(var(--cols), 1fr);
   grid-template-rows: repeat(var(--rows), 1fr);
 
-  transition: 128ms ease-out transform;
+  transition: 64ms ease-out transform;
 }
 </style>
