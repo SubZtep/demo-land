@@ -1,4 +1,4 @@
-/* @import "./markdown.css"; */
+@import "./markdown.css";
 
 :root {
   --red: #8a0303;
@@ -9,15 +9,12 @@ html {
 }
 
 body {
-  /* background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%); */
-  /* background: linear-gradient(0, #8a0303 0%, #FDBB2D 25%, #22C1C3 100%); */
   height: 100%;
-  /* background-image: radial-gradient(
-    circle farthest-corner at 10% 20%,
-    rgba(90, 92, 106, 1) 0%,
-    rgba(32, 45, 58, 1) 81.3%
-  ); */
-  background-image: radial-gradient( circle farthest-corner at 1.2% 45.8%,  rgba(255,77,77,1) 0%, rgba(63,55,55,1) 90% );
+  background-image: radial-gradient(
+    circle farthest-corner at 1.2% 45.8%,
+    rgba(255, 77, 77, 1) 0%,
+    rgba(63, 55, 55, 1) 90%
+  );
 }
 
 #app {
@@ -28,15 +25,3 @@ body {
 #app.sunny {
   background: linear-gradient(0, #8a0303 0%, #fdbb2d 25%, #22c1c3 100%);
 }
-
-/* html,
-body,
-#app {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-html.dark {
-  background: #121212;
-} */

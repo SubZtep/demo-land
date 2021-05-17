@@ -1,17 +1,15 @@
 import { ViteSSG } from "vite-ssg"
+import { createWebHistory } from "vue-router"
 import generatedRoutes from "virtual:generated-pages"
 import { setupLayouts } from "virtual:generated-layouts"
 import App from "./App.vue"
 import "virtual:windi.css"
 import "virtual:windi-devtools"
 import "./styles/main.css"
-import { createWebHistory } from "vue-router"
-// import "./styles/global.css"
-// import "./styles/animations.css"
 
 const routerOptions = {
   routes: setupLayouts(generatedRoutes),
-  history: createWebHistory()
+  history: createWebHistory(),
 }
 
 export const createApp = ViteSSG(App, routerOptions, ctx => {

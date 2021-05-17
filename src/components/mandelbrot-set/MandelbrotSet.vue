@@ -1,141 +1,79 @@
 <template lang="pug">
-.grid(ref="el" :style="rotateCss")
-  template(v-for="(m, index) in map")
-    Tile(v-if="m" :key="`${index}-${m}`" :rgb="palette[m % (palette.length - 1)]")
-    div.empty(v-else)
+//- .perspect-300 ,GG ,É6DDDDDDDDDDD
+//- div(style="perspective: 300px;")gvb   vvmvvvvvvvvvvvvvvvvvvvvv  aadf vacacxwxXZz  z xz
+div(:style="cssVars")
+  .mandelbrotGrid(ref="el" :style="rotateCss")
+    template(v-for="(m, index) in map")
+      Tile(v-if="m" :key="`${index}-${m}`" :rgb="paletteItem(m)")
+      .empty(v-else :key="`${index}-${m}`")
 </template>
 
-<script lang="ts">
-import { defineComponent, ref, onUnmounted, toRefs, onMounted, reactive, computed } from "vue"
-import { throttledWatch, useWindowSize, useCssVar, useParallax, useDeviceOrientation } from "@vueuse/core"
-import Quaternion from "quaternion"
-import MandelbrotWorker from "~/workers/mandelbrot?worker"
+<script setup lang="ts">
+import { ref, onUnmounted, reactive, computed, defineProps } from "vue"
+import { useWindowSize, useParallax, useDevicePixelRatio } from "@vueuse/core"
+import MandelbrotWorker from "~/workers/mandelbrot?worker&inline"
 import usePalette from "~/use/palette"
 
-export default defineComponent({
-  props: {
-    edge: {
-      type: Number,
-      default: 100,
-    },
-    maxIteration: {
-      type: Number,
-      default: 20,
-    },
-    paletteSize: {
-      type: Number,
-      default: 15,
-    },
+const props = defineProps({
+  edge: {
+    type: Number,
+    default: 100,
   },
-
-  setup: (props, { emit }) => {
-    const el = ref(null)
-    const { width: w, height: h } = useWindowSize()
-
-    const width = ~~(w.value / props.edge)
-    const height = ~~(h.value / props.edge)
-
-    const { generatePalette } = usePalette()
-    const { maxIteration } = props
-    const paletteSize = toRefs(props).paletteSize
-    const palette = ref<RGB[]>([])
-    const map = ref<MandelbrotSetMap>([])
-    let realSet: NumberSet = { start: -2, end: 1 }
-    let imaginarySet: NumberSet = { start: -1, end: 1 }
-
-    const worker = new MandelbrotWorker()
-    worker.postMessage({ width, height, maxIteration, realSet, imaginarySet })
-    worker.onmessage = ({ data }: MessageEvent<MandelbrotSetMap>) => {
-      map.value = data
-    }
-
-    var rad = Math.PI / 180
-    const orientation = reactive(useDeviceOrientation())
-    const rotateCss = computed(() => {
-      const { alpha, beta, gamma } = orientation
-      const q = Quaternion.fromEuler(alpha! * rad, beta! * rad, gamma! * rad, "ZXY")
-      return {
-        transform: "matrix3d(" + q.conjugate().toMatrix4() + ")",
-      }
-    })
-    // const parallax = reactive(useParallax(el))
-    // const rotateCss = computed(() => ({
-    //   // transform: `rotateX(${parallax.roll * 20}deg) rotateY(${parallax.tilt * 20}deg)`,
-    //   transform: `rotateX(${parallax.roll * 45}deg) rotateY(${parallax.tilt * 45}deg)`,
-    // }))
-
-    onMounted(() => {
-      const edge = useCssVar("--edge", el)
-      const angle = useCssVar("--angle", el)
-      const cols = useCssVar("--cols", el)
-      const rows = useCssVar("--rows", el)
-
-      requestAnimationFrame(() => {
-        edge.value = `${props.edge}px`
-        angle.value = `1.2deg`
-        cols.value = String(width)
-        rows.value = String(height)
-      })
-    })
-
-    onUnmounted(() => worker.terminate())
-
-    throttledWatch(
-      paletteSize,
-      value => {
-        palette.value = generatePalette(value)
-      },
-      {
-        immediate: true,
-        throttle: 16,
-      }
-    )
-
-    return {
-      rotateCss,
-      el,
-      map,
-      palette,
-    }
+  maxIteration: {
+    type: Number,
+    default: 20,
+  },
+  paletteSize: {
+    type: Number,
+    default: 15,
   },
 })
+
+const el = ref(null)
+const { width: w, height: h } = useWindowSize()
+const realEdge = Math.floor(props.edge / useDevicePixelRatio().pixelRatio.value)
+const width = Math.floor(w.value / realEdge)
+const height = Math.floor(h.value / realEdge)
+
+const cssVars = {
+  perspective: "300px",
+  "--cols": String(width),
+  "--rows": String(height),
+  "--cols-size": `${width * realEdge}px`,
+  "--rows-size": `${height * realEdge}px`,
+}
+
+const palette = usePalette().generatePalette(props.paletteSize)
+const paletteItem = (m: number) => palette[m % (palette.length - 1)]
+
+const map = ref<MandelbrotSetMap>(new Array(width * height).fill(0))
+const worker = new MandelbrotWorker()
+worker.postMessage({
+  width,
+  height,
+  maxIteration: props.maxIteration,
+  realSet: { start: -2, end: 1 },
+  imaginarySet: { start: -1, end: 1 },
+})
+worker.onmessage = ({ data }: MessageEvent<MandelbrotSetMap>) => (map.value = data)
+
+const parallax = reactive(useParallax(el))
+const rotateCss = computed(() => ({
+  transform: `rotateX(${parallax.roll * 10}deg) rotateY(${parallax.tilt * 10}deg)`,
+}))
+
+onUnmounted(() => worker.terminate())
 </script>
 
-<style scoped>
-.grid {
-  display: grid;
-  width: calc(var(--cols) * var(--edge));
-  height: calc(var(--rows) * var(--edge));
+<style lang="postcss">
+.mandelbrotGrid {
+  width: var(--cols-size);
+  height: var(--rows-size);
 
+  display: grid;
   grid-template-columns: repeat(var(--cols), 1fr);
   grid-template-rows: repeat(var(--rows), 1fr);
-  /* backface-visibility: hidden; */
 
-  /* transform-origin: center center; */
-  /* transform: rotateY(calc((var(--pcx) - 50) * var(--angle))) rotateX(calc((var(--pcy) - 50) * (-1 * var(--angle)))); */
-  /* transform-style: preserve-3d; */
-  /* transition-duration: 128ms; */
-  /* transition-timing-function: ease-out; */
+  transition: 128ms ease-out transform;
 }
-
-.grid > * {
-  width: var(--edge);
-  height: var(--edge);
-}
-
-.grid > *:not(.empty) {
-  box-shadow: 1px 1px 2px #000;
-}
-
-/* .grid img {
-  opacity: 0.6;
-  cursor: pointer;
-  width: 100%;
-  height: 100%;
-  padding: 15%;
-  transition-duration: 200ms;
-}
-.grid img:hover {
-  opacity: 1;
-} */
 </style>
