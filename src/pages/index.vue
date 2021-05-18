@@ -8,6 +8,7 @@
 .videobg {
   background: url("/a-4o4.gif") no-repeat left center;
   background-size: cover;
+  transform: var(--bg-pos, translate(0px, 0px));
   filter: blur(4px) brightness(0.6) contrast(1.3) grayscale(0.6) sepia(1);
 }
 </style>

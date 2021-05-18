@@ -11,7 +11,15 @@ div(:style="cssVars")
 <script setup lang="ts">
 import type { CSSProperties } from "vue"
 import { ref, reactive, defineProps } from "vue"
-import { useWindowSize, useParallax, useDevicePixelRatio, throttledWatch, useIntervalFn, useToggle } from "@vueuse/core"
+import {
+  useWindowSize,
+  useParallax,
+  useDevicePixelRatio,
+  throttledWatch,
+  useIntervalFn,
+  useToggle,
+  useCssVar,
+} from "@vueuse/core"
 import MandelbrotWorker from "~/workers/mandelbrot?worker&inline"
 import usesocialLinks from "~/use/socialLinks"
 import usePalette from "~/use/palette"
@@ -67,6 +75,7 @@ worker.onmessage = ({ data }: MessageEvent<MandelbrotSetMap>) => {
 
 const parallax = reactive(useParallax(el))
 let rotateCss = ref<CSSProperties>({})
+const bgPos = useCssVar("--bg-pos")
 
 throttledWatch(
   parallax,
@@ -77,9 +86,10 @@ throttledWatch(
         Math.abs(parallax.roll) + Math.abs(parallax.tilt) + 0.5
       })`,
     }
+    bgPos.value = `translate(${parallax.tilt * 100}px, ${parallax.roll * -100}px)`
   },
   {
-    throttle: 16,
+    throttle: 64,
   }
 )
 
@@ -95,7 +105,7 @@ useIntervalFn(toggleLinks, 6669)
   grid-template-columns: repeat(var(--cols), 1fr);
   grid-template-rows: repeat(var(--rows), 1fr);
 
-  transition: 64ms ease-out transform;
+  transition: 128ms ease-out transform;
   transform-style: preserve-3d;
   backface-visibility: hidden;
 }
