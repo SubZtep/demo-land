@@ -1,19 +1,21 @@
 <template lang="pug">
-//- .perspect-300 ,GG ,É6DDDDDDDDDDD
-//- div(style="perspective: 300px;")gvb   vvmvvvvvvvvvvvvvvvvvvvvv  aadf vacacxwxXZz  z xz
+//-LI .perspect-300 ,GG ,É6DDDDDDDDDDD
+//-LI div(style="perspective: 300px;")gvb   vvmvvvvvvvvvvvvvvvvvvvvv  aadf vacacxwxXZz  z xz
 div(:style="cssVars")
   .mandelbrotGrid(ref="el" :style="rotateCss")
     template(v-for="(m, index) in map")
       Tile(v-if="m" :key="`${index}-${m}`" :rgb="paletteItem(m)")
+        TileLink(v-if="showLinks" :link="socialLink.next()")
       .empty(v-else :key="`${index}-${m}`")
 </template>
 
 <script setup lang="ts">
 import type { CSSProperties } from "vue"
 import { ref, onUnmounted, reactive, defineProps } from "vue"
-import { useWindowSize, useParallax, useDevicePixelRatio, throttledWatch } from "@vueuse/core"
+import { useWindowSize, useParallax, useDevicePixelRatio, throttledWatch, useIntervalFn } from "@vueuse/core"
 import MandelbrotWorker from "~/workers/mandelbrot?worker&inline"
 import usePalette from "~/use/palette"
+import usesocialLinks from "~/use/socialLinks"
 
 const props = defineProps({
   edge: {
@@ -31,6 +33,8 @@ const props = defineProps({
 })
 
 const el = ref(null)
+const showLinks = ref(false)
+const { socialLink } = usesocialLinks()
 const { width: w, height: h } = useWindowSize()
 const realEdge = Math.floor(props.edge / useDevicePixelRatio().pixelRatio.value)
 const width = Math.floor(w.value / realEdge)
@@ -60,19 +64,25 @@ worker.onmessage = ({ data }: MessageEvent<MandelbrotSetMap>) => (map.value = da
 
 const parallax = reactive(useParallax(el))
 let rotateCss = ref<CSSProperties>({})
+const multi = parallax.source === "deviceOrientation" ? -30 : 10
 
 throttledWatch(
   parallax,
   () => {
-    const multi = parallax.source === "deviceOrientation" ? -30 : 10
     rotateCss.value = {
-      transform: `rotateX(${parallax.roll * multi}deg) rotateY(${parallax.tilt * multi}deg) scale(0.8)`,
+      transform: `rotateX(${parallax.roll * multi}deg) rotateY(${parallax.tilt * multi}deg) scale(${
+        Math.abs(parallax.roll) + Math.abs(parallax.tilt) + 0.5
+      })`,
     }
   },
   {
     throttle: 16,
   }
 )
+
+useIntervalFn(() => {
+  showLinks.value = !showLinks.value
+}, 5000)
 
 onUnmounted(() => worker.terminate())
 </script>
@@ -87,5 +97,6 @@ onUnmounted(() => worker.terminate())
   grid-template-rows: repeat(var(--rows), 1fr);
 
   transition: 64ms ease-out transform;
+  transform-style: preserve-3d;
 }
 </style>
