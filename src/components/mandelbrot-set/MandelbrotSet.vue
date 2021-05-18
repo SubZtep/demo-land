@@ -11,11 +11,11 @@ div(:style="cssVars")
 
 <script setup lang="ts">
 import type { CSSProperties } from "vue"
-import { ref, onUnmounted, reactive, defineProps } from "vue"
+import { ref, reactive, defineProps } from "vue"
 import { useWindowSize, useParallax, useDevicePixelRatio, throttledWatch, useIntervalFn } from "@vueuse/core"
 import MandelbrotWorker from "~/workers/mandelbrot?worker&inline"
-import usePalette from "~/use/palette"
 import usesocialLinks from "~/use/socialLinks"
+import usePalette from "~/use/palette"
 
 const props = defineProps({
   edge: {
@@ -60,7 +60,10 @@ worker.postMessage({
   realSet: { start: -2, end: 1 },
   imaginarySet: { start: -1, end: 1 },
 })
-worker.onmessage = ({ data }: MessageEvent<MandelbrotSetMap>) => (map.value = data)
+worker.onmessage = ({ data }: MessageEvent<MandelbrotSetMap>) => {
+  map.value = data
+  worker.terminate()
+}
 
 const parallax = reactive(useParallax(el))
 let rotateCss = ref<CSSProperties>({})
@@ -80,11 +83,7 @@ throttledWatch(
   }
 )
 
-useIntervalFn(() => {
-  showLinks.value = !showLinks.value
-}, 5000)
-
-onUnmounted(() => worker.terminate())
+useIntervalFn(() => (showLinks.value = !showLinks.value), 6669)
 </script>
 
 <style lang="postcss">
