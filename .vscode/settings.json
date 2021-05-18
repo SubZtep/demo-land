@@ -1,3 +1,5 @@
 {
-  "workbench.colorTheme": "Sea Green Theme"
+  "deno.enable": false,
+  "workbench.colorTheme": "Sea Green Theme",
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }
