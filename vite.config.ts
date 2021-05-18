@@ -8,6 +8,7 @@ import WindiCSS from "vite-plugin-windicss"
 import Layouts from "vite-plugin-vue-layouts"
 import VueI18n from "@intlify/vite-plugin-vue-i18n"
 import ViteComponents from "vite-plugin-components"
+import KajaIO from "vite-plugin-kajaio"
 
 export default defineConfig({
   resolve: {
@@ -49,6 +50,12 @@ export default defineConfig({
     VueI18n({
       include: [path.resolve(__dirname, "locales/**")],
     }),
+
+    KajaIO({
+      trackerUrl: "https://analtics.demo.land/tracker/",
+      account: "291435445219230209",
+      productionOnly: true,
+    })
   ],
 
   ssgOptions: {
