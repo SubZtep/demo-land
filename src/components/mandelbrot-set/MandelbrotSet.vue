@@ -1,18 +1,17 @@
 <template lang="pug">
-//-LI .perspect-300 ,GG ,É6DDDDDDDDDDD
-//-LI div(style="perspective: 300px;")gvb   vvmvvvvvvvvvvvvvvvvvvvvv  aadf vacacxwxXZz  z xz
 div(:style="cssVars")
   .mandelbrotGrid(ref="el" :style="rotateCss")
-    template(v-for="(m, index) in map")
-      Tile(v-if="m" :key="`${index}-${m}`" :rgb="paletteItem(m)")
-        TileLink(v-if="showLinks" :link="socialLink.next()")
-      .empty(v-else :key="`${index}-${m}`")
+    template(v-for="(m, index) in map" :key="`${index}-${m}`")
+      Tile(v-if="m" :rgb="paletteItem(m)")
+        transition(name="bounce")
+          TileLink(v-if="showLinks" :link="socialLink.next().value" transition="fadeIn")
+      .empty(v-else)
 </template>
 
 <script setup lang="ts">
 import type { CSSProperties } from "vue"
 import { ref, reactive, defineProps } from "vue"
-import { useWindowSize, useParallax, useDevicePixelRatio, throttledWatch, useIntervalFn } from "@vueuse/core"
+import { useWindowSize, useParallax, useDevicePixelRatio, throttledWatch, useIntervalFn, useToggle } from "@vueuse/core"
 import MandelbrotWorker from "~/workers/mandelbrot?worker&inline"
 import usesocialLinks from "~/use/socialLinks"
 import usePalette from "~/use/palette"
@@ -33,7 +32,7 @@ const props = defineProps({
 })
 
 const el = ref(null)
-const showLinks = ref(false)
+const [showLinks, toggleLinks] = useToggle(false)
 const { socialLink } = usesocialLinks()
 const { width: w, height: h } = useWindowSize()
 const realEdge = Math.floor(props.edge / useDevicePixelRatio().pixelRatio.value)
@@ -42,6 +41,7 @@ const height = Math.floor(h.value / realEdge)
 
 const cssVars = {
   perspective: "300px",
+  "--edge": `${realEdge}px`,
   "--cols": String(width),
   "--rows": String(height),
   "--cols-size": `${width * realEdge}px`,
@@ -67,11 +67,11 @@ worker.onmessage = ({ data }: MessageEvent<MandelbrotSetMap>) => {
 
 const parallax = reactive(useParallax(el))
 let rotateCss = ref<CSSProperties>({})
-const multi = parallax.source === "deviceOrientation" ? -30 : 10
 
 throttledWatch(
   parallax,
   () => {
+    const multi = parallax.source === "deviceOrientation" ? -30 : 10
     rotateCss.value = {
       transform: `rotateX(${parallax.roll * multi}deg) rotateY(${parallax.tilt * multi}deg) scale(${
         Math.abs(parallax.roll) + Math.abs(parallax.tilt) + 0.5
@@ -83,7 +83,7 @@ throttledWatch(
   }
 )
 
-useIntervalFn(() => (showLinks.value = !showLinks.value), 6669)
+useIntervalFn(toggleLinks, 6669)
 </script>
 
 <style lang="postcss">
@@ -97,5 +97,6 @@ useIntervalFn(() => (showLinks.value = !showLinks.value), 6669)
 
   transition: 64ms ease-out transform;
   transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 </style>

@@ -1,12 +1,12 @@
-import codepen from "../assets/icons/brands/codepen.svg"
-import github from "../assets/icons/brands/github.svg"
-import instagram from "../assets/icons/brands/instagram.svg"
-import lastfm from "../assets/icons/brands/lastfm.svg"
-import linkedin from "../assets/icons/brands/linkedin.svg"
-import pinterest from "../assets/icons/brands/pinterest.svg"
-import steam from "../assets/icons/brands/steam.svg"
-import twitter from "../assets/icons/brands/twitter.svg"
-import youtube from "../assets/icons/brands/youtube.svg"
+import codepen from "../assets/icons/brands/codepen.svg?raw"
+import github from "../assets/icons/brands/github.svg?raw"
+import instagram from "../assets/icons/brands/instagram.svg?raw"
+import lastfm from "../assets/icons/brands/lastfm.svg?raw"
+import linkedin from "../assets/icons/brands/linkedin.svg?raw"
+import pinterest from "../assets/icons/brands/pinterest.svg?raw"
+import steam from "../assets/icons/brands/steam.svg?raw"
+import twitter from "../assets/icons/brands/twitter.svg?raw"
+import youtube from "../assets/icons/brands/youtube.svg?raw"
 
 const links: SocialLink[] = [
   {

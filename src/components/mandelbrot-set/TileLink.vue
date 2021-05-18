@@ -1,18 +1,35 @@
-<template lang="pug">
-a(:href="link.value.link" target="_blank" rel="noopener noreferrer")
-  img(:src="link.value.icon" :alt="link.value.alt")
-</template>
-
-<script setup lang="ts">
+<script lang="ts">
 import type { PropType } from "vue"
-import { defineProps, toRefs } from "vue"
+import { defineComponent, h } from "vue"
 
-const props = defineProps({
-  link: {
-    type: Object as PropType<SocialLink>,
-    required: true,
+export default defineComponent({
+  props: {
+    link: {
+      type: Object as PropType<SocialLink>,
+      required: true,
+    },
+  },
+  setup({ link }) {
+    return () =>
+      h("a", {
+        href: link.link,
+        title: link.alt,
+        innerHTML: link.icon,
+        class: "tileLink",
+        target: "_blank",
+        rel: "noopener noreferrer",
+      })
   },
 })
-
-const { link } = toRefs(props)
 </script>
+
+<style lang="postcss">
+a.tileLink {
+  @apply block p-1;
+  width: var(--edge, 100px);
+  height: var(--edge, 100px);
+  & > * {
+    @apply block w-full h-full fill-dark-900;
+  }
+}
+</style>

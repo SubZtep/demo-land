@@ -30,6 +30,7 @@ const toggleAnims = () => {
 
 <style lang="postcss">
 .mandelbrotTile {
+  @apply w-full h-full;
   background-color: var(--rgb);
   box-shadow: 1px 1px 2px #000;
   cursor: none;
