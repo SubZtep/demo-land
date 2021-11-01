@@ -1,5 +1,5 @@
 {
   "deno.enable": false,
-  "workbench.colorTheme": "Sea Green Theme",
+  "workbench.colorTheme": "Activate UMBRA protocol",
   "typescript.tsdk": "node_modules\\typescript\\lib"
 }

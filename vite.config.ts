@@ -7,8 +7,7 @@ import Markdown from "vite-plugin-md"
 import WindiCSS from "vite-plugin-windicss"
 import Layouts from "vite-plugin-vue-layouts"
 import VueI18n from "@intlify/vite-plugin-vue-i18n"
-import ViteComponents from "vite-plugin-components"
-import KajaIO from "vite-plugin-kajaio"
+import Components from "unplugin-vue-components/vite"
 
 export default defineConfig({
   resolve: {
@@ -38,9 +37,10 @@ export default defineConfig({
       },
     }),
 
-    ViteComponents({
+    Components({
       extensions: ["vue", "md"],
-      customLoaderMatcher: id => id.endsWith(".md"),
+      dts: "src/types/components.d.ts",
+      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
     }),
 
     WindiCSS({
@@ -50,17 +50,13 @@ export default defineConfig({
     VueI18n({
       include: [path.resolve(__dirname, "locales/**")],
     }),
-
-    KajaIO({
-      trackerUrl: "https://analtics.demo.land/tracker/",
-      account: "291435445219230209",
-      productionOnly: true,
-    })
   ],
 
   ssgOptions: {
+    mode: "production",
     script: "async",
     formatting: "minify",
+    dirStyle: "nested",
   },
 
   optimizeDeps: {

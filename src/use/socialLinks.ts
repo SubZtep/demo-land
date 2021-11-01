@@ -52,7 +52,7 @@ const links: SocialLink[] = [
   {
     icon: youtube,
     alt: "YouTube",
-    link: "https://www.youtube.com/channel/UCy1JFooPXHose1GKoPZVxMg",
+    link: "https://www.youtube.com/c/AndrasSerfozo",
   },
 ]
 

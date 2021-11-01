@@ -1,11 +1,12 @@
 <template lang="pug">
 div(:style="cssVars")
-  .mandelbrotGrid(ref="el" :style="rotateCss")
-    template(v-for="(m, index) in map" :key="`${index}-${m}`")
-      Tile(v-if="m" :rgb="paletteItem(m)")
-        transition(name="bounce")
-          TileLink(v-if="showLinks" :link="socialLink.next().value" transition="fadeIn")
-      .empty(v-else)
+  client-only
+    .mandelbrotGrid(ref="el" :style="rotateCss")
+      template(v-for="(m, index) in map" :key="`${index}-${m}`")
+        Tile(v-if="m" :rgb="paletteItem(m)")
+          transition(name="bounce")
+            TileLink(v-if="showLinks" :link="socialLink.next().value" transition="fadeIn")
+        .empty(v-else)
 </template>
 
 <script setup lang="ts">
@@ -42,7 +43,7 @@ const props = defineProps({
 const el = ref(null)
 const [showLinks, toggleLinks] = useToggle(false)
 const { socialLink } = usesocialLinks()
-const { width: w, height: h } = useWindowSize()
+const { width: w, height: h } = useWindowSize({ initialWidth: 640, initialHeight: 480 })
 const realEdge = Math.floor(props.edge / useDevicePixelRatio().pixelRatio.value)
 const width = Math.floor(w.value / realEdge)
 const height = Math.floor(h.value / realEdge)
