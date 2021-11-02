@@ -1,7 +1,9 @@
 import { ViteSSG } from "vite-ssg"
+// import { createHead } from "@vueuse/head"
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 // @ts-ignore
 import generatedRoutes from "virtual:generated-pages"
+// @ts-ignore
 import { setupLayouts } from "virtual:generated-layouts"
 import App from "./App.vue"
 import "./icons"
@@ -13,7 +15,7 @@ const routes = setupLayouts(generatedRoutes)
 routes.push({
   // path: "/^\/(?!blog\b|i\b).*$/",
   path: "/:pathMatch(.*)/",
-  redirect: "/i/"
+  redirect: "/i/",
 })
 
 export const createApp = ViteSSG(
@@ -36,18 +38,22 @@ export const createApp = ViteSSG(
       }
     },
   },
-  ctx => {
-    Object.values(import.meta.globEager("./modules/*.ts")).map(i => i.install?.(ctx))
-    ctx.app.component("fa", FontAwesomeIcon)
+  // ctx => {
+  ({ app, router }) => {
+    // Object.values(import.meta.globEager("./modules/*.ts")).map(i => i.install?.(ctx))
+    // const { app, router } = ctx
 
-    ctx.router.beforeEach((to, from) => {
+    // app.use(createHead())
+    app.component("fa", FontAwesomeIcon)
+
+    router.beforeEach(to => {
       const { appClass } = to.meta
       if (appClass) {
         document.querySelector("#app")?.classList.add(appClass as string)
       }
     })
 
-    ctx.router.afterEach((to, from) => {
+    router.afterEach((_to, from) => {
       const { appClass } = from.meta
       if (appClass) {
         document.querySelector("#app")?.classList.remove(appClass as string)

@@ -9,59 +9,59 @@ hr.opacity-15.my-6
 
 fa(:icon="['fat', 'trash']")
 
-.prose
+.prose.mb-12
   h1 Portfolio
-  blockquote Since many of my projects are ongoing or might be continued at some point — to keep it simple — I place them on the timeline when they begin to emerge.
+  blockquote Since many of my projects are ongoing or might be continued I place them on the timeline when they begin to emerge. — I will update this page when I find more with those that are not NDA and presentable.
 
-article.prose
+//-TimelineItem(v-for="{ description, ...item} of items" :key="item.name" v-bind="item")
+  p {{description}}
+
+
+//-TimelineItem(name="PHP Cron" category="Script" :created="new Date(2016, 4, 4)")
+  p This script is able to execute scripts, like crontab. But more often.
+
+//-article.prose
   h2 Blalala
   p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-
-article.prose
-  h2 Blalala
-  p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-
-article.prose
-  h2 Blalala
-  p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-
-article.prose
-  h2 Blalala
-  p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-
-article.prose
-  h2 Blalala
-  p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-
-article.prose
-  h2 Blalala
-  p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-
-article.prose
-  h2 Blalala
-  p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-
-article.prose.snap-end
-  h2 Blalala
-  p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
+.snap-end.prose.mx-auto.text-center.py-12.italic.font-serif ~~ Thank you for your time and interest ~~
 </template>
+
+<script lang="ts" setup>
+// import { useHead } from "@vueuse/head"
+// import { readonly } from "vue"
+// import projects from "~/assets/data/projects.toml"
+// import projects from "../assets/data/projects.toml"
+
+// import projects from "~/assets/data/projects.toml"
+
+// import * as projects from "~/assets/data/projects.toml"
+// import { ProjectList } from "~/types/projects"
+
+// useHead({
+//   // TODO: fill the rest and check html updates with ssg.
+//   title: "Andras Serfozo ߷ Portfolio Page",
+//   meta: [
+//     {
+//       name: "description",
+//       content: "Showcase of my public scripts.",
+//     },
+//   ],
+// })
+
+
+// console.log("XXX", projects)
+// const items = readonly<ProjectList>(projects.project)
+</script>
 
 <route lang="yaml">
 meta:
   layout: timeline
 </route>
 
-<style>
+<!-- <style>
 article {
   @apply my-15 snap-start;
   /* height: 100vh; */
 }
-</style>
+</style> -->

@@ -6,8 +6,9 @@ import Pages from "vite-plugin-pages"
 import Markdown from "vite-plugin-md"
 import WindiCSS from "vite-plugin-windicss"
 import Layouts from "vite-plugin-vue-layouts"
-import VueI18n from "@intlify/vite-plugin-vue-i18n"
+// import VueI18n from "@intlify/vite-plugin-vue-i18n"
 import Components from "unplugin-vue-components/vite"
+import AutoImport from "unplugin-auto-import/vite"
 
 export default defineConfig({
   resolve: {
@@ -38,31 +39,43 @@ export default defineConfig({
     }),
 
     Components({
-      extensions: ["vue", "md"],
+      dirs: ["src/components", "src/layouts/src/pages"],
+      extensions: ["vue", "md", "ts"],
       dts: "src/types/components.d.ts",
-      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+      deep: true,
+      // include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+    }),
+
+    AutoImport({
+      include: [/\.[tj]s$/, /\.vue\??/],
+      imports: [
+        "vue",
+        "@vueuse/core",
+        { "@vueuse/core": ["get", "set", "and", "not", "invoke"] },
+      ],
+      dts: "src/types/auto-imports.d.ts",
     }),
 
     WindiCSS({
-      safelist: "prose prose-sm m-auto text-left",
+      // safelist: "prose prose-sm m-auto text-left",
     }),
 
-    VueI18n({
-      include: [path.resolve(__dirname, "locales/**")],
-    }),
+    // VueI18n({
+    //   include: [path.resolve(__dirname, "locales/**")],
+    // }),
   ],
 
-  ssgOptions: {
-    mode: "production",
-    script: "async",
-    formatting: "minify",
-    dirStyle: "nested",
-  },
+  // ssgOptions: {
+  //   mode: "production",
+  //   script: "async",
+  //   formatting: "minify",
+  //   dirStyle: "nested",
+  // },
 
-  optimizeDeps: {
-    include: ["vue", "vue-router", "@vueuse/core"],
-    exclude: ["vue-demi"],
-  },
+  // optimizeDeps: {
+  //   include: ["vue", "vue-router", "@vueuse/core"],
+  //   exclude: ["vue-demi"],
+  // },
 
   // server: {
   //   https: true,

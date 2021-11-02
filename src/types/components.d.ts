@@ -8,6 +8,8 @@ declare module 'vue' {
     ProfilePic: typeof import('./../components/ProfilePic.vue')['default']
     Tile: typeof import('./../components/mandelbrot-set/Tile.vue')['default']
     TileLink: typeof import('./../components/mandelbrot-set/TileLink.vue')['default']
+    TimelineDate: typeof import('./../components/timeline/TimelineDate.vue')['default']
+    TimelineItem: typeof import('./../components/timeline/TimelineItem.vue')['default']
   }
 }
 

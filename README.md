@@ -1,4 +1,3 @@
-## Links
+## Native Taplo
 
-- https://glitchtextgenerator.com/
-- https://github.com/webrtc/samples/tree/gh-pages/src/content/datachannel/basic
+- https://taplo.tamasfe.dev/cli/#native

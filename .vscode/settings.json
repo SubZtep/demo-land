@@ -1,5 +1,19 @@
 {
   "deno.enable": false,
-  "workbench.colorTheme": "Activate UMBRA protocol",
-  "typescript.tsdk": "node_modules\\typescript\\lib"
+  "workbench.colorTheme": "Forest Focus",
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "windicss.enableCodeFolding": true,
+  "windicss.foldByLength": true,
+  "css.validate": false,
+  "css.lint.emptyRules": "ignore",
+  "files.associations": {
+    ".prettierrc": "yaml"
+  },
+  "evenBetterToml.taploConfigEnabled": true,
+  "evenBetterToml.commands.clearCache": true,
+  "evenBetterToml.commands.downloadSchemas": false,
+  "evenBetterToml.commands.copyJsonAsToml": false,
+  "evenBetterToml.commands.copyTomlAsJson": false,
+  "evenBetterToml.commands.pasteJsonAsToml": false,
+  "evenBetterToml.commands.pasteTomlAsJson": false
 }
