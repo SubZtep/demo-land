@@ -1,15 +1,17 @@
 <template lang="pug">
-div(class="sm:flex-row flex gap-6 flex-col-reverse snap-start")
+div(class="sm:flex-row flex gap-6 flex-col snap-start")
   ProfilePic(class="flex-shrink-0 <sm:mx-auto")
-  .prose.text-lg.font-serif.tracking-wide.py-2.self-center
-    p My name is Andras. I write code. I live in London but I’m not a stranger in Budapest too, and might be able to appear in a few places. Including online places because I’m a web developer and I share some of my work, I like to and would like to contribute in many places.
+  .prose.text-lg.font-serif.tracking-wide.self-center
+    p Hello, My name is Andras. I write code. I live in London but I’m not a stranger in Budapest too, and might be able to appear in a few places. Including online places because I’m a web developer and I share some of my work, I like to and would like to contribute in many places.
     p This is my portfolio page where I share what I could find available, and I’m always looking for new projects.
 
 hr.opacity-15.my-6
 
+fa(:icon="['fat', 'trash']")
+
 .prose
   h1 Portfolio
-  blockquote Very clickable in my imagination, let’s add some content!
+  blockquote Since many of my projects are ongoing or might be continued at some point — to keep it simple — I place them on the timeline when they begin to emerge.
 
 article.prose
   h2 Blalala

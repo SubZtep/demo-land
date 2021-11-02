@@ -56,7 +56,7 @@ const links: SocialLink[] = [
   },
 ]
 
-function* linkGen() {
+function* linkGen(): IterableIterator<SocialLink> {
   while (true) {
     yield* links
   }

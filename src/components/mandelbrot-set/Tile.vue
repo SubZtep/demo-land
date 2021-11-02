@@ -1,6 +1,6 @@
 <template lang="pug">
 .mandelbrotTile(
-  :style="{ '--rgb': `rgb(${props.rgb.join(',')})` }"
+  :style="rgbCssProp"
   :class="{ animUp, animDown }"
   @mouseover="toggleAnims"
   @mouseout="toggleAnims")
@@ -8,16 +8,11 @@
 </template>
 
 <script setup lang="ts">
-import type { PropType } from "vue"
-import { defineProps } from "vue"
+import type { StyleValue } from "vue"
 import { useToggle } from "@vueuse/core"
 
-const props = defineProps({
-  rgb: {
-    type: Object as PropType<RGB>,
-    required: true,
-  },
-})
+const props = defineProps<{ rgb: RGB }>()
+const rgbCssProp = { "--rgb": `rgb(${props.rgb.join(",")})` } as StyleValue
 
 const [animUp, animUpToggle] = useToggle(false)
 const [animDown, animDownToggle] = useToggle(false)

@@ -11,7 +11,7 @@ div(:style="cssVars")
 
 <script setup lang="ts">
 import type { CSSProperties } from "vue"
-import { ref, reactive, defineProps } from "vue"
+import { ref, reactive } from "vue"
 import {
   useWindowSize,
   useParallax,
