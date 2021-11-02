@@ -5,6 +5,11 @@
 .videobg.absolute.top-0.right-0.bottom-0.left-0
 </template>
 
+<route lang="yaml">
+meta:
+  layout: home
+</route>
+
 <style>
 .videobg {
   background: url("/a-4o4.gif") no-repeat left center;

@@ -5,6 +5,7 @@
 declare module 'vue' {
   export interface GlobalComponents {
     MandelbrotSet: typeof import('./../components/mandelbrot-set/MandelbrotSet.vue')['default']
+    ProfilePic: typeof import('./../components/ProfilePic.vue')['default']
     Tile: typeof import('./../components/mandelbrot-set/Tile.vue')['default']
     TileLink: typeof import('./../components/mandelbrot-set/TileLink.vue')['default']
   }

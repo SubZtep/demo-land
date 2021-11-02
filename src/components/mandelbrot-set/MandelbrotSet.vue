@@ -1,12 +1,12 @@
 <template lang="pug">
 div(:style="cssVars")
   client-only
-    .mandelbrotGrid(ref="el" :style="rotateCss")
-      template(v-for="(m, index) in map" :key="`${index}-${m}`")
-        Tile(v-if="m" :rgb="paletteItem(m)")
-          transition(name="bounce")
-            TileLink(v-if="showLinks" :link="socialLink.next().value" transition="fadeIn")
-        .empty(v-else)
+  .mandelbrotGrid(ref="el" :style="rotateCss")
+    template(v-for="(m, index) in map" :key="`${index}-${m}`")
+      Tile(v-if="m" :rgb="paletteItem(m)")
+        transition(name="bounce")
+          TileLink(v-if="showLinks" :link="socialLink.next().value" transition="fadeIn")
+      .empty(v-else)
 </template>
 
 <script setup lang="ts">

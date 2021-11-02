@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "vite --port 3333",
+    "dev:build": "pnpm build && http-server dist/",
     "build": "vite-ssg build",
     "build:old": "vite build",
     "serve": "vite preview",
-    "windi:analysis": "windicss-analysis"
+    "windi:analysis": "pnpx windicss-analysis"
   },
   "dependencies": {
     "@vueuse/core": "^6.7.4",
@@ -17,7 +18,6 @@
     "prism-theme-vars": "^0.2.2",
     "quaternion": "^1.2.1",
     "vue": "^3.2.20",
-    "vue-client-only": "^2.1.0",
     "vue-i18n": "^9.1.9",
     "vue-router": "^4.0.12"
   },
@@ -29,6 +29,7 @@
     "@vitejs/plugin-vue": "^1.9.4",
     "@vue/compiler-sfc": "^3.2.20",
     "@vue/server-renderer": "^3.2.20",
+    "@windicss/plugin-scrollbar": "^1.2.3",
     "markdown-it-prism": "^2.2.1",
     "prettier": "^2.4.1",
     "pug": "^3.0.2",
@@ -40,7 +41,6 @@
     "vite-plugin-vue-layouts": "^0.5.0",
     "vite-plugin-windicss": "^1.4.12",
     "vite-ssg": "^0.15.6",
-    "vue-tsc": "^0.28.10",
-    "windicss-analysis": "^0.3.4"
+    "vue-tsc": "^0.28.10"
   }
 }

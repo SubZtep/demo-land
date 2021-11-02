@@ -1,14 +1,18 @@
 import { ViteSSG } from "vite-ssg"
-import ClientOnly from "vue-client-only"
-// import { createWebHistory } from "vue-router"
+// @ts-ignore
 import generatedRoutes from "virtual:generated-pages"
 import { setupLayouts } from "virtual:generated-layouts"
 import App from "./App.vue"
 import "virtual:windi.css"
-// import "virtual:windi-devtools"
+import "virtual:windi-devtools"
 import "./styles/main.css"
 
 const routes = setupLayouts(generatedRoutes)
+routes.push({
+  // path: "/^\/(?!blog\b|i\b).*$/",
+  path: "/:pathMatch(.*)/",
+  redirect: "/i/"
+})
 
 export const createApp = ViteSSG(
   App,
@@ -46,7 +50,7 @@ export const createApp = ViteSSG(
         document.querySelector("#app")?.classList.remove(appClass as string)
       }
     })
-    ctx.app.component(ClientOnly)
+    // ctx.app.component(ClientOnly)
   }
 )
 
