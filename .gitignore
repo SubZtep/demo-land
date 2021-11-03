@@ -1,3 +1,8 @@
-.vite-ssg-temp/
-node_modules/
-.npmrc
+/packages/fa-icons/install_fa.sh
+/web/.vite-ssg-temp/
+node_modules
+dist
+coverage
+.env
+.pnpm-debug.log
+tsconfig.tsbuildinfo
