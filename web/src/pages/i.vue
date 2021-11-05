@@ -7,7 +7,9 @@ div(class="sm:flex-row flex gap-6 flex-col snap-start")
 
 hr.opacity-15.my-6
 
-//- fa(:icon="['fat', 'trash']")
+hr
+fa(:icon="['fat', 'trash']")
+hr
 
 .prose.mb-12
   h1 Portfolio
@@ -17,7 +19,7 @@ hr.opacity-15.my-6
   p {{description}}
 
 
-TimelineItem(name="PHP Cron" category="Script" created="2016-04-04)")
+TimelineItem(name="PHP Cron" category="Script" created="2016-04-04")
   p This script is able to execute scripts, like crontab. But more often.
 
 article.prose

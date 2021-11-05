@@ -18,6 +18,7 @@
   "license": "Unlicense",
   "dependencies": {
     "@demo-land/fa-icons": "workspace:*",
+    "@fortawesome/vue-fontawesome": "^2.0.6",
     "@vueuse/core": "^6.7.4",
     "chroma-js": "^2.1.2",
     "prism-theme-vars": "^0.2.2",

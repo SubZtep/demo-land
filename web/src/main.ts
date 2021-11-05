@@ -10,7 +10,8 @@ import "virtual:windi.css"
 // import "virtual:windi-devtools"
 import "./styles/main.css"
 import { createRouter, createWebHistory } from "vue-router"
-import { library } from "@demo-land/fa-icons"
+// import { library } from "@demo-land/fa-icons"
+import { FontAwesomeIcon } from "@demo-land/fa-icons"
 
 const routes = setupLayouts(generatedRoutes)
 routes.push({
@@ -25,7 +26,7 @@ const router = createRouter({
 })
 
 
-const app = createApp(App).use(router).mount("#app")
+createApp(App).use(router).component("fa", FontAwesomeIcon).mount("#app")
 
 // export const createApp = ViteSSG(
 //   App,

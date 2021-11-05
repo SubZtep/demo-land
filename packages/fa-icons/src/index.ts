@@ -11,6 +11,7 @@ import { library } from "@fortawesome/fontawesome-svg-core"
 // library.add(far as IconPack)
 // library.add(fas as IconPack)
 // library.add(fat as IconPack)
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 
 import { faCodepen } from "@fortawesome/free-brands-svg-icons/faCodepen"
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub"
@@ -29,4 +30,6 @@ library.add(faSliders)
 import { faTrash } from "@fortawesome/pro-regular-svg-icons/faTrash"
 library.add(faTrash)
 
-export { library }
+export { FontAwesomeIcon }
+
+// export { library }
