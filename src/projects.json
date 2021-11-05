@@ -1,0 +1,184 @@
+[
+  {
+    "name": "CSS Tetris 3D",
+    "category": "Game",
+    "tags": ["TypeScript"],
+    "website": "https://subztep.github.io/css-tetris-3d/",
+    "github": "https://github.com/SubZtep/css-tetris-3d",
+    "created": "2021-02-11",
+    "description": "CSS Tetris. (unfinished)"
+  },
+  {
+    "name": "GIF Animation Preview",
+    "category": "Plugin",
+    "tags": ["TypeScript"],
+    "website": "https://wordpress.org/plugins/gif-animation-preview/",
+    "github": "https://github.com/SubZtep/gif-animation-preview",
+    "created": "2015-01-01",
+    "description": "This WordPress plugin finds every GIF animation in your posts and replace it to a preview image."
+  },
+  {
+    "name": "Web Words",
+    "category": "Plugin",
+    "tags": ["TypeScript"],
+    "website": "https://subztep.github.io/web-words/",
+    "github": "https://github.com/SubZtep/web-words",
+    "created": "2020-06-21",
+    "description": "Browser plugin."
+  },
+  {
+    "name": "My Repos Action",
+    "category": "Script",
+    "tags": ["TypeScript"],
+    "github": "https://github.com/SubZtep/my-repos-action",
+    "created": "2021-05-18",
+    "description": "GitHub action."
+  },
+  {
+    "name": "Depth",
+    "category": "WebApp",
+    "tags": ["TypeScript"],
+    "github": "https://github.com/SubZtep/depth",
+    "created": "2021-05-18",
+    "description": "Experimental project"
+  },
+  {
+    "name": "serfozoiroda.hu",
+    "category": "Website",
+    "tags": ["TypeScript"],
+    "website": "https://serfozoiroda.hu/",
+    "created": "2021-04-18",
+    "description": "Website."
+  },
+  {
+    "name": "Baby Monitor",
+    "category": "WebApp",
+    "tags": ["TypeScript"],
+    "github": "https://github.com/SubZtep/baby-monitor",
+    "created": "2021-10-09",
+    "description": "Baby monitor."
+  },
+  {
+    "name": "vite-plugin-pug",
+    "category": "Plugin",
+    "tags": ["TypeScript"],
+    "github": "https://github.com/SubZtep/vite-plugin-pug",
+    "created": "2021-02-12",
+    "description": "Vite plugin Pug."
+  },
+  {
+    "name": "NFT",
+    "category": "NFT",
+    "tags": ["CSS"],
+    "website": "https://www.hicetnunc.xyz/objkt/52229",
+    "created": "2021-04-22",
+    "description": "CSS only NFT."
+  },
+  {
+    "name": "JSON City",
+    "category": "WebApp",
+    "tags": ["JavaScript"],
+    "github": "https://github.com/SubZtep/JsonCity",
+    "website": "https://json.city/",
+    "created": "2018-09-20",
+    "description": "JSON parser."
+  },
+  {
+    "name": "Flow of Four",
+    "category": "Game",
+    "tags": ["TypeScript"],
+    "github": "https://github.com/SubZtep/js13k-2020",
+    "created": "2020-08-16",
+    "description": "JS13K gamejam game."
+  },
+  {
+    "name": "WAAπSynth",
+    "category": "WebApp",
+    "tags": ["TypeScript", "React"],
+    "github": "https://github.com/SubZtep/synth",
+    "created": "2020-05-23",
+    "description": "Web Audio Api Synthesizer. Connect Audio Graph Nodes."
+  },
+  {
+    "name": "Chat Bot",
+    "category": "Script",
+    "tags": ["TypeScript"],
+    "github": "https://github.com/SubZtep/chatbot",
+    "created": "2019-04-17",
+    "description": "Discord chatbot using Dialogflow agent."
+  },
+  {
+    "name": "Twitter Bot",
+    "category": "Script",
+    "tags": ["TypeScript"],
+    "github": "https://github.com/SubZtep/twitter-bot",
+    "created": "2019-12-30",
+    "description": "Follower bot"
+  },
+  {
+    "name": "Depend On",
+    "category": "Script",
+    "tags": ["TypeScript"],
+    "github": "https://github.com/SubZtep/depend-on",
+    "created": "2019-12-10",
+    "description": " Iterate through NPM package dependencies"
+  },
+  {
+    "name": "Whirled on the Spirit Spiral",
+    "category": "Game",
+    "tags": ["JavaScript", "VR"],
+    "website": "https://subztep.github.io/js13k-2018/dist/",
+    "github": "https://github.com/SubZtep/js13k-2018",
+    "created": "2018-08-19",
+    "description": "JS13K Gamejam"
+  },
+  {
+    "name": "SQLite Manager",
+    "category": "Plugin",
+    "tags": ["Unity3D", "C#"],
+    "github": "https://github.com/SubZtep/SQLiteManager",
+    "created": "2017-12-15",
+    "description": "SQLite plugin for Unity3D"
+  },
+  {
+    "name": "The Hunger Maims",
+    "category": "Game",
+    "tags": ["Unity3D", "C#"],
+    "website": "https://subztep.itch.io/the-hunger-maims",
+    "github": "https://github.com/SubZtep/Ludum-Dare-40",
+    "created": "2017-12-05",
+    "description": "Ludum Dare 40"
+  },
+  {
+    "name": "PersistData",
+    "category": "Script",
+    "tags": ["C#", "Unity3D"],
+    "github": "https://github.com/SubZtep/PersistData",
+    "created": "2014-11-23",
+    "description": "Persistent store data at runtime in Unity3D. Hashmap behind the scenes, accept any kind of types. Singleton, keep data alive between scenes."
+  },
+  {
+    "name": "Modell",
+    "category": "Script",
+    "tags": ["PHP"],
+    "github": "https://github.com/SubZtep/modell",
+    "created": "2014-11-23",
+    "description": "A PHP class for easily create/update/load database entries."
+  },
+  {
+    "name": "PHP Cron",
+    "category": "Script",
+    "tags": ["PHP"],
+    "github": "https://github.com/SubZtep/php-cron",
+    "created": "2015-12-28",
+    "description": "This script is able to execute scripts, like crontab. But more often."
+  },
+  {
+    "name": "Faceplayer",
+    "category": "WebApp",
+    "tags": ["PHP"],
+    "github": "https://github.com/SubZtep/faceplayer",
+    "created": "2012-02-29",
+    "description": "Music player that retreive posted musics from Facebook groups and organised them into playlists."
+  }
+]

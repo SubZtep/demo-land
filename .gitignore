@@ -1,5 +1,4 @@
-/packages/fa-icons/install_fa.sh
-/web/.vite-ssg-temp/
+.vite-ssg-temp/
 node_modules
 dist
 coverage

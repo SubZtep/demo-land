@@ -40,4 +40,13 @@ body {
     transform: scale(1);
   }
 }
+
+.tileLink {
+  @apply block p-1;
+  width: var(--edge, 100px);
+  height: var(--edge, 100px);
+  & > * {
+    @apply block w-full h-full fill-dark-900;
+  }
+}
 </style>

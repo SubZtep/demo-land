@@ -3,3 +3,5 @@ interface SocialLink {
   alt: string
   link: string
 }
+
+type MayArray<T> = T | T[]

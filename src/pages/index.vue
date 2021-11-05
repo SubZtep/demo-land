@@ -1,9 +1,23 @@
 <template lang="pug">
 .absolute.w-screen.h-screen.flex.justify-center.items-center.z-1
-  //- client-only
-  MandelbrotSet
+  client-only
+    MandelbrotSet
 .videobg.absolute.top-0.right-0.bottom-0.left-0
 </template>
+
+<script lang="ts" setup>
+import { useHead } from "@vueuse/head"
+
+useHead({
+  title: "Andras Serfozo ߷ Portfolio Page",
+  meta: [
+    {
+      name: "description",
+      content: "Showcase of my public scripts.",
+    },
+  ],
+})
+</script>
 
 <route lang="yaml">
 meta:

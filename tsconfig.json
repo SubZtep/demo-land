@@ -14,10 +14,21 @@
     "noImplicitAny": false,
     "declarationMap": true,
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "typeRoots": [
+      "./src/types",
+      "node_modules/@types"
+    ],
+    "types": [
+      "vite/client",
+      "vite-plugin-pages/client",
+      "vite-plugin-vue-layouts/client",
+      "vite-ssg"
+    ],
+    "paths": {
+      "~/*": ["src/*"]
+    }
   },
-  "references": [
-    { "path": "packages/fa-icons" },
-    { "path": "web" }
-  ]
+  "exclude": ["dist", "node_modules"]
 }

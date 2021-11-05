@@ -64,12 +64,12 @@ export default defineConfig({
     // }),
   ],
 
-  // ssgOptions: {
-  //   mode: "production",
-  //   script: "async",
-  //   formatting: "minify",
-  //   dirStyle: "nested",
-  // },
+  ssgOptions: {
+    mode: "production",
+    script: "async",
+    formatting: "minify",
+    dirStyle: "nested",
+  },
 
   // optimizeDeps: {
   //   include: ["vue", "vue-router", "@vueuse/core"],
