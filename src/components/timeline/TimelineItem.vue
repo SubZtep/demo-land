@@ -1,5 +1,5 @@
 <template lang="pug">
-article.py-4
+article.py-4.snap-start
 
   .flex.justify-between.w-full
     div

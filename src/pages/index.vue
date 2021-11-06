@@ -9,11 +9,11 @@
 import { useHead } from "@vueuse/head"
 
 useHead({
-  title: "Andras Serfozo ߷ Portfolio Page",
+  title: "d̢̅ḛ̱̟͔̦̍̑̐̾̀m̝̽̍̚͢͟o̞͖͔͌̾̐.̭̞̗͐̏́̾͟la͙̹̤̔̅̉n͍̯͉͗̋̎d͔͞",
   meta: [
     {
       name: "description",
-      content: "Showcase of my public scripts.",
+      content: "SEOgec he? 凸(￣ヘ￣)",
     },
   ],
 })

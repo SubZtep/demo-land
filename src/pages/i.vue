@@ -70,11 +70,11 @@ import { useHead } from "@vueuse/head"
 import projects from "~/projects.json"
 
 useHead({
-  title: "d̢̅ḛ̱̟͔̦̍̑̐̾̀m̝̽̍̚͢͟o̞͖͔͌̾̐.̭̞̗͐̏́̾͟la͙̹̤̔̅̉n͍̯͉͗̋̎d͔͞",
+  title: "Andras Serfozo ߷ Portfolio Page",
   meta: [
     {
       name: "description",
-      content: "SEOgec he? 凸(￣ヘ￣)",
+      content: "Showcase of my public scripts.",
     },
   ],
 })
