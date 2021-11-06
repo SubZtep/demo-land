@@ -1,21 +1,17 @@
-export const categories = ["Script", "Game", "Plugin", "WebApp", "NFT", "Website"] as const
-export const tags = ["PHP", "C#", "Unity3D", "VR", "JavaScript", "TypeScript", "React", "CSS", "Vue"] as const
+export const categories = ["Script", "Plugin", "Website", "WebApp", "Game", "NFT"] as const
+export const tags = ["JavaScript", "React", "Vue", "CSS", "Unity3D", "VR", "PHP"] as const
 
 export default function () {
   const toIcon = (name: typeof categories[number] | typeof tags[number]) => {
     switch (name) {
       case "PHP":
         return ["fab", "php"]
-      case "C#":
-        return ["fas", "code"]
       case "Unity3D":
         return ["fab", "unity"]
       case "VR":
         return ["fas", "vr-cardboard"]
       case "JavaScript":
         return ["fab", "js"]
-      case "TypeScript":
-        return ["fas", "code"]
       case "React":
         return ["fab", "react"]
       case "CSS":
@@ -27,7 +23,7 @@ export default function () {
       case "Plugin":
         return ["fas", "plug"]
       case "WebApp":
-        return ["fas", "globe"]
+        return ["fas", "globe-stand"]
       case "NFT":
         return ["fas", "hand-holding-usd"]
       case "Website":

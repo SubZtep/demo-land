@@ -1,5 +1,5 @@
 <template lang="pug">
-a.tileLink(:href="props.link.link" :title="props.link.alt" ref="noopener noreferrer" target="_blank")
+a.tileLink(:href="props.link.link" :title="props.link.alt" ref="noopener" target="_blank")
   fa(:icon="['fab', props.link.icon]")
 </template>
 

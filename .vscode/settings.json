@@ -4,6 +4,7 @@
   "windicss.enableCodeFolding": true,
   "windicss.foldByLength": true,
   "css.validate": false,
+  "windicss.enableUtilityCompletion": true,
   // "css.lint.": false,
   // "css.lint.unknownAtRules": "ignore",
   // "css.lint.emptyRules": "ignore",

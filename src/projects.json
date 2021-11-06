@@ -2,19 +2,19 @@
   {
     "name": "Baby Monitor",
     "category": "WebApp",
-    "tags": ["Vue", "TypeScript"],
+    "tags": ["Vue"],
     "github": "https://github.com/SubZtep/baby-monitor",
     "website": "https://lili.digital",
     "created": "2021-10-09",
-    "description": "Concept app that runs on an old phone in the baby’s room, once mic detects noise for a little while it rings your phone."
+    "description": "Progressive web app (for preventing screen timeout) that should runs on an old phone placed in the room with a sleeping baby.\nOnce the microphone has a signal and the calculated decibel via the **Web Audio API** analyser reaches the given value several times, the app calls Your phone via the [Twilio API](https://www.twilio.com/docs/voice)."
   },
   {
     "name": "Depth",
     "category": "WebApp",
-    "tags": ["Vue", "TypeScript"],
+    "tags": ["Vue"],
     "github": "https://github.com/SubZtep/depth",
     "created": "2021-05-18",
-    "description": "Prototyping a web-app that shares viewport between 2D web pages and a 3D background scene."
+    "description": "Prototyping a web-app that shares a viewport between 2D web pages and a 3D background scene for easy idea prototyping, a personal playground platform.\nContains many separated pages for different purposes, like implementing _Tensorflow APIs_, commanding _WebGL_ with reactivity, etcetera."
   },
   {
     "name": "1_accustic",
@@ -28,7 +28,7 @@
   {
     "name": "serfozoiroda.hu",
     "category": "Website",
-    "tags": ["Vue", "TypeScript", "CSS"],
+    "tags": ["Vue", "CSS"],
     "website": "https://serfozoiroda.hu/",
     "created": "2021-04-18",
     "description": "My brother’s static website in Hungarian language."
@@ -36,7 +36,7 @@
   {
     "name": "Vite Plugin Pug",
     "category": "Plugin",
-    "tags": ["TypeScript"],
+    "tags": ["JavaScript"],
     "github": "https://github.com/SubZtep/vite-plugin-pug",
     "created": "2021-02-12",
     "description": "Pug compiler for Vite builder."
@@ -44,19 +44,35 @@
   {
     "name": "CSS Tetris 3D",
     "category": "Game",
-    "tags": ["TypeScript"],
+    "tags": ["TypeScript", "CSS"],
     "website": "https://subztep.github.io/css-tetris-3d/",
     "github": "https://github.com/SubZtep/css-tetris-3d",
     "created": "2021-02-11",
-    "description": "Concept 3D tetris with only HTML and CSS."
+    "description": "CSS 3D perspective experiment that implies the _Tetris_ game. _Tetromino_ aka block movement is implemented with Z-axis rotation."
   },
   {
     "name": "My Repos Action",
     "category": "Script",
-    "tags": ["TypeScript"],
+    "tags": ["JavaScript"],
     "github": "https://github.com/SubZtep/my-repos-action",
     "created": "2021-01-24",
-    "description": "GitHub action that populate list of repositories on GitHub profile page."
+    "description": "[GitHub Action](https://github.com/features/actions) that tetrieve your fresh and buried public project list via [GitHub GraphQL API](https://docs.github.com/en/graphql/overview/explorer) and populate this list in reverse-chronological order on your GitHub profile page."
+  },
+  {
+    "name": "Time Passing Lambda Image",
+    "category": "Script",
+    "tags": ["JavaScript"],
+    "github": "https://github.com/SubZtep/time-passing-lambda-image",
+    "created": "2021-01-22",
+    "description": "[Netlify Lambda](https://docs.netlify.com/functions/overview/) that calculates the distance from a given date and now in formatted \"time ago\" words. This **serverless function** returns an embeddable PNG image in base64 encoded binary format."
+  },
+  {
+    "name": "A-Frame Warpspeed Texture",
+    "category": "Script",
+    "tags": ["JavaScript"],
+    "github": "https://github.com/SubZtep/aframe-warpspeed-texture",
+    "created": "2020-11-14",
+    "description": "Component that set real-time calculated animation on a canvas as texture to the existing material of an entity. The main purpose is testing the (currently) experimental transferControlToOffscreen method."
   },
   {
     "name": "Flow of Four",
@@ -70,16 +86,16 @@
   {
     "name": "Web Words",
     "category": "Plugin",
-    "tags": ["TypeScript"],
+    "tags": ["JavaSCript"],
     "website": "https://subztep.github.io/web-words/",
     "github": "https://github.com/SubZtep/web-words",
     "created": "2020-06-21",
-    "description": "Browser plugin using Google Translate."
+    "description": "Browser plugin that imports the entire saved dictionary from _Google Translate_ and shows the translated words on a tooltip on the webpage.\n_(On hold until `manifest v3` update.)_"
   },
   {
     "name": "WAAπSynth",
     "category": "WebApp",
-    "tags": ["React", "TypeScript"],
+    "tags": ["React"],
     "github": "https://github.com/SubZtep/synth",
     "created": "2020-05-23",
     "description": "Web Audio Api Synthesizer. Connect Audio Graph Nodes."
@@ -87,7 +103,7 @@
   {
     "name": "Twitter Bot",
     "category": "Script",
-    "tags": ["TypeScript"],
+    "tags": ["JavaScript"],
     "github": "https://github.com/SubZtep/twitter-bot",
     "created": "2019-12-30",
     "description": "Follower bot."
@@ -95,7 +111,7 @@
   {
     "name": "Depend On",
     "category": "Script",
-    "tags": ["TypeScript"],
+    "tags": ["JavaScript"],
     "github": "https://github.com/SubZtep/depend-on",
     "created": "2019-12-10",
     "description": "Iterate through NPM package dependencies."
@@ -103,7 +119,7 @@
   {
     "name": "Chat Bot",
     "category": "Script",
-    "tags": ["TypeScript"],
+    "tags": ["JavaScript"],
     "github": "https://github.com/SubZtep/chatbot",
     "created": "2019-04-17",
     "description": "Discord chatbot using Dialogflow agent."
@@ -137,7 +153,7 @@
   {
     "name": "SQLite Manager",
     "category": "Plugin",
-    "tags": ["Unity3D", "C#"],
+    "tags": ["Unity3D"],
     "github": "https://github.com/SubZtep/SQLiteManager",
     "created": "2017-12-15",
     "description": "SQLite plugin for Unity3D."
@@ -145,7 +161,7 @@
   {
     "name": "The Hunger Maims",
     "category": "Game",
-    "tags": ["Unity3D", "C#"],
+    "tags": ["Unity3D"],
     "website": "https://subztep.itch.io/the-hunger-maims",
     "github": "https://github.com/SubZtep/Ludum-Dare-40",
     "created": "2017-12-05",
@@ -162,7 +178,7 @@
   {
     "name": "PersistData",
     "category": "Script",
-    "tags": ["Unity3D", "C#"],
+    "tags": ["Unity3D"],
     "github": "https://github.com/SubZtep/PersistData",
     "created": "2017-11-11",
     "description": "Persistent store data at runtime in Unity3D. Hashmap behind the scenes, accept any kind of types. Singleton, keep data alive between scenes."
@@ -187,11 +203,11 @@
   {
     "name": "GIF Animation Preview",
     "category": "Plugin",
-    "tags": ["PHP", "JavaScript"],
+    "tags": ["PHP", "JavaScript", "CSS"],
     "website": "https://wordpress.org/plugins/gif-animation-preview/",
     "github": "https://github.com/SubZtep/gif-animation-preview",
     "created": "2015-01-01",
-    "description": "WordPress plugin that finds every GIF animation in your posts and replace it to a preview image."
+    "description": "_WordPress_ plugin that finds every GIF animation in a post and replaces it with an auto-generated preview image from the first frame of the animation and saves it to the post’s media directory. Tweakable smooth effect between the preview and animation while lazy loading big animation data on mobiles."
   },
   {
     "name": "Modell",
@@ -202,7 +218,7 @@
     "description": "A PHP class for easily create/update/load database entries."
   },
   {
-    "name": "Faceplayer",
+    "name": "FacePlayer",
     "category": "WebApp",
     "tags": ["PHP", "JavaScript"],
     "github": "https://github.com/SubZtep/faceplayer",

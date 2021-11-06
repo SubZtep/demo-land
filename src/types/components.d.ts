@@ -4,6 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    DateCalendar: typeof import('./../components/timeline/DateCalendar.vue')['default']
     MandelbrotSet: typeof import('./../components/mandelbrot-set/MandelbrotSet.vue')['default']
     MyLead: typeof import('./../components/MyLead.vue')['default']
     PinCategory: typeof import('./../components/timeline/PinCategory.vue')['default']

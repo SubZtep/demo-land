@@ -20,10 +20,11 @@ import { faVrCardboard } from "@fortawesome/pro-solid-svg-icons/faVrCardboard"
 import { faGamepad } from "@fortawesome/pro-solid-svg-icons/faGamepad"
 import { faPlug } from "@fortawesome/pro-solid-svg-icons/faPlug"
 import { faGlobe } from "@fortawesome/pro-solid-svg-icons/faGlobe"
+import { faGlobeStand } from "@fortawesome/pro-solid-svg-icons/faGlobeStand"
 import { faHandHoldingUsd } from "@fortawesome/pro-solid-svg-icons/faHandHoldingUsd"
 import { faQuestion } from "@fortawesome/pro-solid-svg-icons/faQuestion"
 import { faLink } from "@fortawesome/pro-solid-svg-icons/faLink"
-import { faCalendar } from "@fortawesome/pro-solid-svg-icons/faCalendar"
+import { faCalendar } from "@fortawesome/pro-regular-svg-icons/faCalendar"
 import { faTrianglePersonDigging } from "@fortawesome/pro-solid-svg-icons/faTrianglePersonDigging"
 import { faCheckSquare } from "@fortawesome/pro-solid-svg-icons/faCheckSquare"
 import { faSquare } from "@fortawesome/pro-solid-svg-icons/faSquare"
@@ -50,6 +51,7 @@ library.add(
   faGamepad,
   faPlug,
   faGlobe,
+  faGlobeStand,
   faHandHoldingUsd,
   faQuestion,
   faLink,

@@ -1,19 +1,14 @@
 <template lang="pug">
-article.py-4.mb-8.snap-start
-  .flex.justify-between.w-full
-    div.prose
+article.py-4.mb-2.snap-start
+  .flex.justify-between.content-start.w-full
+    .prose
       h2 {{props.name}}
-
-      .item-list.my-2
+      .item-list
         ProjectPin(:category="props.category")
         ProjectPin(v-for="tag in props.tags" :key="tag" :tag="tag")
+    DateCalendar.mt-4(:date="props.created")
 
-    div
-      .inline.italic.prose.text-right.mr-2 {{formatDate(props.created)}}
-      fa.text-gray-500(:icon="['fas', 'calendar']")
-
-  p.prose.my-1
-    slot
+  slot
 
   .item-list.mt-3
     a.btn(v-if="props.website" :href="props.website" target="_blank" :title="props.website")
@@ -38,6 +33,4 @@ export interface TimelineItemProps {
 }
 
 const props = defineProps<TimelineItemProps>()
-
-const formatDate = (date: string) => new Date(date).toLocaleDateString()
 </script>

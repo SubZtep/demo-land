@@ -18,13 +18,32 @@ export default defineConfig({
       colors: {
         blood: "#8a0303",
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            "code::before": {
+              content: "",
+            },
+            "code::after": {
+              content: "",
+            },
+            h2: {
+              marginBottom: "1rem",
+            },
+            // blockquote: {
+            //   color: "dark:text-blue-gray-400 light:text-blue-gray-800",
+            // }
+          },
+        },
+      },
     },
   },
   shortcuts: {
     "bg-gray": "dark:bg-blue-gray-800 light:bg-blue-gray-200",
-    "border-gray": "border dark:border-gray-700 light:border-gray-300",
-    "border-grayer": "border dark:border-gray-600 light:border-gray-400",
+    "border-gray": "border dark:border-gray-800 light:border-gray-200 transform-gpu hover:translate-y-1",
+    "border-grayer": "border dark:border-gray-700 light:border-gray-300 transform-gpu hover:-translate-y-1",
     "text-gray": "dark:text-blue-gray-400 light:text-blue-gray-800",
+    "text-grayer": "dark:text-blue-gray-300 light:text-blue-gray-900",
     "item-list": "flex flex-wrap gap-1",
   },
   plugins: [
@@ -33,9 +52,33 @@ export default defineConfig({
     }),
     scrollsnap,
     scrollbar,
-    plugin(({ addBase, addComponents, theme }) => {
+    plugin(({ addBase, addUtilities, addComponents, theme }) => {
       addBase({
         hr: { opacity: theme("opacity.20") as string, margin: `${theme("spacing.8")} 0 !important` },
+      })
+      addUtilities({
+        ".text-outline": {
+          textShadow: `
+            -1px -1px 0 #000,
+            0   -1px 0 #000,
+            1px -1px 0 #000,
+            1px  0   0 #000,
+            1px  1px 0 #000,
+            0    1px 0 #000,
+            -1px  1px 0 #000,
+            -1px  0   0 #000`,
+        },
+        ".text-outline-2": {
+          textShadow: `
+            -2px -2px 0 #000,
+            0   -2px 0 #000,
+            2px -2px 0 #000,
+            2px  0   0 #000,
+            2px  2px 0 #000,
+            0    2px 0 #000,
+            -2px  2px 0 #000,
+            -2px  0   0 #000`,
+        },
       })
       addComponents({
         ".btn": {
