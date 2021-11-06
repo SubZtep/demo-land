@@ -1,8 +1,8 @@
 <template lang="pug">
-.flex.items-center.gap-2.rounded.p-2.prose.border-gray(
-  :class="{ ['cursor-pointer']: hasForm }"
+.flex.items-center.gap-2.rounded.px-2.py-1.prose.transition(
+  :class="{ ['cursor-pointer border-gray']: hasForm, ['border-grayer']: hasForm && props.modelValue, 'bg-gray': hasCategory }"
   @click="hasForm && emit('update:modelValue', !props.modelValue)")
-  fa(v-if="hasForm" :icon="['fas', props.modelValue ? 'check-square' : 'square']")
+  fa.mr-1(v-if="hasForm" :icon="['fas', props.modelValue ? 'check-square' : 'square']")
   fa(:icon="toIcon(slug)")
   div {{ slug }}
 </template>
@@ -17,6 +17,7 @@ const props = defineProps<{
   modelValue?: Boolean
 }>()
 const emit = defineEmits(["update:modelValue"])
-const slug = props.category ?? props.tag
+const slug = props.category ?? props.tag!
 const hasForm = computed(() => props.modelValue !== undefined)
+const hasCategory = computed(() => props.category !== undefined)
 </script>

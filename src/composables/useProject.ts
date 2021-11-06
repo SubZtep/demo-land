@@ -2,7 +2,7 @@ export const categories = ["Script", "Game", "Plugin", "WebApp", "NFT", "Website
 export const tags = ["PHP", "C#", "Unity3D", "VR", "JavaScript", "TypeScript", "React", "CSS", "Vue"] as const
 
 export default function () {
-  const toIcon = (name) => {
+  const toIcon = (name: typeof categories[number] | typeof tags[number]) => {
     switch (name) {
       case "PHP":
         return ["fab", "php"]

@@ -21,7 +21,9 @@ export default defineConfig({
     },
   },
   shortcuts: {
+    "bg-gray": "dark:bg-blue-gray-800 light:bg-blue-gray-200",
     "border-gray": "border dark:border-gray-700 light:border-gray-300",
+    "border-grayer": "border dark:border-gray-600 light:border-gray-400",
     "text-gray": "dark:text-blue-gray-400 light:text-blue-gray-800",
   },
   plugins: [
@@ -30,19 +32,9 @@ export default defineConfig({
     }),
     scrollsnap,
     scrollbar,
-    plugin(({ addBase, addComponents, theme }) => {
+    plugin(({ addBase, theme }) => {
       addBase({
         hr: { opacity: theme("opacity.20") as string, margin: `${theme("spacing.8")} 0 !important` },
-      })
-      addComponents({
-        // .flex.items-center.gap-2.rounder.p-2.bg-blue-gray-800.text-blue-gray-400(:class="['light:bg-blue-gray-200', 'light:text-blue-gray-800']")
-        // .flex.items-center.gap-2.rounded.px-2.py-1.text-blue-gray-400(:class="'light:text-blue-gray-800'")
-        // ".pin": {
-        //   display: "flex",
-        //   alignItems: "center",
-        //   gap: "2rem",
-        //   borderRadius: theme("radius") as string,
-        // },
       })
     }),
   ],

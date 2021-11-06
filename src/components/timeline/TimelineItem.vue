@@ -1,6 +1,5 @@
 <template lang="pug">
 article.py-4.mb-8.snap-start
-
   .flex.justify-between.w-full
     div.prose
       h2 {{props.name}}
@@ -49,12 +48,12 @@ const formatDate = (date: string) => new Date(date).toLocaleDateString()
   a {
     border-width: 2px;
     border-style: outset;
-    @apply border-blue-gray-700 light:border-blue-gray-200;
+    @apply dark:(border-blue-gray-700 bg-blue-gray-800) light:(border-blue-gray-200 bg-blue-gray-200) transition;
     padding: 4px;
     width: 2.4rem;
     text-align: center;
     &:hover {
-      @apply border-blue-gray-500 light:border-blue-gray-300;
+      @apply dark:border-blue-gray-500 light:border-blue-gray-300;
     }
     &:focus:hover {
       border-style: inset;
