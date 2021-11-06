@@ -31,7 +31,7 @@
     "tags": ["Vue", "TypeScript", "CSS"],
     "website": "https://serfozoiroda.hu/",
     "created": "2021-04-18",
-    "description": "My brother’s static website."
+    "description": "My brother’s static website in Hungarian language."
   },
   {
     "name": "Vite Plugin Pug",
@@ -115,7 +115,7 @@
     "github": "https://github.com/SubZtep/JsonCity",
     "website": "https://json.city/",
     "created": "2018-09-20",
-    "description": "JSON parser."
+    "description": "JSON formatter."
   },
   {
     "name": "Whirled on the Spirit Spiral",
@@ -166,6 +166,15 @@
     "github": "https://github.com/SubZtep/PersistData",
     "created": "2017-11-11",
     "description": "Persistent store data at runtime in Unity3D. Hashmap behind the scenes, accept any kind of types. Singleton, keep data alive between scenes."
+  },
+  {
+    "name": "Help to Find Cats",
+    "category": "Game",
+    "tags": ["Unity3D", "VR"],
+    "website": "https://devpost.com/software/help-to-find-cats",
+    "youtube": "https://www.youtube.com/watch?v=7tBQqQH6Zs8",
+    "created": "2016-04-24",
+    "description": "For Global Archiact Jam."
   },
   {
     "name": "PHP Cron",

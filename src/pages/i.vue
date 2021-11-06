@@ -2,8 +2,10 @@
 div(class="sm:flex-row flex gap-6 flex-col snap-start")
   ProfilePic(class="flex-shrink-0")
   .prose.text-lg.font-serif.tracking-wide.self-center
-    p Hello, My name is Andras and I am a developer. I live in London but I’m not a stranger in Budapest too. I share some of my work online, I like to and would like to contribute in many places.
-    p This is my portfolio page of pet projects I could found, and I’m always looking for new projects.
+    p Hello, My name is Andras and I am a developer. I live in London but I’m not a stranger in Budapest either. I share some of my work online, I like to and would like to contribute in many places.
+    p
+      fa.mr-2(:icon="['fas', 'triangle-person-digging']")
+      | This is my portfolio page of pet projects I could find, and I’m always looking for new projects.
 
 hr.opacity-15.my-6
 

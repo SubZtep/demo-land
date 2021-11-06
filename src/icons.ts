@@ -24,6 +24,7 @@ import { faHandHoldingUsd } from "@fortawesome/pro-solid-svg-icons/faHandHolding
 import { faQuestion } from "@fortawesome/pro-solid-svg-icons/faQuestion"
 import { faLink } from "@fortawesome/pro-solid-svg-icons/faLink"
 import { faCalendar } from "@fortawesome/pro-solid-svg-icons/faCalendar"
+import { faTrianglePersonDigging } from "@fortawesome/pro-solid-svg-icons/faTrianglePersonDigging"
 
 library.add(
   faCodepen,
@@ -49,7 +50,8 @@ library.add(
   faHandHoldingUsd,
   faQuestion,
   faLink,
-  faCalendar
+  faCalendar,
+  faTrianglePersonDigging
 )
 
 // import type { IconPack } from "@fortawesome/fontawesome-common-types"
