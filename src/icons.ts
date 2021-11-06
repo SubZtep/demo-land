@@ -22,10 +22,35 @@ import { faPlug } from "@fortawesome/pro-solid-svg-icons/faPlug"
 import { faGlobe } from "@fortawesome/pro-solid-svg-icons/faGlobe"
 import { faHandHoldingUsd } from "@fortawesome/pro-solid-svg-icons/faHandHoldingUsd"
 import { faQuestion } from "@fortawesome/pro-solid-svg-icons/faQuestion"
+import { faLink } from "@fortawesome/pro-solid-svg-icons/faLink"
+import { faCalendar } from "@fortawesome/pro-solid-svg-icons/faCalendar"
 
-library.add(faCodepen, faGithub, faInstagram, faLastfm, faLinkedin, faPinterest, faSteam, faTwitter, faYoutube)
-
-library.add(faPhp, faVuejs, faUnity, faJs, faReact, faCss3Alt, faCode, faVrCardboard, faGamepad, faPlug, faGlobe, faHandHoldingUsd, faQuestion)
+library.add(
+  faCodepen,
+  faGithub,
+  faInstagram,
+  faLastfm,
+  faLinkedin,
+  faPinterest,
+  faSteam,
+  faTwitter,
+  faYoutube,
+  faPhp,
+  faVuejs,
+  faUnity,
+  faJs,
+  faReact,
+  faCss3Alt,
+  faCode,
+  faVrCardboard,
+  faGamepad,
+  faPlug,
+  faGlobe,
+  faHandHoldingUsd,
+  faQuestion,
+  faLink,
+  faCalendar
+)
 
 // import type { IconPack } from "@fortawesome/fontawesome-common-types"
 // import { fab } from "@fortawesome/free-brands-svg-icons"

@@ -5,19 +5,24 @@ article.py-4.mb-8.snap-start
     div
       h2.text-xl.font-bold.prose {{props.name}}
 
-      .my-2.flex.gap-3.text-xs
+      .my-2.flex.flex-wrap.gap-3.text-xs
         PinCategory(:category="props.category")
         PinTag(v-for="tag in props.tags" :key="tag" :tag="tag")
 
-    .italic.prose {{formatDate(props.created)}}
+    div
+      .inline.italic.prose.text-right.mr-2 {{formatDate(props.created)}}
+      fa.text-gray-500(:icon="['fas', 'calendar']")
 
   p.prose.my-1
     slot
 
-  .text-xs.text-blue-gray-600
-    a.block(v-if="props.website" :href="props.website" ref="noopener noreferrer" target="_blank") {{props.website}}
-    a.block(v-if="props.github" :href="props.github" ref="noopener noreferrer" target="_blank") {{props.github}}
-    a.block(v-if="props.youtube" :href="props.youtube" ref="noopener noreferrer" target="_blank") {{props.youtube}}
+  div(:class="$style.links")
+    a(v-if="props.website" :href="props.website" target="_blank" :title="props.website")
+      fa(:icon="['fas', 'link']")
+    a(v-if="props.github" :href="props.github" target="_blank" :title="props.github")
+      fa(:icon="['fab', 'github']")
+    a(v-if="props.youtube" :href="props.youtube" target="_blank" :title="props.youtube")
+      fa(:icon="['fab', 'youtube']")
 </template>
 
 <script lang="ts" setup>
@@ -35,8 +40,26 @@ export interface TimelineItemProps {
 
 const props = defineProps<TimelineItemProps>()
 
-const formatDate = (date: string) => {
-  const d = new Date(date)
-  return d.toLocaleDateString()
-}
+const formatDate = (date: string) => new Date(date).toLocaleDateString()
 </script>
+
+<style module lang="postcss">
+.links {
+  @apply text-blue-gray-400 light:text-blue-gray-800 flex gap-1 mt-3;
+  a {
+    border-width: 2px;
+    border-style: outset;
+    @apply border-blue-gray-700 light:border-blue-gray-200;
+    padding: 4px;
+    width: 2.4rem;
+    text-align: center;
+    &:hover {
+      @apply border-blue-gray-500 light:border-blue-gray-300;
+    }
+    &:focus:hover {
+      border-style: inset;
+      transform: translate(1px, 1px);
+    }
+  }
+}
+</style>

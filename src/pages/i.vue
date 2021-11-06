@@ -1,9 +1,9 @@
 <template lang="pug">
 div(class="sm:flex-row flex gap-6 flex-col snap-start")
-  ProfilePic(class="flex-shrink-0 <sm:mx-auto")
+  ProfilePic(class="flex-shrink-0")
   .prose.text-lg.font-serif.tracking-wide.self-center
-    p Hello, My name is Andras. I live in London but I’m not a stranger in Budapest too, and might be able to appear in a few places. Including online places because I’m a web developer and I share some of my work. I like to and would like to contribute in many places.
-    p This is my portfolio page of side-projects I could found, and I’m always looking for new projects.
+    p Hello, My name is Andras and I am a developer. I live in London but I’m not a stranger in Budapest too. I share some of my work online, I like to and would like to contribute in many places.
+    p This is my portfolio page of pet projects I could found, and I’m always looking for new projects.
 
 hr.opacity-15.my-6
 
