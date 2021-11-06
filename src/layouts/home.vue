@@ -3,19 +3,9 @@ router-view
 </template>
 
 <style>
-html {
-  /* height: 100vh; */
-}
-
 body {
-  /* height: 100vh; */
-  /* overflow: hidden; */
   background-color: #000400;
 }
-
-/* #app {
-  overflow: hidden;
-} */
 
 #app.sunny {
   background: linear-gradient(0, #8a0303 0%, #fdbb2d 25%, #22c1c3 100%);

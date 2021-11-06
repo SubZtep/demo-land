@@ -6,9 +6,12 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="msapplication-TileColor" content="#8a0303" />
     <meta name="theme-color" content="#8a0303" />
-    <style>
-      [v-cloak] {
-      display:none;
+    <style type="text/css">
+      [v-cloak] > * {
+        display: none;
+      }
+      [v-cloak]::before {
+        content: "Loading…";
       }
     </style>
   </head>

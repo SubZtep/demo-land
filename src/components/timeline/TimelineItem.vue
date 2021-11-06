@@ -4,7 +4,7 @@ article.py-4.mb-8.snap-start
     div.prose
       h2 {{props.name}}
 
-      .my-2.flex.flex-wrap.gap-3.text-xs
+      .item-list.my-2
         ProjectPin(:category="props.category")
         ProjectPin(v-for="tag in props.tags" :key="tag" :tag="tag")
 
@@ -15,12 +15,12 @@ article.py-4.mb-8.snap-start
   p.prose.my-1
     slot
 
-  div(:class="$style.links")
-    a(v-if="props.website" :href="props.website" target="_blank" :title="props.website")
+  .item-list.mt-3
+    a.btn(v-if="props.website" :href="props.website" target="_blank" :title="props.website")
       fa(:icon="['fas', 'link']")
-    a(v-if="props.github" :href="props.github" target="_blank" :title="props.github")
+    a.btn(v-if="props.github" :href="props.github" target="_blank" :title="props.github")
       fa(:icon="['fab', 'github']")
-    a(v-if="props.youtube" :href="props.youtube" target="_blank" :title="props.youtube")
+    a.btn(v-if="props.youtube" :href="props.youtube" target="_blank" :title="props.youtube")
       fa(:icon="['fab', 'youtube']")
 </template>
 
@@ -41,24 +41,3 @@ const props = defineProps<TimelineItemProps>()
 
 const formatDate = (date: string) => new Date(date).toLocaleDateString()
 </script>
-
-<style module lang="postcss">
-.links {
-  @apply text-blue-gray-400 light:text-blue-gray-800 flex gap-1 mt-3;
-  a {
-    border-width: 2px;
-    border-style: outset;
-    @apply dark:(border-blue-gray-700 bg-blue-gray-800) light:(border-blue-gray-200 bg-blue-gray-200) transition;
-    padding: 4px;
-    width: 2.4rem;
-    text-align: center;
-    &:hover {
-      @apply dark:border-blue-gray-500 light:border-blue-gray-300;
-    }
-    &:focus:hover {
-      border-style: inset;
-      transform: translate(1px, 1px);
-    }
-  }
-}
-</style>
