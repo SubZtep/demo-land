@@ -8,10 +8,6 @@
   @apply dark:bg-blue-gray-900;
 }
 
-:global [v-cloak] {
-  display: none;
-}
-
 .scrollable {
   @apply h-screen overflow-y-scroll
     snap snap-block snap-mandatory snap-py-4
