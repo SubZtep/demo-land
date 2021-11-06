@@ -2,12 +2,12 @@
 article.py-4.mb-8.snap-start
 
   .flex.justify-between.w-full
-    div
-      h2.text-xl.font-bold.prose {{props.name}}
+    div.prose
+      h2 {{props.name}}
 
       .my-2.flex.flex-wrap.gap-3.text-xs
-        PinCategory(:category="props.category")
-        PinTag(v-for="tag in props.tags" :key="tag" :tag="tag")
+        ProjectPin(:category="props.category")
+        ProjectPin(v-for="tag in props.tags" :key="tag" :tag="tag")
 
     div
       .inline.italic.prose.text-right.mr-2 {{formatDate(props.created)}}
@@ -26,7 +26,7 @@ article.py-4.mb-8.snap-start
 </template>
 
 <script lang="ts" setup>
-import { categories, tags } from "~/pages/i.vue"
+import useProject, { categories, tags } from "~/composables/useProject"
 
 export interface TimelineItemProps {
   name: string

@@ -6,7 +6,9 @@
 </template>
 
 <script lang="ts" setup>
-import { categories, toIcon } from "~/pages/i.vue"
+// import { categories, toIcon } from "~/pages/i.vue"
+import useProject from "~/composables/useProject"
+const { categories, toIcon } = useProject()
 
 const props = defineProps<{ category: typeof categories[number] }>()
 </script>

@@ -6,7 +6,9 @@
 </template>
 
 <script lang="ts" setup>
-import { tags, toIcon } from "~/pages/i.vue"
+// import { tags, toIcon } from "~/pages/i.vue"
+import useProject from "~/composables/useProject"
+const { tags, toIcon} = useProject()
 
 const props = defineProps<{ tag: typeof tags[number] }>()
 </script>

@@ -1,11 +1,12 @@
 {
   "deno.enable": false,
-  "workbench.colorTheme": "Forest Focus",
-  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.tsdk": "node_modules/typescript/lib",
   "windicss.enableCodeFolding": true,
   "windicss.foldByLength": true,
   "css.validate": false,
-  "css.lint.emptyRules": "ignore",
+  // "css.lint.": false,
+  // "css.lint.unknownAtRules": "ignore",
+  // "css.lint.emptyRules": "ignore",
   "files.associations": {
     ".prettierrc": "yaml"
   },
