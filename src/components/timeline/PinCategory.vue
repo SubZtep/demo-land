@@ -1,5 +1,6 @@
 <template lang="pug">
-.text-xs.flex.items-center.gap-2.bg-blue-gray-800.rounded.px-2.text-blue-gray-400
+.flex.items-center.gap-2.bg-blue-gray-800.rounded.p-2.text-blue-gray-400
+  slot
   fa(:icon="toIcon(props.category)")
   .leading-none {{props.category}}
 </template>

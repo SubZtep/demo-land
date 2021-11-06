@@ -10,6 +10,7 @@ import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter"
 import { faYoutube } from "@fortawesome/free-brands-svg-icons/faYoutube"
 
 import { faPhp } from "@fortawesome/free-brands-svg-icons/faPhp"
+import { faVuejs } from "@fortawesome/free-brands-svg-icons/faVuejs"
 import { faUnity } from "@fortawesome/free-brands-svg-icons/faUnity"
 import { faJs } from "@fortawesome/free-brands-svg-icons/faJs"
 import { faReact } from "@fortawesome/free-brands-svg-icons/faReact"
@@ -24,7 +25,7 @@ import { faQuestion } from "@fortawesome/pro-solid-svg-icons/faQuestion"
 
 library.add(faCodepen, faGithub, faInstagram, faLastfm, faLinkedin, faPinterest, faSteam, faTwitter, faYoutube)
 
-library.add(faPhp, faUnity, faJs, faReact, faCss3Alt, faCode, faVrCardboard, faGamepad, faPlug, faGlobe, faHandHoldingUsd, faQuestion)
+library.add(faPhp, faVuejs, faUnity, faJs, faReact, faCss3Alt, faCode, faVrCardboard, faGamepad, faPlug, faGlobe, faHandHoldingUsd, faQuestion)
 
 // import type { IconPack } from "@fortawesome/fontawesome-common-types"
 // import { fab } from "@fortawesome/free-brands-svg-icons"
