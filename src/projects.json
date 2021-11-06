@@ -44,7 +44,7 @@
   {
     "name": "CSS Tetris 3D",
     "category": "Game",
-    "tags": ["TypeScript", "CSS"],
+    "tags": ["JavaScript", "CSS"],
     "website": "https://subztep.github.io/css-tetris-3d/",
     "github": "https://github.com/SubZtep/css-tetris-3d",
     "created": "2021-02-11",
@@ -77,7 +77,7 @@
   {
     "name": "Flow of Four",
     "category": "Game",
-    "tags": ["TypeScript", "VR"],
+    "tags": ["JavaScript", "VR"],
     "github": "https://github.com/SubZtep/js13k-2020",
     "youtube": "https://www.youtube.com/watch?v=NNTfZmndO8o",
     "created": "2020-08-16",
