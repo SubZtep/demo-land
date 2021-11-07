@@ -5,13 +5,16 @@
 declare module 'vue' {
   export interface GlobalComponents {
     DateCalendar: typeof import('./../components/timeline/DateCalendar.vue')['default']
+    FilterLabel: typeof import('./../components/timeline/FilterLabel.vue')['default']
     MandelbrotSet: typeof import('./../components/mandelbrot-set/MandelbrotSet.vue')['default']
     MyLead: typeof import('./../components/MyLead.vue')['default']
     PinCategory: typeof import('./../components/timeline/PinCategory.vue')['default']
     PinTag: typeof import('./../components/timeline/PinTag.vue')['default']
     ProfilePic: typeof import('./../components/ProfilePic.vue')['default']
     ProjectFilters: typeof import('./../components/timeline/ProjectFilters.vue')['default']
+    ProjectPictures: typeof import('./../components/timeline/ProjectPictures.vue')['default']
     ProjectPin: typeof import('./../components/timeline/ProjectPin.vue')['default']
+    ProjectYoutube: typeof import('./../components/timeline/ProjectYoutube.vue')['default']
     Tile: typeof import('./../components/mandelbrot-set/Tile.vue')['default']
     TileLink: typeof import('./../components/mandelbrot-set/TileLink.vue')['default']
     TimelineDate: typeof import('./../components/timeline/TimelineDate.vue')['default']

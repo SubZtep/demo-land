@@ -3,19 +3,32 @@ MyLead.snap-start
 hr
 .prose.snap-start
   h1 Portfolio
-  blockquote(class="!text-gray text-justify hyphens-auto") These codes are ongoing or might be continuing. Hence that I place them on the timeline when they begin to emerge. JavaScript filter implies its superset(?), the long time habituated #[strong TypeScript] as well.
+  blockquote.text-justify.hyphens-auto(class="!text-gray") These codes are ongoing or might be continuing. Hence that the timeline date is when they begin to emerge. JavaScript filter implies #[u TypeScript] as well.
 
 ProjectFilters(:projects="parsedProjects" v-slot="{ filteredProjects }")
-  template(v-for="{ description, ...project } of parsedProjects" :key="project.name")
+  template(v-for="{ description, pictures, ...project } of parsedProjects" :key="project.name")
     transition(name="fade" mode="out-in")
-      TimelineItem(v-bind="project" v-if="filteredProjects.map(p => p.name).includes(project.name)")
-        .prose.my-1(v-html="description")
+      UseElementVisibility(v-slot="{ isVisible }")
+        TimelineItem(v-bind="project" v-if="filteredProjects.map(p => p.name).includes(project.name)")
+          .max-w-65ch
+            ProjectPictures.my-6(
+              v-if="isVisible && pictures"
+              :pictures="pictures"
+              :key="project.name + pictures.length")
+            ProjectYoutube.my-6(
+              v-if="isVisible && project.youtube"
+              :youtube="project.youtube"
+              :key="project.name + project.youtube")
 
-.snap-end.prose.mx-auto.text-center.py-12.italic.font-serif
-  | ~~ Thank you for your time and interest ~~
+          .prose.my-1(v-html="description")
+
+hr
+.snap-end.prose.mx-auto.text-center.pb-8.italic.font-serif
+  | ~~ ౦０o ｡ (‾́。‾́ )y~~ Thank You for visiting! _(:3 」∠)_ ~~
 </template>
 
 <script lang="ts" setup>
+import { UseElementVisibility } from "@vueuse/components"
 import { useHead } from "@vueuse/head"
 import MarkdownIt from "markdown-it"
 import useSearch from "~/composables/useSearchFake"

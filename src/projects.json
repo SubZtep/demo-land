@@ -6,7 +6,7 @@
     "github": "https://github.com/SubZtep/baby-monitor",
     "website": "https://lili.digital",
     "created": "2021-10-09",
-    "description": "Progressive Web App that should runs on an old phone placed in the room with a sleeping baby and enough juice for _Screen Wake Lock API_.\n\nOnce the microphone has a signal and the calculated decibel — via the **Web Audio API** analyser — reaches the given level several times, the app calls a specified phone number via the [Twilio API](https://www.twilio.com/docs/voice)."
+    "description": "_Progressive Web App_ that should run on an old phone placed in the room with a sleeping baby and enough juice for _Screen Wake Lock API_.\n\nOnce the microphone has a signal and the calculated decibel — via the _Web Audio API_ analyser — reaches the given level several times, the app calls a specified phone number via the [Twilio API](https://www.twilio.com/docs/voice)."
   },
   {
     "name": "Depth",
@@ -14,7 +14,12 @@
     "tags": ["Vue"],
     "github": "https://github.com/SubZtep/depth",
     "created": "2021-05-18",
-    "description": "Prototyping a web-app that shares a viewport between 2D web pages and a 3D background scene for easy idea prototyping, a personal playground platform.\n\nContains many separated pages for different purposes, like implementing _Tensorflow APIs_, commanding _WebGL_ with reactivity, etcetera."
+    "pictures": [
+      "/projects/Depth/2.webp",
+      "/projects/Depth/1.webp",
+      "/projects/Depth/3.webp"
+    ],
+    "description": "Web-app-like app that shares a viewport between 2D web pages and a 3D background scene for easy idea prototyping, a personal playground platform.\n\nContains many separated pages for different purposes, like implementing [Tensorflow APIs](https://js.tensorflow.org), commanding _WebGL_ with reactivity, etcetera."
   },
   {
     "name": "1_accustic",
@@ -23,7 +28,7 @@
     "website": "https://www.hicetnunc.xyz/objkt/52229",
     "youtube": "https://www.youtube.com/watch?v=gWbWnjZ6A-s",
     "created": "2021-04-22",
-    "description": "A short CSS animation without any script backing is unusal among NFTs, but its \"cyber\" theme and demanding system requirements target the time ahead. It's current goal fulfilled namely successfuly minted on a **blockchain**."
+    "description": "A short _CSS_ animation without any script backing is unusal among _NFTs_, but its **cyber** theme and demanding system requirements target the time ahead. Its original goal fulfilled by successfuly minted on a _blockchain_."
   },
   {
     "name": "serfozoiroda.hu",
@@ -31,7 +36,11 @@
     "tags": ["Vue", "CSS", "PHP"],
     "website": "https://serfozoiroda.hu/",
     "created": "2021-04-18",
-    "description": "My brother’s office website — in the Hungarian language — with common components: various info pages, embedded _OpenStreetMap_ navigation, contact form with its host compatible _PHPMailer_ prepared for both _UTF-8_ and _Latin-2_ messages using the free tier from _Google SMTP_. Even though it’s a _SPA_, all pages are pre-generated locally _(SSG)_ and uploaded via _SFTP_. The end result is very similar to my first web pages from the early ’90s, immediately it got the maximum _Lighthouse_ performance score."
+    "pictures": [
+      "/projects/serfozoiroda.hu/1.webp",
+      "/projects/serfozoiroda.hu/2.webp"
+    ],
+    "description": "My brother’s office website — in Hungarian local — with common components: various info pages, embedded _OpenStreetMap_ navigation, contact form with its host compatible _PHPMailer_, prepared for both _UTF-8_ and _Latin-2_ messages using the free tier from _Google SMTP_. Even though it’s an _SPA_, all pages are pre-generated locally with _SSG_ and uploaded via _SFTP_. This _CI_ stack is very similar to my first web pages from the early ’90s, immediately it got the maximum _Lighthouse_ performance score."
   },
   {
     "name": "Vite Plugin Pug",
@@ -39,7 +48,7 @@
     "tags": ["JavaScript"],
     "github": "https://github.com/SubZtep/vite-plugin-pug",
     "created": "2021-02-12",
-    "description": "Extend _Vite_ build tool with _Pug_ template support for _Vanilla JS_ development. Big frameworks are supporting Pug out of the box thereby using this plugin in most cases is superfluous.\n\nThere is a non-stable version that is not in the NPM registry yet that supports hot-module replacement using the **X-Tree Diff+** algorithm for change detection."
+    "description": "Extend [Vite](https://vitejs.dev/) build tool with [Pug](https://pugjs.org/) template support for _Vanilla JS_ development. Big frameworks are supporting Pug out of the box thereby using this plugin in most cases is superfluous.\n\nIn a feature branch there is a non-stable version that is not in the NPM registry yet that supports hot-module replacement using the _X-Tree Diff+_ algorithm for change detection."
   },
   {
     "name": "CSS Tetris 3D",
@@ -48,7 +57,7 @@
     "website": "https://subztep.github.io/css-tetris-3d/",
     "github": "https://github.com/SubZtep/css-tetris-3d",
     "created": "2021-02-11",
-    "description": "CSS 3D perspective experiment that implies the _Tetris_ game. _Tetromino_ aka block movement is implemented with Z-axis rotation."
+    "description": "CSS 3D perspective experiment that implies the _Tetris_ game. _Tetromino_ aka block movement in a resizable board is implemented with Z-axis rotation."
   },
   {
     "name": "My Repos Action",
@@ -56,7 +65,7 @@
     "tags": ["JavaScript"],
     "github": "https://github.com/SubZtep/my-repos-action",
     "created": "2021-01-24",
-    "description": "[GitHub Action](https://github.com/features/actions) that tetrieve your fresh and buried public project list via [GitHub GraphQL API](https://docs.github.com/en/graphql/overview/explorer) and populate this list in reverse-chronological order on your GitHub profile page."
+    "description": "[GitHub Action](https://github.com/features/actions) that tetrieve fresh and buried public project list via [GitHub GraphQL API](https://docs.github.com/en/graphql/overview/explorer) and populate this list in reverse-chronological order on a given GitHub profile page."
   },
   {
     "name": "Time Passing Lambda Image",
@@ -64,7 +73,7 @@
     "tags": ["JavaScript"],
     "github": "https://github.com/SubZtep/time-passing-lambda-image",
     "created": "2021-01-22",
-    "description": "[Netlify Lambda](https://docs.netlify.com/functions/overview/) that calculates the distance from a given date and now in formatted \"time ago\" words. This **serverless function** returns an embeddable PNG image in base64 encoded binary format."
+    "description": "[Netlify Lambda](https://docs.netlify.com/functions/overview/) that calculates the time distance from a given date and now in formatted **time ago** string. This _serverless function_ returns an embeddable PNG image encoded in base64 format."
   },
   {
     "name": "A-Frame Warpspeed Texture",
@@ -72,8 +81,11 @@
     "tags": ["JavaScript"],
     "github": "https://github.com/SubZtep/aframe-warpspeed-texture",
     "website": "https://subztep.github.io/aframe-warpspeed-texture/",
+    "pictures": [
+      "/projects/WarpspeedTexture/1.webp"
+    ],
     "created": "2020-11-14",
-    "description": "_A-Frame ECS_ (Entity-Component System) texture component that sets real-time calculated animation and is still usable as a texture on any material without blocking the main thread, even I let it tweak until significant FPS drop for (assuming) any desktop or mobile. For its demonstration turn on `useWorker` on the demo page GUI.\n\nTo reach this goal the renderer moved to a worker thread and transferred control to an _OffscreenCanvas_. This technology is still experimental and rarely supported by browsers but shows how easy it will be to gain performance without significant code refactors."
+    "description": "[A-Frame](https://aframe.io/) texture component for _ECS_ that sets real-time calculated animation and is still usable as a texture on any material without blocking the main thread, even I let it tweak until significant FPS drop for (assuming) any desktop or mobile. For its demonstration turn on `useWorker` on the demo page GUI.\n\nTo reach this goal the renderer moved to a worker thread and transferred control to an _OffscreenCanvas_. This technology is still experimental and rarely supported by browsers but shows how easy it will be to gain performance without significant code refactors."
   },
   {
     "name": "Flow of Four",
@@ -101,7 +113,7 @@
     "github": "https://github.com/SubZtep/synth",
     "website": "https://subztep.github.io/synth/",
     "created": "2020-05-23",
-    "description": "_Web Audio API_ synthesizer. Able to generate synthetic sound with one or more oscillators and can connect various audio nodes in a graph until the master output. These created sounds are playable with a rudimentary sequencer. All audio calculations are happening in _Worklet_ threads.\n\nIts early version even used _React_ components as audio nodes but the audio timing was inaccurate and even a few milliseconds mismatch is fatal in dance music. Working and filtering with high sample rates is probably better with precompiled code, like _Rust_ to _WebAssembly_."
+    "description": "_Web Audio API_ synthesizer. Able to generate synthetic sound with one or more oscillators and can connect various audio nodes in a graph until the master output. These created sounds are playable with a basic sequencer implementation. All audio calculations are happening in _Worklet_ threads.\n\nIts early version even used _React_ components as real-time audio nodes in the graph but the timing was inaccurate, even a few milliseconds mismatch could be disturbing in dance music. Working and filtering high sample rates audio is probably better with precompiled code, like _Rust_ to _WebAssembly_."
   },
   {
     "name": "Twitter Bot",
@@ -109,7 +121,7 @@
     "tags": ["JavaScript"],
     "github": "https://github.com/SubZtep/twitter-bot",
     "created": "2019-12-30",
-    "description": "Classic _Twitter_ follower/unfollower bot that prepared for automatised workflow. Blacklist its reached users to prevent user annoyance caused by the limitless interruption. The legal status of this kind of bot is not clarified to me however I made it as a replacement, for the good."
+    "description": "Classic _Twitter_ follower/unfollower bot that prepared for automatised workflow. Blacklist its reached users to prevent user annoyance caused by the limitless interruption. For demonstrating purpuses only (for the good)."
   },
   {
     "name": "Depend On",
@@ -152,6 +164,10 @@
     "website": "https://subztep.itch.io/road-pump",
     "youtube": "https://www.youtube.com/watch?v=9bFcMNmdp6E",
     "created": "2018-08-19",
+    "pictures": [
+      "/projects/RoadPump/1.webp",
+      "/projects/RoadPump/2.webp"
+    ],
     "description": "For Ludum Dare 41 gamejam."
   },
   {
@@ -169,6 +185,12 @@
     "website": "https://subztep.itch.io/the-hunger-maims",
     "github": "https://github.com/SubZtep/Ludum-Dare-40",
     "created": "2017-12-05",
+    "pictures": [
+      "/projects/TheHungerMaims/4.webp",
+      "/projects/TheHungerMaims/1.webp",
+      "/projects/TheHungerMaims/2.webp",
+      "/projects/TheHungerMaims/3.webp"
+    ],
     "description": "For Ludum Dare 40 gamejam."
   },
   {
@@ -178,6 +200,12 @@
     "website": "https://subztep.itch.io/whilefly",
     "youtube": "https://www.youtube.com/watch?v=-sVrlWMjpkw",
     "created": "2017-11-28",
+    "pictures": [
+      "/projects/WhileFly/1.webp",
+      "/projects/WhileFly/2.webp",
+      "/projects/WhileFly/3.webp",
+      "/projects/WhileFly/4.webp"
+    ],
     "description": "Mobile game."
   },
   {

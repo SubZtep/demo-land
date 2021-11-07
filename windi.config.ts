@@ -87,8 +87,9 @@ export default defineConfig({
         ".btn": {
           borderWidth: "2px",
           borderStyle: "outset",
-          padding: "4px",
-          minWidth: "2.4rem",
+          paddingTop: "9px",
+          minWidth: "2.6rem",
+          minHeight: "2.6rem",
           textAlign: "center",
           borderRadius: "50%",
           // @ts-ignore

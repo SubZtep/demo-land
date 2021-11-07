@@ -10,13 +10,13 @@ article.py-4.mb-2.snap-start
 
   slot
 
-  .item-list.mt-3(:class="`gap-1.5`")
+  .item-list.mt-3.gap-3(:class="`gap-1.5`")
     a.btn(v-if="props.website" :href="props.website" target="_blank" rel="noopener" :title="props.website")
-      fa(:icon="['fas', 'link']")
+      fa.text-xl(:icon="['fas', 'link']")
     a.btn(v-if="props.github" :href="props.github" target="_blank" rel="noopener" :title="props.github")
-      fa(:icon="['fab', 'github']")
+      fa.text-xl(:icon="['fab', 'github']")
     a.btn(v-if="props.youtube" :href="props.youtube" target="_blank" rel="noopener" :title="props.youtube")
-      fa(:icon="['fab', 'youtube']")
+      fa.text-xl(:icon="['fab', 'youtube']")
 </template>
 
 <script lang="ts" setup>
@@ -30,6 +30,7 @@ export interface TimelineItemProps {
   github?: string
   youtube?: string
   website?: string
+  pictures?: string[]
 }
 
 const props = defineProps<TimelineItemProps>()

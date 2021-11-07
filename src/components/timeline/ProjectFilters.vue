@@ -1,8 +1,8 @@
 <template lang="pug">
 .snap-start.my-6
-  .prose.text-grayer.font-mono(v-once)
-    fa.mr-2(:icon="['fas', 'filter-list']")
-    | Filter categories
+
+  FilterLabel Filter by categories
+
   .item-list.mt-1
     ProjectPin(
       v-for="category in categories"
@@ -11,9 +11,6 @@
       v-model="showCategories[category]"
       @only="category => categories.reduce(onlyReducer(showCategories)(category), category)")
 
-  .prose.text-grayer.font-mono.mt-3(v-once)
-    fa.mr-2(:icon="['fas', 'filter-list']")
-    | Filter tags
   .item-list.mt-1
     ProjectPin(
       v-for="tag in tags"
@@ -21,6 +18,8 @@
       :tag="tag"
       v-model="showTags[tag]"
       @only="tag => tags.reduce(onlyReducer(showTags)(tag), tag)")
+
+  FilterLabel Filter by tags
 
 slot(:filteredProjects="filteredProjects")
 </template>
