@@ -87,6 +87,7 @@ export default defineConfig({
           padding: "4px",
           minWidth: "2.4rem",
           textAlign: "center",
+          borderRadius: "50%",
           // @ts-ignore
           "@media (prefers-color-scheme:dark)": {
             color: theme("colors.blue-gray.400"),

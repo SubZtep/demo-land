@@ -6,7 +6,7 @@
     "github": "https://github.com/SubZtep/baby-monitor",
     "website": "https://lili.digital",
     "created": "2021-10-09",
-    "description": "Progressive web app (for preventing screen timeout) that should runs on an old phone placed in the room with a sleeping baby.\nOnce the microphone has a signal and the calculated decibel via the **Web Audio API** analyser reaches the given value several times, the app calls Your phone via the [Twilio API](https://www.twilio.com/docs/voice)."
+    "description": "Progressive Web App (preventing screen timeout) that should runs on an old phone placed in the room with a sleeping baby.\nOnce the microphone has a signal and the calculated decibel — via the **Web Audio API** analyser — reaches the given level several times, the app calls a specified phone number via the [Twilio API](https://www.twilio.com/docs/voice)."
   },
   {
     "name": "Depth",

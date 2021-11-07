@@ -5,12 +5,12 @@ hr
 
 .prose.snap-start
   h1 Portfolio
-  blockquote(class="!text-gray") Since many of my projects are ongoing or might be continued I place them on the timeline when they begin to emerge. JavaScript filter implies to its superset, #[strong TypeScript] as well, what I use most the times.
+  blockquote(class="!text-gray") These codes are ongoing or might be continuing. Hence that I place them on the timeline when they begin to emerge. JavaScript filter implies its superset(?), the long time habituated #[strong TypeScript] as well.
 
 .snap-start.my-6
-  h3.prose.text-grayer.font-mono(v-once)
+  .prose.text-grayer.font-mono(v-once)
     fa.mr-2(:icon="['fas', 'filter-list']")
-    | Categories
+    | Filter categories
   .item-list.mt-1
     ProjectPin(
       v-for="category in categories"
@@ -19,9 +19,9 @@ hr
       v-model="showCategories[category]"
       @only="category => categories.reduce(onlyReducer(showCategories)(category), category)")
 
-  h3.prose.text-grayer.font-mono.mt-3(v-once)
+  .prose.text-grayer.font-mono.mt-3(v-once)
     fa.mr-2(:icon="['fas', 'filter-list']")
-    | Tags
+    | Filter tags
   .item-list.mt-1
     ProjectPin(
       v-for="tag in tags"
@@ -60,11 +60,11 @@ const parsedProjects = projects.map(project => ({
 const showCategories = useSessionStorage("categories", Object.fromEntries(categories.map(category => [category, true])))
 const showTags = useSessionStorage("tags", Object.fromEntries(tags.map(tag => [tag, true])))
 
-const filteredProjects = computed(() =>
+const filteredProjects = useDebounce(computed(() =>
   projects
     .filter(({ category }) => get(showCategories)[category])
     .filter(({ tags }) => tags.some(tag => get(showTags)[tag]))
-)
+), 250)
 
 const onlyReducer =
   <T extends Category | Tag>(shows: Record<T[number], boolean>) =>
