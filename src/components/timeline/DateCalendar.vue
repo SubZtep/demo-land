@@ -15,7 +15,7 @@ const dateParts = computed(() =>
 
 <style lang="postcss" module>
 .date {
-  transform: translateX(1.5rem);
+  transform: translateX(1.6rem);
   @apply font-mono;
   > :nth-child(1) {
     @apply text-lg dark:text-outline;

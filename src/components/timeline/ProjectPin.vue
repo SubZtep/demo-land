@@ -1,6 +1,6 @@
 <template lang="pug">
 .flex.items-center.gap-2.rounded.px-2.py-1.prose.prose-sm.transition(
-  :class="{ ['cursor-pointer select-none border-gray']: hasForm, ['border-grayer']: hasForm && props.modelValue, 'bg-gradient-to-br dark:from-blue-gray-800 light:from-blue-gray-200 to-transparent': !!props.category }"
+  :class="{ ['cursor-pointer select-none border-gray text-grayed']: hasForm, ['border-grayer text-grayer']: hasForm && props.modelValue, 'bg-gradient-to-br dark:from-blue-gray-800 light:from-blue-gray-200 to-transparent': !!props.category }"
   @click="hasForm && emit('update:modelValue', !props.modelValue)"
   @dblclick="hasForm && emit('only', props.modelValue ? slug : undefined)")
 

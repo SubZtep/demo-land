@@ -1,4 +1,4 @@
-import { defineConfig } from "vite-plugin-windicss"
+import { defineConfig, } from "vite-plugin-windicss"
 import typography from "windicss/plugin/typography"
 import scrollsnap from "windicss/plugin/scroll-snap"
 import scrollbar from "@windicss/plugin-scrollbar"
@@ -30,9 +30,10 @@ export default defineConfig({
             h2: {
               marginBottom: "1rem",
             },
-            // blockquote: {
-            //   color: "dark:text-blue-gray-400 light:text-blue-gray-800",
-            // }
+            p: {
+              marginTop: "0.75rem",
+              marginBottom: "0.75rem",
+            }
           },
         },
       },
@@ -42,6 +43,7 @@ export default defineConfig({
     "bg-gray": "dark:bg-blue-gray-800 light:bg-blue-gray-200",
     "border-gray": "border dark:border-gray-800 light:border-gray-200 transform-gpu hover:translate-y-1",
     "border-grayer": "border dark:border-gray-700 light:border-gray-300 transform-gpu hover:-translate-y-1",
+    "text-grayed": "dark:text-blue-gray-500 light:text-blue-gray-700",
     "text-gray": "dark:text-blue-gray-400 light:text-blue-gray-800",
     "text-grayer": "dark:text-blue-gray-300 light:text-blue-gray-900",
     "item-list": "flex flex-wrap gap-1",
@@ -55,6 +57,7 @@ export default defineConfig({
     plugin(({ addBase, addUtilities, addComponents, theme }) => {
       addBase({
         hr: { opacity: theme("opacity.20") as string, margin: `${theme("spacing.8")} 0 !important` },
+        p: { textAlign: "justify", hyphens: "auto" },
       })
       addUtilities({
         ".text-outline": {

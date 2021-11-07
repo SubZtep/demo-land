@@ -10,6 +10,7 @@ declare module 'vue' {
     PinCategory: typeof import('./../components/timeline/PinCategory.vue')['default']
     PinTag: typeof import('./../components/timeline/PinTag.vue')['default']
     ProfilePic: typeof import('./../components/ProfilePic.vue')['default']
+    ProjectFilters: typeof import('./../components/timeline/ProjectFilters.vue')['default']
     ProjectPin: typeof import('./../components/timeline/ProjectPin.vue')['default']
     Tile: typeof import('./../components/mandelbrot-set/Tile.vue')['default']
     TileLink: typeof import('./../components/mandelbrot-set/TileLink.vue')['default']
