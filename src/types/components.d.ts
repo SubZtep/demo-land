@@ -12,6 +12,7 @@ declare module 'vue' {
     PinTag: typeof import('./../components/timeline/PinTag.vue')['default']
     ProfilePic: typeof import('./../components/ProfilePic.vue')['default']
     ProjectFilters: typeof import('./../components/timeline/ProjectFilters.vue')['default']
+    ProjectLinks: typeof import('./../components/timeline/ProjectLinks.vue')['default']
     ProjectPictures: typeof import('./../components/timeline/ProjectPictures.vue')['default']
     ProjectPin: typeof import('./../components/timeline/ProjectPin.vue')['default']
     ProjectYoutube: typeof import('./../components/timeline/ProjectYoutube.vue')['default']

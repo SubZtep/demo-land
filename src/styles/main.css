@@ -1,18 +1,5 @@
 /* @import "./markdown.css"; */
 
-html {
-  height: 100vh;
-}
-
-body {
-  height: 100vh;
-  overflow: hidden;
-}
-
-#app {
-  overflow: hidden;
-}
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 250ms ease;

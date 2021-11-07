@@ -29,6 +29,8 @@ import { faTrianglePersonDigging } from "@fortawesome/pro-solid-svg-icons/faTria
 import { faCheckSquare } from "@fortawesome/pro-solid-svg-icons/faCheckSquare"
 import { faSquare } from "@fortawesome/pro-solid-svg-icons/faSquare"
 import { faFilterList } from "@fortawesome/pro-solid-svg-icons/faFilterList"
+import { faRss } from "@fortawesome/pro-solid-svg-icons/faRss"
+import { faAnchor } from "@fortawesome/pro-solid-svg-icons/faAnchor"
 
 library.add(
   faCodepen,
@@ -59,7 +61,9 @@ library.add(
   faTrianglePersonDigging,
   faCheckSquare,
   faSquare,
-  faFilterList
+  faFilterList,
+  faRss,
+  faAnchor
 )
 
 // import type { IconPack } from "@fortawesome/fontawesome-common-types"

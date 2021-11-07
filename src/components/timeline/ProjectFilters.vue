@@ -1,5 +1,5 @@
 <template lang="pug">
-.snap-start.my-6
+.-mt-8.transform-gpu.-skew-y-1(ref="filterRef")
 
   FilterLabel Filter by categories
 
@@ -31,13 +31,14 @@ const props = defineProps<{ projects: Project[] }>()
 const showCategories = useSessionStorage("categories", Object.fromEntries(categories.map(category => [category, true])))
 const showTags = useSessionStorage("tags", Object.fromEntries(tags.map(tag => [tag, true])))
 
-const filteredProjects = useDebounce(
-  computed(() =>
-    props.projects
-      .filter(({ category }) => get(showCategories)[category])
-      .filter(({ tags }) => tags.some(tag => get(showTags)[tag]))
-  ),
-  250
+const filterRef = ref()
+const isHovered = useElementHover(filterRef)
+watch(isHovered, hovered => void document.body.classList.toggle("sticky", hovered))
+
+const filteredProjects = computed(() =>
+  props.projects
+    .filter(({ category }) => get(showCategories)[category])
+    .filter(({ tags }) => tags.some(tag => get(showTags)[tag]))
 )
 
 const onlyReducer =

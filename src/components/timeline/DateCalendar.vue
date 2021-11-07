@@ -1,8 +1,9 @@
 <template lang="pug">
-.prose.text-center.flex.items-start
-  div(:class="$style.date")
-    .text-gray(v-for="d in dateParts" :key="d") {{d}}
-  fa.text-gray.opacity-20.scale-200.transform-gpu.text-2xl(:icon="['far', 'calendar']")
+.text-center.absolute.right-10.-mt-6
+  .relative
+    div(:class="$style.date")
+      .text-gray(v-for="d in dateParts" :key="d") {{d}}
+    fa(:class="$style.cal" :icon="['far', 'calendar']")
 </template>
 
 <script lang="ts" setup>
@@ -15,8 +16,7 @@ const dateParts = computed(() =>
 
 <style lang="postcss" module>
 .date {
-  transform: translateX(1.6rem);
-  @apply font-mono;
+  @apply absolute top-0 font-mono opacity-80;
   > :nth-child(1) {
     @apply text-lg dark:text-outline;
   }
@@ -26,5 +26,9 @@ const dateParts = computed(() =>
   > :nth-child(3) {
     @apply leading-8 dark:text-outline;
   }
+}
+
+.cal {
+  @apply absolute top-0 text-gray opacity-20 scale-200 transform-gpu text-2xl;
 }
 </style>

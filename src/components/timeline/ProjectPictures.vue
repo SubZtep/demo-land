@@ -1,28 +1,25 @@
 <template lang="pug">
-.pics
-  img.snap-start(v-for="src in props.pictures" :src="src" :key="src" loading="lazy")
+.mx-auto.h-82.w-full(:class="$style.pics")
+  a(v-for="src in props.pictures" :key="src" :href="src" rel="noopener" target="_blank")
+    img.snap-start(:src="src" loading="lazy" alt="Project screenshot")
 </template>
 
 <script lang="ts" setup>
 const props = defineProps<{ pictures: string[] }>()
 </script>
 
-<style scoped>
+<style lang="postcss" module>
 .pics {
-  overflow: auto;
+  overflow-x: scroll;
+  overflow-y: hidden;
   display: flex;
-  gap: 0.5rem;
-  padding-bottom: 0.5rem;
 
-  @apply scrollbar light:scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700 
-    light:scrollbar-track-white dark:scrollbar-track-black
+  @apply
+    scrollbar-thin light:(scrollbar-thumb-gray-300 scrollbar-track-white) dark:(scrollbar-thumb-gray-700 scrollbar-track-black)
     snap snap-block snap-mandatory snap-x;
 
-  @screen sm {
-    height: 20rem;
-  }
-  @screen <sm {
-    width: 100%;
+  a, img {
+    height: 100%;
     aspect-ratio: 16/9;
   }
 }

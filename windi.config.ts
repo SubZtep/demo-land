@@ -56,7 +56,7 @@ export default defineConfig({
     scrollbar,
     plugin(({ addBase, addUtilities, addComponents, theme }) => {
       addBase({
-        hr: { opacity: theme("opacity.20") as string, margin: `${theme("spacing.8")} 0 !important` },
+        hr: { opacity: theme("opacity.20") as string },
         p: { textAlign: "justify", hyphens: "auto" },
       })
       addUtilities({
@@ -87,9 +87,9 @@ export default defineConfig({
         ".btn": {
           borderWidth: "2px",
           borderStyle: "outset",
-          paddingTop: "9px",
-          minWidth: "2.6rem",
-          minHeight: "2.6rem",
+          width: "2.25rem",
+          height: "2.25rem",
+          lineHeight: "2.1rem",
           textAlign: "center",
           borderRadius: "50%",
           // @ts-ignore

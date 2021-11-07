@@ -1,37 +1,19 @@
 <template lang="pug">
-article.py-4.mb-2.snap-start
-  .flex.justify-between.content-start.w-full
-    .prose
-      h2.text-shadow {{props.name}}
-      .item-list
-        ProjectPin(:category="props.category")
-        ProjectPin(v-for="tag in props.tags" :key="tag" :tag="tag")
-    DateCalendar.mt-4(:date="props.created")
+article.snap-start.flex.flex-col.prose.gap-1.relative
+
+  h2 {{project.name}}
+  .item-list
+    DateCalendar(:date="project.created")
+    ProjectPin(:category="project.category")
+    ProjectPin(v-for="tag in project.tags" :key="tag" :tag="tag")
 
   slot
 
-  .item-list.mt-3.gap-3(:class="`gap-1.5`")
-    a.btn(v-if="props.website" :href="props.website" target="_blank" rel="noopener" :title="props.website")
-      fa.text-xl(:icon="['fas', 'link']")
-    a.btn(v-if="props.github" :href="props.github" target="_blank" rel="noopener" :title="props.github")
-      fa.text-xl(:icon="['fab', 'github']")
-    a.btn(v-if="props.youtube" :href="props.youtube" target="_blank" rel="noopener" :title="props.youtube")
-      fa.text-xl(:icon="['fab', 'youtube']")
+  ProjectLinks(:project="project")
 </template>
 
 <script lang="ts" setup>
-import { categories, tags } from "~/composables/useProject"
 
-export interface TimelineItemProps {
-  name: string
-  category: typeof categories[number]
-  tags: Array<typeof tags[number]>
-  created: string
-  github?: string
-  youtube?: string
-  website?: string
-  pictures?: string[]
-}
-
-const props = defineProps<TimelineItemProps>()
+const props = defineProps<{ project: Project }>()
+const project = toRef(props, "project")
 </script>

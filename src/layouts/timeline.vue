@@ -1,5 +1,5 @@
 <template lang="pug">
-.container(:class="$style.scrollable")
+.container.flex.flex-col.gap-15(:class="$style.scrollable")
   router-view
 </template>
 

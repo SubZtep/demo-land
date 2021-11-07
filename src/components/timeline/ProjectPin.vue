@@ -11,7 +11,6 @@
 
 <script lang="ts" setup>
 import useProject from "~/composables/useProject"
-const { toIcon } = useProject()
 
 const props = defineProps<{
   category?: Category
@@ -19,17 +18,17 @@ const props = defineProps<{
   modelValue?: Boolean
 }>()
 
-if (props.category === undefined && props.tag === undefined) {
-  throw new Error("Please give a category or tag.")
-}
-
-type T = typeof props.tag extends undefined ? Category : Tag
-
 const emit = defineEmits<{
   (e: "update:modelValue", val: Boolean): void
   (e: "only", val?: T): void
 }>()
-const slug = (props.category ?? props.tag) as T
 
+if (props.category === undefined && props.tag === undefined) {
+  throw new Error("Please give a category or tag.")
+}
+
+const { toIcon } = useProject()
+type T = typeof props.tag extends undefined ? Category : Tag
+const slug = (props.category ?? props.tag) as T
 const hasForm = computed(() => props.modelValue !== undefined)
 </script>

@@ -5,12 +5,12 @@ export default function () {
   const ctrlK = keys["Ctrl+K"]
   watchOnce(ctrlK, () => {
     if (
-      confirm(`It’s a small page. Please go with CTRL+F, thanks!
+      confirm(`It’s a small page. Please go with CTRL+F instead, thanks!
 
 (ｏ・_・)ノ”(ノ_<、)
 
 Oh, btw it’s all static. You want to see the page source don’t you,
-should I open it for you?`)
+should I open it for a few seconds?`)
     ) {
       const win = window.open(
         "https://github.com/SubZtep/demo-land/blob/main/src/pages/i.vue",
