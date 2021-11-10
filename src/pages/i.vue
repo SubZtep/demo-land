@@ -18,11 +18,8 @@ ProjectFilters(
 
       ProjectPictures(
         v-if="project.pictures"
+        :name="project.name"
         :pictures="project.pictures")
-
-      ProjectYoutube(
-        v-if="project.youtube"
-        :youtube="project.youtube")
 
       div(v-html="project.description")
 
