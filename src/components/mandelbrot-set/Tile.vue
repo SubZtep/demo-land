@@ -1,44 +1,61 @@
 <template lang="pug">
-.mandelbrotTile(
-  :style="rgbCssProp"
+.tile(
+  :style="{ '--r': rgb[0], '--g': rgb[1], '--b': rgb[2] }"
   :class="{ animUp, animDown }"
-  @mouseover="toggleAnims"
-  @mouseout="toggleAnims")
+  @mouseover="handleOver"
+  @mouseout="handleOut")
   slot
 </template>
 
-<script setup lang="ts">
-import type { StyleValue } from "vue"
-import { useToggle } from "@vueuse/core"
+<script lang="ts">
+import { defineComponent, ref, toRefs, PropType } from "vue"
 
-const props = defineProps<{ rgb: RGB }>()
-const rgbCssProp = { "--rgb": `rgb(${props.rgb.join(",")})` } as StyleValue
+export default defineComponent({
+  name: "Tile",
+  props: {
+    rgb: {
+      type: Object as PropType<RGB>,
+      required: true,
+    },
+  },
+  setup(props) {
+    const rgb = toRefs(props).rgb
+    const animUp = ref(false)
+    const animDown = ref(false)
 
-const [animUp, animUpToggle] = useToggle(false)
-const [animDown, animDownToggle] = useToggle(false)
-
-const toggleAnims = () => {
-  animUpToggle()
-  animDownToggle()
-}
+    return {
+      rgb,
+      animUp,
+      animDown,
+      handleOver: () => {
+        animUp.value = true
+        animDown.value = false
+      },
+      handleOut: () => {
+        animUp.value = false
+        animDown.value = true
+      },
+    }
+  },
+})
 </script>
 
-<style lang="postcss">
-.mandelbrotTile {
-  @apply w-full h-full;
-  background-color: var(--rgb);
-  box-shadow: 1px 1px 2px #000;
-  cursor: none;
-
-  &.animUp {
-    transform: scale(0.95) translateZ(-1px);
-    transition-timing-function: ease-out;
-    transition-duration: 250ms;
-  }
-  &.animDown {
-    transition-timing-function: ease-in;
-    transition-duration: 150ms;
-    transition-delay: 100ms;
-  }
+<style scoped>
+.tile {
+  background-color: rgb(var(--r), var(--g), var(--b));
+  transform-origin: center center;
+}
+.animUp {
+  transform: scale(0.8);
+  transform-style: preserve-3d;
+  transition-duration: 250ms;
+  transition-timing-function: ease-out;
+}
+.animDown {
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition-duration: 100ms;
+  transition-timing-function: ease-in;
+  transition-delay: 100ms;
 }
 </style>

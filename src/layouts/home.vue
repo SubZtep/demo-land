@@ -11,7 +11,7 @@ body {
   background: linear-gradient(0, #8a0303 0%, #fdbb2d 25%, #22c1c3 100%);
 }
 
-.bounce-enter-active {
+/* .bounce-enter-active {
   animation: bounce-in 0.5s ease-out both;
 }
 
@@ -29,7 +29,7 @@ body {
   100% {
     transform: scale(1);
   }
-}
+} */
 
 .tileLink {
   @apply block p-1;
