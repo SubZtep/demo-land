@@ -1,27 +1,29 @@
 <template lang="pug">
-MyLead
-hr
-.prose
+MyLead.snap-start
+hr.my-4
+.prose.mb-8
   blockquote(class="text-justify hyphens-auto !text-gray") The codes below are ongoing or might be continuing. Hence that the timeline date indicates when they begin to emerge. JavaScript filter implies #[u TypeScript] as well.
+.prose.mx-auto
   h1.snap-start Portfolio
 
-ProjectFilters(
+ProjectFilters.projects(
   :projects="parsedProjects"
   v-slot="{ filteredProjects }")
 
-  transition-group(name="list")
+  .projects
+    transition-group(name="list")
 
-    TimelineItem(
-      v-for="project of filteredProjects"
-      :key="project.name"
-      :project="project")
+      TimelineItem(
+        v-for="project of filteredProjects"
+        :key="project.name"
+        :project="project")
 
-      ProjectPictures(
-        v-if="project.pictures"
-        :name="project.name"
-        :pictures="project.pictures")
+        ProjectPictures(
+          v-if="project.pictures"
+          :name="project.name"
+          :pictures="project.pictures")
 
-      div(v-html="project.description")
+        div(v-html="project.description")
 
 hr
 .footer
@@ -60,6 +62,12 @@ meta:
 </route>
 
 <style>
+@media (min-width: 1180px) {
+  .projects {
+    column-count: 2;
+  }
+}
+
 .list-enter-active,
 .list-leave-active {
   transition: all 500ms ease;

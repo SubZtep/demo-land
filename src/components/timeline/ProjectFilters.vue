@@ -1,9 +1,9 @@
 <template lang="pug">
-.-mt-8.transform-gpu.-skew-y-1(ref="filterRef")
+div(ref="filterRef" class="hover:opacity-100 transform-gpu -skew-y-1 my-8 opacity-30 duration-150")
 
-  FilterLabel Filter by categories
+  FilterLabel.mx-auto Filter by categories
 
-  .item-list.mt-1
+  .item-list.mt-1.place-content-center
     ProjectPin(
       v-for="category in categories"
       :key="category"
@@ -11,7 +11,9 @@
       v-model="showCategories[category]"
       @only="category => categories.reduce(onlyReducer(showCategories)(category), category)")
 
-  .item-list.mt-1
+  hr(class="my-1 w-1/2 mx-auto")
+
+  .item-list.place-content-center.mt-1
     ProjectPin(
       v-for="tag in tags"
       :key="tag"
@@ -19,7 +21,7 @@
       v-model="showTags[tag]"
       @only="tag => tags.reduce(onlyReducer(showTags)(tag), tag)")
 
-  FilterLabel Filter by tags
+  FilterLabel.mx-auto Filter by tags
 
 slot(:filteredProjects="filteredProjects")
 </template>

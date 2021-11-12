@@ -24,11 +24,11 @@ const dateParts = computed(() =>
     @apply text-2xl leading-2 font-bold dark:text-outline-2;
   }
   > :nth-child(3) {
-    @apply leading-8 dark:text-outline;
+    @apply leading-8 dark:text-outline opacity-30;
   }
 }
 
 .cal {
-  @apply absolute top-0 text-gray opacity-20 scale-200 transform-gpu text-2xl;
+  @apply absolute top--0.5 left--2.5 text-gray opacity-15 scale-250 transform-gpu text-2xl;
 }
 </style>

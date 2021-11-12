@@ -1,4 +1,6 @@
 <template lang="pug">
+div(:class="$style.videobg")
+
 transition(name="bounce")
   Settings(
     v-if="showSettings"
@@ -18,7 +20,8 @@ MandelbrotSet(
   @toggleSettings="showSettings = !showSettings")
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup>import { useHead } from '@vueuse/head'
+
 const showSettings = ref(false)
 const width = ref(15)
 const height = ref(10)
@@ -41,4 +44,33 @@ throttledWatch(
     throttle: 16,
   }
 )
+
+useHead({
+  title: "d̢̅ḛ̱̟͔̦̍̑̐̾̀m̝̽̍̚͢͟o̞͖͔͌̾̐.̭̞̗͐̏́̾͟la͙̹̤̔̅̉n͍̯͉͗̋̎d͔͞",
+  meta: [
+    {
+      name: "description",
+      content: "SEOgec he? 凸(￣ヘ￣)",
+    },
+  ],
+})
 </script>
+
+<style module>
+.videobg {
+  @apply absolute top-0 right-0 bottom-0 left-0;
+  background: url("/a-4o4.gif") no-repeat left center;
+  background-size: cover;
+  transform: var(--bg-pos, translate(0px, 0px));
+  animation: crot 10s infinite linear alternate;
+}
+
+@keyframes crot {
+  from {
+    filter: blur(4px) brightness(0.6) contrast(1.3) grayscale(0.6) sepia(1) hue-rotate(0deg);
+  }
+  to {
+    filter: blur(4px) brightness(0.6) contrast(1.3) grayscale(0.6) sepia(1) hue-rotate(360deg);
+  }
+}
+</style>

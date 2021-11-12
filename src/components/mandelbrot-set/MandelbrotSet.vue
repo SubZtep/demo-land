@@ -2,121 +2,96 @@
 .grid(:style="cssVars")
   template(v-for="(m, index) in map")
     Tile(v-if="m" :key="`${index}-${m}`" :rgb="palette[m % (palette.length - 1)]" @click="action(index)")
-      img(v-if="isSettings(index)" :src="sliders" alt="Settings")
-    TileLink(v-else :link="socialLink.next().value" :key="`${index}-link`")
+      img(v-if="isSettings(index)" src="/icons/regular/sliders.svg" alt="Setaad tings")
+
+    div(v-else)
+    //-TileLink(v-else :link="socialLink.next().value" :key="`${index}-link`")
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
+import type { StyleValue } from "vue"
 import { defineComponent, ref, onUnmounted, toRefs } from "vue"
 import { throttledWatch } from "@vueuse/core"
-import MandelbrotWorker from "../workers/mandelbrot?worker"
-import usePalette from "../use/palette"
-import useSocialLinks from "../use/socialLinks"
+import MandelbrotWorker from "~/workers/mandelbrot?worker"
+import usePalette from "~/composables/palette"
+// import useSocialLinks from "~/composables/socialLinks"
 import Tile from "./Tile.vue"
 import TileLink from "./TileLink.vue"
-import sliders from "../assets/icons/regular/sliders.svg"
+// import sliders from "~/assets/icons/regular/sliders.svg?raw"
 
-export default defineComponent({
-  name: "MandelbrotSet",
-  components: {
-    Tile,
-    TileLink,
+const props = defineProps<{
+  width: number
+  height: number
+  maxIteration: number
+  paletteSize: number
+  zoomFactor: number
+}>()
+
+const emit = defineEmits<{
+  (o: "toggleSettings"): void
+}>()
+
+const { generatePalette } = usePalette()
+// const { socialLink } = useSocialLinks()
+const { width, height, maxIteration } = props
+const zoomFactor = toRefs(props).zoomFactor
+const paletteSize = toRefs(props).paletteSize
+const palette = ref<RGB[]>([])
+const map = ref<MandelbrotSetMap>([])
+let realSet: NumberSet = { start: -2, end: 1 }
+let imaginarySet: NumberSet = { start: -1, end: 1 }
+
+const cssVars = ref({ "--width": props.width, "--height": props.height }) as StyleValue
+
+const worker = new MandelbrotWorker()
+worker.postMessage({ width, height, maxIteration, realSet, imaginarySet })
+worker.onmessage = ({ data }: MessageEvent<MandelbrotSetMap>) => {
+  map.value = data
+}
+
+const zoom = (index: number) => {
+  const x = index % props.width
+  const y = ~~(index / props.width)
+  const zfw = props.width * zoomFactor.value
+  const zfh = props.height * zoomFactor.value
+
+  const getRelativePoint = (pos: number, length: number, set: NumberSet) =>
+    set.start + (pos / length) * (set.end - set.start)
+
+  realSet = {
+    start: getRelativePoint(x - zfw, props.width, realSet),
+    end: getRelativePoint(x + zfw, props.width, realSet),
+  }
+  imaginarySet = {
+    start: getRelativePoint(y - zfh, props.height, imaginarySet),
+    end: getRelativePoint(y + zfh, props.height, imaginarySet),
+  }
+
+  worker.postMessage({ width, height, maxIteration, realSet, imaginarySet })
+}
+
+throttledWatch(
+  paletteSize,
+  v => {
+    palette.value = generatePalette(v)
   },
-  props: {
-    width: {
-      type: Number,
-      default: 100,
-    },
-    height: {
-      type: Number,
-      default: 50,
-    },
-    maxIteration: {
-      type: Number,
-      default: 80,
-    },
-    paletteSize: {
-      type: Number,
-      default: 250,
-    },
-    zoomFactor: {
-      type: Number,
-      default: 0.1,
-    },
-  },
-  setup: (props, { emit }) => {
-    const { generatePalette } = usePalette()
-    const { socialLink } = useSocialLinks()
-    const { width, height, maxIteration } = props
-    const zoomFactor = toRefs(props).zoomFactor
-    const paletteSize = toRefs(props).paletteSize
-    const palette = ref<RGB[]>([])
-    const map = ref<MandelbrotSetMap>([])
-    let realSet: NumberSet = { start: -2, end: 1 }
-    let imaginarySet: NumberSet = { start: -1, end: 1 }
+  {
+    immediate: true,
+    throttle: 16,
+  }
+)
 
-    const worker = new MandelbrotWorker()
-    worker.postMessage({ width, height, maxIteration, realSet, imaginarySet })
-    worker.onmessage = ({ data }: MessageEvent<MandelbrotSetMap>) => {
-      map.value = data
-    }
+const isSettings = (index: number) => index === map.value.length - 1
 
-    throttledWatch(
-      paletteSize,
-      value => {
-        palette.value = generatePalette(value)
-      },
-      {
-        immediate: true,
-        throttle: 16,
-      }
-    )
+const action = (index: number) => {
+  if (isSettings(index)) {
+    emit("toggleSettings")
+  } else {
+    zoom(index)
+  }
+}
 
-    onUnmounted(() => worker.terminate())
-
-    const zoom = (index: number) => {
-      const x = index % width
-      const y = ~~(index / width)
-      const zfw = width * zoomFactor.value
-      const zfh = height * zoomFactor.value
-
-      const getRelativePoint = (pos: number, length: number, set: NumberSet) =>
-        set.start + (pos / length) * (set.end - set.start)
-
-      realSet = {
-        start: getRelativePoint(x - zfw, width, realSet),
-        end: getRelativePoint(x + zfw, width, realSet),
-      }
-      imaginarySet = {
-        start: getRelativePoint(y - zfh, height, imaginarySet),
-        end: getRelativePoint(y + zfh, height, imaginarySet),
-      }
-
-      worker.postMessage({ width, height, maxIteration, realSet, imaginarySet })
-    }
-
-    const isSettings = (index: number) => index === map.value.length - 1
-
-    return {
-      map,
-      palette,
-      cssVars: {
-        "--width": width,
-        "--height": height,
-      },
-      isSettings,
-      action: (index: number) => {
-        if (isSettings(index)) {
-          emit("toggleSettings")
-        } else {
-          zoom(index)
-        }
-      },
-      sliders,
-      socialLink,
-    }
-  },
-})
+onUnmounted(() => worker.terminate())
 </script>
 
 <style scoped>

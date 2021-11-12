@@ -1,17 +1,23 @@
 <template lang="pug">
-.container.flex.flex-col.gap-15(:class="$style.scrollable")
+div(:class="$style.scrollable")
   router-view
 </template>
 
 <style module>
 :global #app {
-  @apply dark:bg-blue-gray-900;
+  @apply light:bg-cool-gray-100 dark:bg-blue-gray-900;
 }
 
 .scrollable {
-  @apply h-screen overflow-y-scroll
+  max-width: 600px;
+
+  @media (min-width: 1180px) {
+    max-width: 1200px;
+  }
+
+  @apply h-screen overflow-y-scroll mx-auto w-full
     snap snap-block snap-mandatory snap-py-4
-    scrollbar-thin scrollbar-thumb-amber-300 dark:scrollbar-thumb-blood scrollbar-track-black;
-  box-shadow: 1rem 0 1.5rem black;
+    scrollbar-thin dark:scrollbar-thumb-green-500 scrollbar-track-transparent mx-auto;
+  box-shadow: 0.2rem 0 #15803d;
 }
 </style>

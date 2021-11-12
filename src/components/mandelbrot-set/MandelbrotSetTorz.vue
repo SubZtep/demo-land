@@ -22,8 +22,8 @@ import {
   useCssVar,
 } from "@vueuse/core"
 import MandelbrotWorker from "~/workers/mandelbrot?worker&inline"
-import usesocialLinks from "~/use/socialLinks"
-import usePalette from "~/use/palette"
+import usesocialLinks from "~/composables/socialLinks"
+import usePalette from "~/composables/palette"
 
 const props = defineProps({
   edge: {

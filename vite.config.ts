@@ -69,6 +69,7 @@ export default defineConfig({
     script: "async",
     formatting: "minify",
     dirStyle: "nested",
+    mock: true,
   },
 
   // optimizeDeps: {
@@ -78,6 +79,6 @@ export default defineConfig({
 
   // server: {
   //   https: true,
-  //   host: "192.168.0.10"
+  //   host: "192.168.1.100"
   // }
 })
