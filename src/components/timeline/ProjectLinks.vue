@@ -1,5 +1,5 @@
 <template lang="pug">
-.item-list.gap-3(:class="`gap-1.5`")
+div(class="gap-1.5 item-list gap-3")
 
   a.btn(v-if="project.blog" :href="project.blog" target="_blank" rel="noopener" :title="`Open blog post`")
     fa.text-lg(:icon="['fas', 'rss']")

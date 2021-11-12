@@ -5,7 +5,9 @@
 declare module 'vue' {
   export interface GlobalComponents {
     DateCalendar: typeof import('./../components/timeline/DateCalendar.vue')['default']
+    Default: typeof import('./../layouts/default.vue')['default']
     FilterLabel: typeof import('./../components/timeline/FilterLabel.vue')['default']
+    Home: typeof import('./../layouts/home.vue')['default']
     MandelbrotSet: typeof import('./../components/mandelbrot-set/MandelbrotSet.vue')['default']
     MandelbrotSetTorz: typeof import('./../components/mandelbrot-set/MandelbrotSetTorz.vue')['default']
     MyLead: typeof import('./../components/MyLead.vue')['default']
@@ -19,6 +21,7 @@ declare module 'vue' {
     TileLink: typeof import('./../components/mandelbrot-set/TileLink.vue')['default']
     TileLinkTorz: typeof import('./../components/mandelbrot-set/TileLinkTorz.vue')['default']
     TileTorz: typeof import('./../components/mandelbrot-set/TileTorz.vue')['default']
+    Timeline: typeof import('./../layouts/timeline.vue')['default']
     TimelineItem: typeof import('./../components/timeline/TimelineItem.vue')['default']
   }
 }

@@ -10,13 +10,14 @@
 
 <script lang="ts" setup>
 import type { StyleValue } from "vue"
-import { defineComponent, ref, onUnmounted, toRefs } from "vue"
+// import { defineComponent, ref, onUnmounted, toRefs } from "vue"
+import { ref, onUnmounted, toRefs } from "vue"
 import { throttledWatch } from "@vueuse/core"
-import MandelbrotWorker from "~/workers/mandelbrot?worker"
+// import MandelbrotWorker from "~/workers/mandelbrot?worker"
 import usePalette from "~/composables/palette"
 // import useSocialLinks from "~/composables/socialLinks"
 import Tile from "./Tile.vue"
-import TileLink from "./TileLink.vue"
+// import TileLink from "./TileLink.vue"
 // import sliders from "~/assets/icons/regular/sliders.svg?raw"
 
 const props = defineProps<{
@@ -43,11 +44,11 @@ let imaginarySet: NumberSet = { start: -1, end: 1 }
 
 const cssVars = ref({ "--width": props.width, "--height": props.height }) as StyleValue
 
-const worker = new MandelbrotWorker()
-worker.postMessage({ width, height, maxIteration, realSet, imaginarySet })
-worker.onmessage = ({ data }: MessageEvent<MandelbrotSetMap>) => {
-  map.value = data
-}
+// const worker = new MandelbrotWorker()
+// worker.postMessage({ width, height, maxIteration, realSet, imaginarySet })
+// worker.onmessage = ({ data }: MessageEvent<MandelbrotSetMap>) => {
+//   map.value = data
+// }
 
 const zoom = (index: number) => {
   const x = index % props.width
@@ -67,7 +68,7 @@ const zoom = (index: number) => {
     end: getRelativePoint(y + zfh, props.height, imaginarySet),
   }
 
-  worker.postMessage({ width, height, maxIteration, realSet, imaginarySet })
+  // worker.postMessage({ width, height, maxIteration, realSet, imaginarySet })
 }
 
 throttledWatch(
@@ -91,7 +92,7 @@ const action = (index: number) => {
   }
 }
 
-onUnmounted(() => worker.terminate())
+// onUnmounted(() => worker.terminate())
 </script>
 
 <style scoped>

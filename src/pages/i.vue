@@ -61,7 +61,7 @@ meta:
   layout: timeline
 </route>
 
-<style>
+<style scoped>
 @media (min-width: 1180px) {
   .projects {
     column-count: 2;

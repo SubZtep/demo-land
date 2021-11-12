@@ -23,6 +23,7 @@ export default defineConfig({
 
     Pages({
       extensions: ["vue", "md"],
+      pagesDir: "src/pages",
     }),
 
     Layouts({
@@ -38,7 +39,7 @@ export default defineConfig({
     }),
 
     Components({
-      dirs: ["src/components", "src/layouts/src/pages"],
+      dirs: ["src/components", "src/layouts", "/src/pages"],
       extensions: ["vue", "md", "ts"],
       dts: "src/types/components.d.ts",
       deep: true,
@@ -69,7 +70,7 @@ export default defineConfig({
     script: "async",
     formatting: "minify",
     dirStyle: "nested",
-    mock: true,
+    // mock: true,
   },
 
   // optimizeDeps: {

@@ -10,6 +10,8 @@ import "./styles/main.css"
 
 const routes = setupLayouts(generatedRoutes)
 
+console.log(routes)
+
 export const createApp = ViteSSG(
   App,
   {
