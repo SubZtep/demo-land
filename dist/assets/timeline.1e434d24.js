@@ -1,0 +1,1 @@
+import{r,c as l,Y as a,_ as c,o as t}from"./vendor.bd7ad7d8.js";import{_ as n}from"./app.95ca4931.js";function _(s,p){const o=r("router-view");return t(),l("div",{class:c(s.$style.scrollable)},[a(o)],2)}const d="_scrollable_1fxap_6";var i={scrollable:d};const m={},e={};e.$style=i;var v=n(m,[["render",_],["__cssModules",e]]);export{v as default};
