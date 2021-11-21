@@ -16,7 +16,7 @@ div(:class="$style.scrollable")
   }
 
   @apply h-screen overflow-y-scroll mx-auto w-full
-    snap snap-block snap-mandatory snap-py-4
+    <lg:snap snap-block snap-mandatory snap-py-4
     scrollbar-thin dark:scrollbar-thumb-green-500 scrollbar-track-transparent mx-auto;
   box-shadow: 0.2rem 0 #15803d;
 }

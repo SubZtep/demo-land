@@ -1,5 +1,5 @@
 <template lang="pug">
-div(ref="filterRef" class="hover:opacity-100 transform-gpu -skew-y-1 my-8 opacity-30 duration-150")
+div(ref="filterRef" class="hover:opacity-100 transform-gpu -skew-y-1 hover:-skew-x-12 my-8 opacity-30 duration-150 scale-90 hover:scale-100")
 
   FilterLabel.mx-auto Filter by categories
 

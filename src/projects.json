@@ -15,7 +15,7 @@
     "github": "https://github.com/SubZtep/depth#readme",
     "created": "2021-05-18",
     "pictures": ["/projects/Depth/2.webp", "/projects/Depth/1.webp", "/projects/Depth/3.webp"],
-    "description": "Web-app-like app that shares a viewport between 2D web pages and a 3D background scene for easy idea prototyping, a personal playground platform.\n\nContains many separated pages for different purposes, like implementing [Tensorflow APIs](https://js.tensorflow.org), commanding _WebGL_ with reactivity, etcetera."
+    "description": "Web-app-like app that shares a viewport between 2D web pages and a 3D background scene for easy idea prototyping, a personal playground platform.\n\nContains many separated pages for different purposes, like meta-like lobby, implementing [Tensorflow APIs](https://js.tensorflow.org), commanding _WebGL_ with reactivity, etcetera."
   },
   {
     "name": "1_accustic",
